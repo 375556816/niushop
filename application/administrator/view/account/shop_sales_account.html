@@ -1,0 +1,493 @@
+
+<section class="ns-base-section">
+
+
+
+    <div style="position:relative;margin:0;">
+        <!-- 面包屑导航 -->
+        <div class="breadcrumb-nav">
+            <a href="http://www.ns.com/index.php?s=/admin">Niushop开源商城</a>
+            <i class="fa fa-angle-right"></i>
+            <a href="http://www.ns.com/index.php?s=/admin/account/shopsalesaccount">数据</a>
+            <i class="fa fa-angle-right"></i>
+            <!-- 需要加跳转链接用这个：http://www.ns.com/index.php/admin/account/shopsalesaccount -->
+            <a href="javascript:;" style="color:#999;">销售概况</a>
+        </div>
+        <!-- 三级导航菜单 -->
+
+
+        <div class="right-side-operation">
+            <ul>
+
+
+                <!-- 					style="display:none;" style="display:block;" -->
+                <li>
+                    <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
+                    <div class="popover">
+                        <div class="arrow"></div>
+                        <div class="popover-content">
+                            <div>
+                                <h4>操作提示</h4>
+                                <p>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2387&amp;extra=page%3D1" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2387&amp;extra=page%3D1</a></p>
+                                <hr>
+                                <h4>功能提示</h4>
+                                <p class="function-prompts">
+                                    1、符合以下任何一种条件的订单即为有效订单：1）采用在线支付方式支付并且已付款；2）采用货到付款方式支付并且交易已完成<br>
+                                    2、以下关于订单和订单商品近30天统计数据的依据为：从昨天开始最近30天的有效订单
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- 操作提示 -->
+
+    <!-- 		 -->
+    <div class="ns-warm-prompt" style="display:none;">
+        <div class="alert alert-info">
+            <button type="button" class="close">×</button>
+            <h4>
+                <!-- 					{1block name="alert_info"} -->
+                <!-- 					<i class="fa fa-info-circle"></i> -->
+                <!-- 					<span class="operating-hints">操作提示</span> -->
+                <!-- 						 -->
+                <!-- 						<span>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&tid=2387&extra=page%3D1" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&tid=2387&extra=page%3D1</a></span> -->
+                <!-- 						 -->
+                <!-- 					{1/block} -->
+            </h4>
+        </div>
+    </div>
+
+
+    <div class="ns-main">
+
+        <div class="space-10"></div>
+        <div class="count-box">
+
+            <div class="main-content" id="mainContent">
+                <!-- <div class="alert mt10 top-alert">
+                    <ul class="mt5">
+                        <li>1、符合以下任何一种条件的订单即为有效订单：1）采用在线支付方式支付并且已付款；2）采用货到付款方式支付并且交易已完成</li>
+                        <li>2、以下关于订单和订单商品近30天统计数据的依据为：从昨天开始最近30天的有效订单</li>
+                    </ul>
+                </div> -->
+                <div class="alert alert-info mt10" style="clear:both;">
+                    <ul class="mt5">
+                        <li>
+					<span class="w210 fl h30" style="display:block;">
+						<i title="店铺从昨天开始最近30天有效订单的总金额" class="tip icon-question-sign"></i>
+						近30天下单金额：<strong>0.00元</strong>
+					</span>
+                            <span class="w210 fl h30" style="display:block;">
+						<i title="店铺从昨天开始最近30天有效订单的会员总数" class="tip icon-question-sign"></i>
+						近30天下单会员数：<strong>0</strong>
+					</span>
+                            <span class="w210 fl h30" style="display:block;">
+						<i title="店铺从昨天开始最近30天有效订单的总订单数" class="tip icon-question-sign"></i>
+						近30天下单量：<strong>0</strong>
+					</span>
+                            <span class="w210 fl h30" style="display:block;">
+						<i title="店铺从昨天开始最近30天有效订单的总商品数量" class="tip icon-question-sign"></i>
+						近30天下单商品数：<strong>0</strong>
+					</span>
+                        </li>
+                        <li>
+					<span class="w210 fl h30" style="display:block;">
+						<i title="店铺从昨天开始最近30天有效订单的平均每个订单的交易金额" class="tip icon-question-sign"></i>
+						平均客单价：<strong>0.00元</strong>
+					</span>
+                            <span class="w210 fl h30" style="display:block;">
+						<i title="店铺从昨天开始最近30天有效订单商品的平均每个商品的成交价格" class="tip icon-question-sign"></i>
+						平均价格：<strong>0.00元</strong>
+					</span>
+                        </li>
+                    </ul>
+                    <div style="clear:both;"></div>
+                </div>
+
+                <div id="container" data-highcharts-chart="0"><div id="highcharts-85cimqj-0" style="position: relative; overflow: hidden; width: 1189px; height: 400px; text-align: left; line-height: normal; z-index: 0; left: 0px; top: 0px;" class="highcharts-container "><svg version="1.1" class="highcharts-root" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="1189" height="400"><desc>Created with Highcharts 5.0.6</desc><defs><clipPath id="highcharts-85cimqj-1"><rect x="0" y="0" width="1121" height="311" fill="none"></rect></clipPath><clipPath id="highcharts-85cimqj-2"><rect x="-99" y="-49" width="1220" height="400" fill="none"></rect></clipPath><clipPath id="highcharts-85cimqj-3"><rect x="0" y="0" width="1121" height="311" fill="none"></rect></clipPath></defs><rect fill="#ffffff" class="highcharts-background" x="0" y="0" width="1189" height="400" rx="0" ry="0"></rect><rect fill="none" class="highcharts-plot-background" x="58" y="49" width="1121" height="311"></rect><g class="highcharts-grid highcharts-yaxis-grid "><path fill="none" stroke="#e6e6e6" stroke-width="1" class="highcharts-grid-line" d="M 58 205.5 L 1179 205.5" opacity="1"></path></g><rect fill="none" class="highcharts-plot-border" x="58" y="49" width="1121" height="311"></rect><g class="highcharts-grid highcharts-xaxis-grid "><path fill="none" class="highcharts-grid-line" d="M 93.5 49 L 93.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 129.5 49 L 129.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 165.5 49 L 165.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 202.5 49 L 202.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 238.5 49 L 238.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 274.5 49 L 274.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 310.5 49 L 310.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 346.5 49 L 346.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 382.5 49 L 382.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 419.5 49 L 419.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 455.5 49 L 455.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 491.5 49 L 491.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 527.5 49 L 527.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 563.5 49 L 563.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 599.5 49 L 599.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 636.5 49 L 636.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 672.5 49 L 672.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 708.5 49 L 708.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 744.5 49 L 744.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 780.5 49 L 780.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 816.5 49 L 816.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 853.5 49 L 853.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 889.5 49 L 889.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 925.5 49 L 925.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 961.5 49 L 961.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 997.5 49 L 997.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 1033.5 49 L 1033.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 1070.5 49 L 1070.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 1106.5 49 L 1106.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 1142.5 49 L 1142.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 1178.5 49 L 1178.5 360" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 57.5 49 L 57.5 360" opacity="1"></path></g><g class="highcharts-axis highcharts-yaxis "><text x="26.050000190734863" text-anchor="middle" transform="translate(0,0) rotate(270 26.050000190734863 204.5)" class="highcharts-axis-title" style="color:#666666;fill:#666666;" y="204.5">下单量</text><path fill="none" class="highcharts-axis-line" d="M 58 49 L 58 360"></path></g><g class="highcharts-axis highcharts-xaxis "><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 93.5 360 L 93.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 129.5 360 L 129.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 165.5 360 L 165.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 202.5 360 L 202.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 238.5 360 L 238.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 274.5 360 L 274.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 310.5 360 L 310.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 346.5 360 L 346.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 382.5 360 L 382.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 419.5 360 L 419.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 455.5 360 L 455.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 491.5 360 L 491.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 527.5 360 L 527.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 563.5 360 L 563.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 599.5 360 L 599.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 636.5 360 L 636.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 672.5 360 L 672.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 708.5 360 L 708.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 744.5 360 L 744.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 780.5 360 L 780.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 816.5 360 L 816.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 853.5 360 L 853.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 889.5 360 L 889.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 925.5 360 L 925.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 961.5 360 L 961.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 997.5 360 L 997.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 1033.5 360 L 1033.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 1070.5 360 L 1070.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 1106.5 360 L 1106.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 1142.5 360 L 1142.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 1179.5 360 L 1179.5 370" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 57.5 360 L 57.5 370" opacity="1"></path><path fill="none" class="highcharts-axis-line" stroke="#ccd6eb" stroke-width="1" d="M 58 360.5 L 1179 360.5"></path></g><g class="highcharts-series-group"><g class="highcharts-series highcharts-series-0 highcharts-line-series highcharts-color-0 " transform="translate(58,49) scale(1 1)" clip-path="url(#highcharts-85cimqj-1)" width="311" height="1121"><path fill="none" d="M 18.08064516129 155.5 L 54.241935483871 155.5 L 90.403225806452 155.5 L 126.56451612903 155.5 L 162.72580645161 155.5 L 198.88709677419 155.5 L 235.04838709677 155.5 L 271.20967741935 155.5 L 307.37096774194 155.5 L 343.53225806452 155.5 L 379.6935483871 155.5 L 415.85483870968 155.5 L 452.01612903226 155.5 L 488.17741935484 155.5 L 524.33870967742 155.5 L 560.5 155.5 L 596.66129032258 155.5 L 632.82258064516 155.5 L 668.98387096774 155.5 L 705.14516129032 155.5 L 741.3064516129 155.5 L 777.46774193548 155.5 L 813.62903225806 155.5 L 849.79032258065 155.5 L 885.95161290323 155.5 L 922.11290322581 155.5 L 958.27419354839 155.5 L 994.43548387097 155.5 L 1030.5967741935 155.5 L 1066.7580645161 155.5 L 1102.9193548387 155.5" class="highcharts-graph" stroke="#058DC7" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path><path fill="none" d="M 8.08064516129 155.5 L 18.08064516129 155.5 L 54.241935483871 155.5 L 90.403225806452 155.5 L 126.56451612903 155.5 L 162.72580645161 155.5 L 198.88709677419 155.5 L 235.04838709677 155.5 L 271.20967741935 155.5 L 307.37096774194 155.5 L 343.53225806452 155.5 L 379.6935483871 155.5 L 415.85483870968 155.5 L 452.01612903226 155.5 L 488.17741935484 155.5 L 524.33870967742 155.5 L 560.5 155.5 L 596.66129032258 155.5 L 632.82258064516 155.5 L 668.98387096774 155.5 L 705.14516129032 155.5 L 741.3064516129 155.5 L 777.46774193548 155.5 L 813.62903225806 155.5 L 849.79032258065 155.5 L 885.95161290323 155.5 L 922.11290322581 155.5 L 958.27419354839 155.5 L 994.43548387097 155.5 L 1030.5967741935 155.5 L 1066.7580645161 155.5 L 1102.9193548387 155.5 L 1112.9193548387 155.5" stroke-linejoin="round" visibility="visible" stroke="rgba(192,192,192,0.0001)" stroke-width="22" class="highcharts-tracker"></path></g><g class="highcharts-markers highcharts-series-0 highcharts-line-series highcharts-color-0 highcharts-tracker " transform="translate(58,49) scale(1 1)" clip-path="none" width="311" height="1121"><path fill="#058DC7" d="M 452 155.5 C 452 155.5 452 155.5 452 155.5 C 452 155.5 452 155.5 452 155.5 Z" class="highcharts-halo highcharts-color-0" fill-opacity="0.25"></path><path fill="#058DC7" d="M 1102 152 C 1107.328 152 1107.328 160 1102 160 C 1096.672 160 1096.672 152 1102 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 1066 152 C 1071.328 152 1071.328 160 1066 160 C 1060.672 160 1060.672 152 1066 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 1030 152 C 1035.328 152 1035.328 160 1030 160 C 1024.672 160 1024.672 152 1030 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 994 152 C 999.328 152 999.328 160 994 160 C 988.672 160 988.672 152 994 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 958 152 C 963.328 152 963.328 160 958 160 C 952.672 160 952.672 152 958 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 922 152 C 927.328 152 927.328 160 922 160 C 916.672 160 916.672 152 922 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 885 152 C 890.328 152 890.328 160 885 160 C 879.672 160 879.672 152 885 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 849 152 C 854.328 152 854.328 160 849 160 C 843.672 160 843.672 152 849 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 813 152 C 818.328 152 818.328 160 813 160 C 807.672 160 807.672 152 813 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 777 152 C 782.328 152 782.328 160 777 160 C 771.672 160 771.672 152 777 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 741 152 C 746.328 152 746.328 160 741 160 C 735.672 160 735.672 152 741 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 705 152 C 710.328 152 710.328 160 705 160 C 699.672 160 699.672 152 705 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 668 152 C 673.328 152 673.328 160 668 160 C 662.672 160 662.672 152 668 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 632 152 C 637.328 152 637.328 160 632 160 C 626.672 160 626.672 152 632 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 596 152 C 601.328 152 601.328 160 596 160 C 590.672 160 590.672 152 596 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 560 152 C 565.328 152 565.328 160 560 160 C 554.672 160 554.672 152 560 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 524 152 C 529.328 152 529.328 160 524 160 C 518.672 160 518.672 152 524 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 488 151.5 C 493.328 151.5 493.328 159.5 488 159.5 C 482.672 159.5 482.672 151.5 488 151.5 Z" class="highcharts-point highcharts-color-0 " stroke-width="1"></path><path fill="#058DC7" d="M 452 151.5 C 457.328 151.5 457.328 159.5 452 159.5 C 446.672 159.5 446.672 151.5 452 151.5 Z" class="highcharts-point highcharts-color-0 " stroke-width="1"></path><path fill="#058DC7" d="M 415 152 C 420.328 152 420.328 160 415 160 C 409.672 160 409.672 152 415 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 379 152 C 384.328 152 384.328 160 379 160 C 373.672 160 373.672 152 379 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 343 152 C 348.328 152 348.328 160 343 160 C 337.672 160 337.672 152 343 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 307 152 C 312.328 152 312.328 160 307 160 C 301.672 160 301.672 152 307 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 271 152 C 276.328 152 276.328 160 271 160 C 265.672 160 265.672 152 271 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 235 152 C 240.328 152 240.328 160 235 160 C 229.672 160 229.672 152 235 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 198 152 C 203.328 152 203.328 160 198 160 C 192.672 160 192.672 152 198 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 162 152 C 167.328 152 167.328 160 162 160 C 156.672 160 156.672 152 162 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 126 151.5 C 131.328 151.5 131.328 159.5 126 159.5 C 120.672 159.5 120.672 151.5 126 151.5 Z" class="highcharts-point highcharts-color-0 " stroke-width="1"></path><path fill="#058DC7" d="M 90 152 C 95.328 152 95.328 160 90 160 C 84.672 160 84.672 152 90 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 54 152 C 59.328 152 59.328 160 54 160 C 48.672 160 48.672 152 54 152 Z" class="highcharts-point highcharts-color-0"></path><path fill="#058DC7" d="M 18 152 C 23.328 152 23.328 160 18 160 C 12.672 160 12.672 152 18 152 Z" class="highcharts-point highcharts-color-0"></path></g></g><text x="575" text-anchor="middle" class="highcharts-title" style="color:#333333;font-size:18px;fill:#333333;width:1125px;" y="24"><tspan style="font-weight:bold">下单量</tspan></text><g class="highcharts-axis-labels highcharts-yaxis-labels "><text x="43" style="color:#666666;cursor:default;font-size:11px;fill:#666666;width:382px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="207" opacity="1"><tspan>0</tspan></text></g><g class="highcharts-axis-labels highcharts-xaxis-labels "><text x="76.08064516129032" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">1日</text><text x="112.24193548387096" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">2日</text><text x="148.40322580645162" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">3日</text><text x="184.56451612903226" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">4日</text><text x="220.72580645161293" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">5日</text><text x="256.8870967741936" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">6日</text><text x="293.0483870967742" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">7日</text><text x="329.2096774193549" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">8日</text><text x="365.3709677419355" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">9日</text><text x="401.53225806451616" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">10日</text><text x="437.6935483870968" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">11日</text><text x="473.85483870967744" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">12日</text><text x="510.0161290322581" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">13日</text><text x="546.1774193548387" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">14日</text><text x="582.3387096774194" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">15日</text><text x="618.5" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">16日</text><text x="654.6612903225807" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">17日</text><text x="690.8225806451613" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">18日</text><text x="726.983870967742" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">19日</text><text x="763.1451612903227" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">20日</text><text x="799.3064516129033" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">21日</text><text x="835.4677419354839" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">22日</text><text x="871.6290322580646" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">23日</text><text x="907.7903225806452" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">24日</text><text x="943.9516129032259" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">25日</text><text x="980.1129032258065" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">26日</text><text x="1016.2741935483872" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">27日</text><text x="1052.4354838709678" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">28日</text><text x="1088.5967741935485" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">29日</text><text x="1124.758064516129" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">30日</text><text x="1160.9193548387098" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="379" opacity="1">31日</text></g><g class="highcharts-label highcharts-tooltip highcharts-color-0" style="cursor:default;pointer-events:none;white-space:nowrap;" transform="translate(470,-9999)" opacity="0" visibility="visible"><path fill="none" class="highcharts-label-box highcharts-tooltip-box" d="M 3.5 0.5 L 78.5 0.5 C 81.5 0.5 81.5 0.5 81.5 3.5 L 81.5 44.5 C 81.5 47.5 81.5 47.5 78.5 47.5 L 45.5 47.5 39.5 53.5 33.5 47.5 3.5 47.5 C 0.5 47.5 0.5 47.5 0.5 44.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="#000000" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)"></path><path fill="none" class="highcharts-label-box highcharts-tooltip-box" d="M 3.5 0.5 L 78.5 0.5 C 81.5 0.5 81.5 0.5 81.5 3.5 L 81.5 44.5 C 81.5 47.5 81.5 47.5 78.5 47.5 L 45.5 47.5 39.5 53.5 33.5 47.5 3.5 47.5 C 0.5 47.5 0.5 47.5 0.5 44.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="#000000" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)"></path><path fill="none" class="highcharts-label-box highcharts-tooltip-box" d="M 3.5 0.5 L 78.5 0.5 C 81.5 0.5 81.5 0.5 81.5 3.5 L 81.5 44.5 C 81.5 47.5 81.5 47.5 78.5 47.5 L 45.5 47.5 39.5 53.5 33.5 47.5 3.5 47.5 C 0.5 47.5 0.5 47.5 0.5 44.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="#000000" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)"></path><path fill="rgba(247,247,247,0.85)" class="highcharts-label-box highcharts-tooltip-box" d="M 3.5 0.5 L 78.5 0.5 C 81.5 0.5 81.5 0.5 81.5 3.5 L 81.5 44.5 C 81.5 47.5 81.5 47.5 78.5 47.5 L 45.5 47.5 39.5 53.5 33.5 47.5 3.5 47.5 C 0.5 47.5 0.5 47.5 0.5 44.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" stroke="#058DC7" stroke-width="1"></path><text x="8" style="font-size:12px;color:#333333;fill:#333333;" y="20"><tspan style="font-size: 10px">13日</tspan><tspan style="fill:#058DC7" x="8" dy="15">●</tspan><tspan dx="0"> 下单量: </tspan><tspan style="font-weight:bold" dx="0">0</tspan></text></g></svg></div></div>
+
+                <div class="w450 fl mr50" style="display: none;">
+                    <div class="alert alert-info" style="margin-bottom:0px;"><strong>建议推广商品</strong>
+                        &nbsp;<i title="统计店铺从昨天开始7日内热销商品前30名，建议推广以下商品，提升推广回报率" class="tip icon-question-sign"></i>
+                    </div>
+                    <table class="ncsc-default-table">
+                        <thead>
+                        <tr class="sortbar-array">
+                            <th class="align-center">序号</th>
+                            <th class="align-center">商品名称</th>
+                            <th class="align-center">销量</th>
+                        </tr>
+                        </thead>
+                        <tbody id="datatable">
+                        <tr>
+                            <td colspan="20" class="norecord"><div class="warning-option"><i class="icon-warning-sign"></i><span>暂无符合条件的数据记录</span></div></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="w450 fl" style="display: none;">
+                    <div class="alert alert-info" style="margin-bottom:0;"><strong>同行热卖</strong>
+                        &nbsp;<i title="拥有相同经营类目同行店铺热销商品推荐，了解行业热卖便于调整商品结构" class="tip icon-question-sign"></i>
+                    </div>
+                    <table class="ncsc-default-table">
+                        <thead>
+                        <tr class="sortbar-array">
+                            <th class="align-center">序号</th>
+                            <th class="align-center">商品名称</th>
+                            <th class="align-center">销量</th>
+                        </tr>
+                        </thead>
+                        <tbody id="datatable">
+                        <tr>
+                            <td colspan="20" class="norecord"><div class="warning-option"><i class="icon-warning-sign"></i><span>暂无符合条件的数据记录</span></div></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="h30 cb">&nbsp;</div>
+            </div>
+        </div>
+        <script>
+            var time = [1+"日",2+"日",3+"日",4+"日",5+"日",6+"日",7+"日",8+"日",9+"日",10+"日",11+"日",12+"日",13+"日",14+"日",15+"日",16+"日",17+"日",18+"日",19+"日",20+"日",21+"日",22+"日",23+"日",24+"日",25+"日",26+"日",27+"日",28+"日",29+"日",30+"日"];
+            var data = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+            $(function(){
+                Chart = new Highcharts.Chart("container",{
+
+                    "xAxis" : {
+                        "categories" : time
+                    },
+                    "legend" : {
+                        "enabled" : false
+                    },
+                    "series" : [ {
+                        "name" : "下单量",
+                        "data" : data
+                    } ],
+                    "title" : {
+                        "text" : "<b>下单量<\/b>",
+                        "x" : -20
+                    },
+                    "chart" : {
+                        "type" : "line"
+                    },
+                    "colors" : [ "#058DC7", "#ED561B", "#8bbc21",
+                        "#0d233a" ],
+                    "credits" : {
+                        "enabled" : false
+                    },
+                    "exporting" : {
+                        "enabled" : false
+                    },
+                    "yAxis" : {
+                        "title" : {
+                            "text" : "下单量"
+                        }
+                    }
+                });
+                $.ajax({
+                    type : "post",
+                    url : "http://www.ns.com/index.php?s=/admin/account/getshopsalenumcount",
+                    success : function(data) {
+                        Chart.update({
+                            xAxis : {
+                                categories : data[0]
+                            },
+                            series : [ {
+                                name : "下单量",
+                                data : data[1]
+                            }]
+                        });
+                    }
+                })
+            });
+        </script>
+
+        <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+        <script src="/static/js/page.js"></script>
+        <div class="page" id="turn-ul" style="display: none;">
+            <div class="pagination">
+                <ul>
+                    <li class="according-number">每页显示<input type="text" class="input-medium" id="showNumber" value="14" data-default="14" autocomplete="off">条</li>
+                    <li><a id="beginPage" class="page-disable" style="border: 1px solid #dddddd;">首页</a></li>
+                    <li><a id="prevPage" class="page-disable">上一页</a></li>
+                    <li id="pageNumber"></li>
+                    <li id="JslastPage">
+
+                    </li>
+                    <li><a id="nextPage">下一页</a></li>
+                    <li><a id="lastPage">末页</a></li>
+                    <li class="total-data">共0条</li>
+                    <!-- <li class="page-count">共0页</li> -->
+                    <li class="according-number">
+                        跳<input type="text" class="input-medium" id="skipPage" data-curr-page="1">页
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <input type="hidden" id="page_count">
+        <input type="hidden" id="page_size">
+        <script>
+            /**
+             * 保存当前的页面
+             * 创建时间：2017年8月30日 19:29:20
+             */
+            function savePage(index){
+                var json = { page_index : index, show_number : $("#showNumber").val(), url :  window.location.href };
+                $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                //console.log(json);
+            }
+
+            $(function() {
+                try{
+
+                    $("#turn-ul").show();//显示分页
+                    var history_url = "";
+                    var json = { page_index : 1, show_number : 14, url :  window.location.href };
+                    var history_json = "";//用于临时保存分页数据
+                    if($.cookie('page_cookie') != undefined && $.cookie('page_cookie') != "" && $.cookie('page_cookie') != '""'){
+
+                        var cookie = eval("(" + $.cookie('page_cookie') + ")");
+                        if(cookie !=undefined && cookie != ""){
+                            json.page_index = cookie.page_index;
+                            if(cookie.show_number != undefined && cookie.show_number != "") json.show_number = cookie.show_number;
+                            else json.show_number = 14;
+                            history_url = cookie.url;
+                            history_json = cookie;
+                        }
+
+                    }else{
+
+                        savePage(json.page_index);
+
+                    }
+                    if(history_url != undefined && history_url != "" && history_url != json.url && json.page_index != 1){
+
+                        //如果页面发生了跳转，还原操作
+                        json.page_index = 1;
+                        json.show_number = 14;
+                        json.url = history_url;
+                        //console.log("如果页面发生了跳转，还原操作");
+                        $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                    }
+
+                    //console.log($.cookie('page_cookie'));
+                    $("#showNumber").val(json.show_number);
+                    if(json.page_index != 1) jumpNumber = json.page_index;
+                    LoadingInfo(json.page_index);//通过此方法调用分页类
+
+                }catch(e){
+
+                    $("#turn-ul").hide();
+                    //当前页面没有分页，进行还原操作
+                    $.cookie('page_cookie',JSON.stringify(history_json),{ path: '/' });
+//		console.error(e);
+                    //console.log("当前页面没有分页，进行还原操作");
+                    //console.log($.cookie('page_cookie'));
+                }
+
+                //首页
+                $("#beginPage").click(function() {
+                    if(jumpNumber!=1){
+                        jumpNumber = 1;
+                        LoadingInfo(1);
+                        savePage(1);
+                        changeClass("begin");
+                    }
+                    return false;
+                });
+
+                //上一页
+                $("#prevPage").click(function() {
+                    var obj = $(".currentPage");
+                    var index = parseInt(obj.text()) - 1;
+                    if (index > 0) {
+                        obj.removeClass("currentPage");
+                        obj.prev().addClass("currentPage");
+                        jumpNumber = index;
+                        LoadingInfo(index);
+                        savePage(index);
+                        //判断是否是第一页
+                        if (index == 1) {
+                            changeClass("prev");
+                        } else {
+                            changeClass();
+                        }
+                    }
+                    return false;
+                });
+
+                //下一页
+                $("#nextPage").click(function() {
+                    var obj = $(".currentPage");
+                    //当前页加一（下一页）
+                    var index = parseInt(obj.text()) + 1;
+                    if (index <= $("#page_count").val()) {
+                        jumpNumber = index;
+                        LoadingInfo(index);
+                        savePage(index);
+                        obj.removeClass("currentPage");
+                        obj.next().addClass("currentPage");
+                        //判断是否是最后一页
+                        if (index == $("#page_count").val()) {
+                            changeClass("next");
+                        } else {
+                            changeClass();
+                        }
+                    }
+                    return false;
+                });
+
+                //末页
+                $("#lastPage").click(function() {
+                    jumpNumber = $("#page_count").val();
+                    if(jumpNumber>1){
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        $("#pageNumber a:eq("+ (parseInt($("#page_count").val()) - 1) + ")").text($("#page_count").val());
+                        changeClass("next");
+                    }
+                    return false;
+                });
+
+                //每页显示页数
+                $("#showNumber").blur(function(){
+                    if(isNaN($(this).val())){
+                        $("#showNumber").val(20);
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if($(this).val().indexOf(".") != -1){
+                        var index = $(this).val().indexOf(".");
+                        $("#showNumber").val($(this).val().substr(0,index));
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val())<=0){
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    //页数没有变化的话，就不要再执行查询
+                    if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 			jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                        $(this).attr("data-default",$(this).val());
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                    }
+                    return false;
+                }).keyup(function(event){
+                    if(event.keyCode == 13){
+                        if(isNaN($(this).val())){
+                            $("#showNumber").val(20);
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                        //页数没有变化的话，就不要再执行查询
+                        if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 				jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                            $(this).attr("data-default",$(this).val());
+                            //总数据数量
+                            var total_count = parseInt($(".total-data").attr("data-total-count"));
+                            //计算用户输入的页数是否超过当前页数
+                            var curr_count = Math.ceil(total_count/parseInt($(this).val()));
+                            if( curr_count !=0 && curr_count < jumpNumber){
+                                jumpNumber = curr_count;//输入的页数超过了，没有那么多
+                            }
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                    }
+                    return false;
+                });
+
+                // 跳转到某页
+                $("#skipPage").blur(function(){
+                    if(isNaN($(this).val()) || $(this).val().length == 0){
+                        $("#showNumber").val(20);
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val())<=0){
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val()) > $("#page_count").val()){
+                        jumpNumber = $("#page_count").val();
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        $(this).val(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                        return;
+                    }
+                    jumpNumber = $(this).val();
+                    LoadingInfo(jumpNumber);
+                    savePage(jumpNumber);
+                }).keyup(function(event){
+                    if(event.keyCode == 13){
+                        if(isNaN($(this).val())){
+                            $("#showNumber").val(20);
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                        if(parseInt($(this).val())<=0){
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                            return;
+                        }
+                        if(parseInt($(this).val()) > $("#page_count").val()){
+                            jumpNumber = $("#page_count").val();
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                            $(this).val(jumpNumber);
+                            return;
+                        }
+                        if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                            return;
+                        }
+                        jumpNumber = $(this).val();
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                    }
+                    return false;
+                });
+            });
+
+            //跳转页面
+            function JumpForPage(obj) {
+                jumpNumber = $(obj).text();
+                LoadingInfo($(obj).text());
+                savePage($(obj).text());
+                $(".currentPage").removeClass("currentPage");
+                $(obj).addClass("currentPage");
+                if (jumpNumber == 1) {
+                    changeClass("prev");
+                } else if (jumpNumber < parseInt($("#page_count").val())) {
+                    changeClass();
+                } else if (jumpNumber == parseInt($("#page_count").val())) {
+                    changeClass("next");
+                }
+            }
+        </script>
+    </div>
+
+</section>

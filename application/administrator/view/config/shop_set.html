@@ -1,0 +1,699 @@
+
+<section class="ns-base-section">
+
+
+
+    <div style="position:relative;margin:0;">
+        <!-- 面包屑导航 -->
+        <div class="breadcrumb-nav">
+            <a href="http://www.ns.com/index.php?s=/admin">Niushop开源商城</a>
+            <i class="fa fa-angle-right"></i>
+            <a href="http://www.ns.com/index.php?s=/admin/config/webconfig">设置</a>
+            <i class="fa fa-angle-right"></i>
+            <!-- 需要加跳转链接用这个：http://www.ns.com/index.php/admin/config/shopset -->
+            <a href="javascript:;" style="color:#999;">购物设置</a>
+        </div>
+        <!-- 三级导航菜单 -->
+
+        <nav class="ns-third-menu">
+            <ul>
+                <li class="selected" onclick="location.href='http://www.ns.com/index.php?s=/admin/config/shopset';">购物设置</li>
+                <li onclick="location.href='http://www.ns.com/index.php?s=/admin/config/paymentconfig';">支付配置</li>
+                <li onclick="location.href='http://www.ns.com/index.php?s=/admin/config/memberwithdrawsetting';">提现设置</li>
+            </ul>
+        </nav>
+
+        <div class="right-side-operation">
+            <ul>
+
+
+                <!-- 					style="display:none;" style="display:block;" -->
+                <li>
+                    <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
+                    <div class="popover">
+                        <div class="arrow"></div>
+                        <div class="popover-content">
+                            <div>
+                                <h4>操作提示</h4>
+                                <p>购物设置</p>
+                                <hr>
+                                <h4>功能提示</h4>
+                                <p class="function-prompts"></p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- 操作提示 -->
+
+    <!-- 		 -->
+    <div class="ns-warm-prompt" style="display:none;">
+        <div class="alert alert-info">
+            <button type="button" class="close">×</button>
+            <h4>
+                <!-- 					{1block name="alert_info"} -->
+                <!-- 					<i class="fa fa-info-circle"></i> -->
+                <!-- 					<span class="operating-hints">操作提示</span> -->
+                <!-- 						 -->
+                <!-- 						<span>购物设置</span> -->
+                <!-- 						 -->
+                <!-- 					{1/block} -->
+            </h4>
+        </div>
+    </div>
+
+
+    <div class="ns-main">
+
+        <div class="set-style">
+            <!-- 模块一 -->
+            <h4>基础设置</h4>
+            <dl>
+                <dt>自动收货时间：</dt>
+                <dd>
+                    <input id="order_auto_delinery" type="number" min="0.00" step="1.00" onkeyup="value=value.replace(/[^\d+(\.\d+)?]/g,'')" value="14" class="input-common harf"><em class="unit">天</em>
+                    <p class="hint">订单多长时间后自动收货，单位为/天(注：若为0，则订单不会自动收货)</p>
+                </dd>
+            </dl>
+            <dl>
+                <dt>订单自动关闭时间：</dt>
+                <dd>
+                    <input id="order_buy_close_time" type="number" min="0.00" step="1.00" onkeyup="value=value.replace(/[^\d+(\.\d+)?]/g,'')" value="60" class="input-common harf"><em class="unit">分钟</em>
+                    <p class="hint">订单开始后多长时间未付款自动关闭，单位为/分钟(注：不填写或0订单将不会自动关闭)</p>
+                </dd>
+            </dl>
+            <dl>
+                <dt>是否开启余额支付：</dt>
+                <dd>
+                    <div class="controls">
+                        <p>
+                            <input id="order_balance_pay" type="checkbox" class="checkbox" style="display: none;" simpleswitch="0" result="false"><div class="Switch Switch_FlatRadius" id="Switch0"><span class="switch-open">是</span><span class="switch-close">否</span></div>
+                        </p>
+                    </div>
+                    <p class="hint">是否启用余额支付功能</p>
+                </dd>
+            </dl>
+            <dl>
+                <dt>是否开启货到付款：</dt>
+                <dd>
+                    <div class="controls">
+                        <p>
+                            <input id="order_delivery_pay" type="checkbox" class="checkbox" style="display: none;" simpleswitch="1" result="false"><div class="Switch Switch_FlatRadius" id="Switch1"><span class="switch-open">是</span><span class="switch-close">否</span></div>
+                        </p>
+                    </div>
+                    <p class="hint">是否开启货到付款功能</p>
+                </dd>
+            </dl>
+            <dl>
+                <dt>订单完成时间：</dt>
+                <dd>
+                    <p style="height: 30px;">
+                    <div class="selectric-wrapper selectric-select-common" style="width: 250px;"><div class="selectric-hide-select"><select id="order_delivery_complete_time" class="select-common" tabindex="-1">
+                        <option value="0">立即</option>
+                        <option value="1">1天</option>
+                        <option value="2">2天</option>
+                        <option value="3">3天</option>
+                        <option value="4">4天</option>
+                        <option value="5">5天</option>
+                        <option value="6">6天</option>
+                        <option value="7" selected="">7天</option>
+                    </select></div><div class="selectric"><span class="selectric-label">7天</span><button class="selectric-button">▾</button></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="" title="立即">立即</li><li data-index="1" class="" title="1天">1天</li><li data-index="2" class="" title="2天">2天</li><li data-index="3" class="" title="3天">3天</li><li data-index="4" class="" title="4天">4天</li><li data-index="5" class="" title="5天">5天</li><li data-index="6" class="" title="6天">6天</li><li data-index="7" class="last selected" title="7天">7天</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
+                    </p>
+                    <input type="hidden" id="closeday" value="7">
+                    <p class="hint">收货后，多少时间订单自动完成，单位为/天</p>
+                </dd>
+            </dl>
+            <dl>
+                <dt>购物返积分设置：</dt>
+                <dd>
+                    <p style="height: 30px;">
+                    <div class="selectric-wrapper selectric-select-common" style="width: 250px;"><div class="selectric-hide-select"><select id="shopping_back_points" class="select-common" tabindex="-1">
+                        <option value="1">订单已完成</option>
+                        <option value="2">已收货</option>
+                        <option value="3" selected="">支付完成</option>
+                    </select></div><div class="selectric"><span class="selectric-label">支付完成</span><button class="selectric-button">▾</button></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="" title="订单已完成">订单已完成</li><li data-index="1" class="" title="已收货">已收货</li><li data-index="2" class="last selected" title="支付完成">支付完成</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
+                    </p>
+                    <p class="hint">在什么时间将购物返积分添加到会员账户</p>
+                </dd>
+            </dl>
+            <dl>
+                <dt>是否显示购买记录：</dt>
+                <dd>
+                    <div class="controls">
+                        <p>
+                            <input id="order_show_buy_record" type="checkbox" class="checkbox" style="display: none;" simpleswitch="2" result="false"><div class="Switch Switch_FlatRadius" id="Switch2"><span class="switch-open">是</span><span class="switch-close">否</span></div>
+                        </p>
+                    </div>
+                    <p class="hint">是否显示购买记录</p>
+                </dd>
+            </dl>
+            <dl style="display: none;">
+                <dt>是否开启虚拟商品：</dt>
+                <dd>
+                    <div class="controls">
+                        <p>
+                            <input id="is_open_virtual_goods" type="checkbox" class="checkbox" style="display: none;" simpleswitch="3" result="false"><div class="Switch Switch_FlatRadius" id="Switch3"><span class="switch-open">是</span><span class="switch-close">否</span></div>
+                        </p>
+                    </div>
+                    <p class="hint">是否开启虚拟商品</p>
+                </dd>
+            </dl>
+
+            <!-- 模块二 -->
+            <h4>配送设置</h4>
+            <dl>
+                <dt>是否开启买家自提：</dt>
+                <dd>
+                    <div class="controls">
+                        <p>
+                            <input id="buyer_self_lifting" type="checkbox" class="checkbox" style="display: none;" simpleswitch="4" result="false"><div class="Switch Switch_FlatRadius" id="Switch4"><span class="switch-open">是</span><span class="switch-close">否</span></div>
+                        </p>
+                    </div>
+                    <p class="hint">是否启用买家自提</p>
+                </dd>
+            </dl>
+
+            <dl>
+                <dt>是否开启商家配送：</dt>
+                <dd>
+                    <div class="controls">
+                        <p>
+                            <input id="seller_dispatching" type="checkbox" class="checkbox" checked="" style="display: none;" simpleswitch="5" result="true"><div class="Switch Switch_FlatRadius On" id="Switch5"><span class="switch-open">是</span><span class="switch-close">否</span></div>
+                        </p>
+                    </div>
+                    <p class="hint">是否启用商家配送</p>
+                </dd>
+            </dl>
+
+
+            <dl>
+                <dt>是否允许选择物流：</dt>
+                <dd>
+                    <div class="controls">
+                        <p>
+                            <input id="is_logistics" type="checkbox" class="checkbox" style="display: none;" simpleswitch="6" result="false"><div class="Switch Switch_FlatRadius" id="Switch6"><span class="switch-open">是</span><span class="switch-close">否</span></div>
+                        </p>
+                    </div>
+                    <p class="hint">是否允许用户选择物流</p>
+                </dd>
+            </dl>
+
+            <dl>
+                <dt>开启指定配送时间：</dt>
+                <dd>
+                    <div class="controls">
+                        <p>
+                            <input id="order_designated_delivery_time" type="checkbox" class="checkbox" style="display: none;" simpleswitch="7" result="false"><div class="Switch Switch_FlatRadius" id="Switch7"><span class="switch-open">是</span><span class="switch-close">否</span></div>
+                        </p>
+                    </div>
+                    <p class="hint">是否开启指定配送时间</p>
+                </dd>
+            </dl>
+
+            <dl>
+                <dt>设定配送时间段：</dt>
+                <dd>
+                    <div class="time-slot">
+                    </div>
+                    <div class="controls">
+                        <p>
+                        <div class="selectric-wrapper selectric-select-common selectric-short selectric-start" style="width: 50px;"><div class="selectric-hide-select"><select class="select-common short start" tabindex="-1">
+                            <option value="00">00</option>
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                        </select></div><div class="selectric"><span class="selectric-label">00</span><button class="selectric-button">▾</button></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="selected" title="00">00</li><li data-index="1" class="" title="01">01</li><li data-index="2" class="" title="02">02</li><li data-index="3" class="" title="03">03</li><li data-index="4" class="" title="04">04</li><li data-index="5" class="" title="05">05</li><li data-index="6" class="" title="06">06</li><li data-index="7" class="" title="07">07</li><li data-index="8" class="" title="08">08</li><li data-index="9" class="" title="09">09</li><li data-index="10" class="" title="10">10</li><li data-index="11" class="" title="11">11</li><li data-index="12" class="" title="12">12</li><li data-index="13" class="" title="13">13</li><li data-index="14" class="" title="14">14</li><li data-index="15" class="" title="15">15</li><li data-index="16" class="" title="16">16</li><li data-index="17" class="" title="17">17</li><li data-index="18" class="" title="18">18</li><li data-index="19" class="" title="19">19</li><li data-index="20" class="" title="20">20</li><li data-index="21" class="" title="21">21</li><li data-index="22" class="" title="22">22</li><li data-index="23" class="last" title="23">23</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
+                        <em class="unit time-unit">：00</em>
+                        <span>-</span>
+                        <div class="selectric-wrapper selectric-select-common selectric-short selectric-end" style="width: 50px;"><div class="selectric-hide-select"><select class="select-common short end" tabindex="-1">
+                            <option value="00">00</option>
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                        </select></div><div class="selectric"><span class="selectric-label">00</span><button class="selectric-button">▾</button></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="selected" title="00">00</li><li data-index="1" class="" title="01">01</li><li data-index="2" class="" title="02">02</li><li data-index="3" class="" title="03">03</li><li data-index="4" class="" title="04">04</li><li data-index="5" class="" title="05">05</li><li data-index="6" class="" title="06">06</li><li data-index="7" class="" title="07">07</li><li data-index="8" class="" title="08">08</li><li data-index="9" class="" title="09">09</li><li data-index="10" class="" title="10">10</li><li data-index="11" class="" title="11">11</li><li data-index="12" class="" title="12">12</li><li data-index="13" class="" title="13">13</li><li data-index="14" class="" title="14">14</li><li data-index="15" class="" title="15">15</li><li data-index="16" class="" title="16">16</li><li data-index="17" class="" title="17">17</li><li data-index="18" class="" title="18">18</li><li data-index="19" class="" title="19">19</li><li data-index="20" class="" title="20">20</li><li data-index="21" class="" title="21">21</li><li data-index="22" class="" title="22">22</li><li data-index="23" class="last" title="23">23</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
+                        <em class="unit time-unit">：00</em>
+                        <button class="btn-common" style="top: -2px;position: relative;" onclick="addTimeSlot(this);">添加</button>
+                        </p>
+                    </div>
+                    <p class="hint">商家设定配送时间段</p>
+                </dd>
+            </dl>
+
+            <!-- 模块三 -->
+            <h4>发票设置</h4>
+            <dl>
+                <dt>发票税率：</dt>
+                <dd>
+                    <input id="order_invoice_tax" type="number" min="0.00" step="0.01" value="0" class="input-common harf"><em class="unit">%</em>
+                    <p class="hint">设置开发票的税率，单位为%</p>
+                </dd>
+            </dl>
+            <dl>
+                <dt>发票内容：</dt>
+                <dd>
+                    <textarea rows="2" id="order_invoice_content" class="textarea-common" maxlength="50"></textarea>
+                    <p class="hint">客户要求开发票时可以选择的内容，逗号分格代表一个选项，例如：办公用品,明细</p>
+                </dd>
+            </dl>
+            <dl>
+                <dt></dt>
+                <dd><button class="btn-common btn-big" onclick="setConfigAjax();">保存</button></dd>
+            </dl>
+        </div>
+        <script src="/static/js/ajax_file_upload.js" type="text/javascript"></script>
+        <script src="/static/js/file_upload.js" type="text/javascript"></script>
+        <script>
+            var validation = true;//验证余额输入
+            $("#order_invoice_tax").live("keyup",function(){
+                var reg = /^\d+(.{0,1})(\d{0,2})$/;
+                if(!reg.test($(this).val())){
+                    showTip("请输入大于0的数字，并且保留两位小数","warning");
+                    validation = false;
+                }else{
+                    validation = true;
+                }
+            })
+
+            function setConfigAjax(){
+                var order_delivery_complete_time = $('#order_delivery_complete_time').val();
+                var order_buy_close_time = $('#order_buy_close_time').val();
+                var order_auto_delinery = $("#order_auto_delinery").val();
+
+                var order_invoice_tax = $("#order_invoice_tax").val();
+                var order_invoice_content = $("#order_invoice_content").val();
+                var shopping_back_points = $("#shopping_back_points").val();
+
+                var order_balance_pay = $("#order_balance_pay").prop('checked') ? 1 : 0 ;
+                var order_show_buy_record = $("#order_show_buy_record").prop('checked') ? 1 : 0 ;
+                var buyer_self_lifting = $("#buyer_self_lifting").prop('checked') ? 1 : 0 ;
+                var seller_dispatching = $("#seller_dispatching").prop('checked') ? 1 : 0 ;
+                var is_open_o2o = $("#is_open_o2o").prop('checked') ? 1 : 0 ;
+                var is_logistics = $("#is_logistics").prop('checked') ? 1 : 0 ;
+                var is_open_virtual_goods = $("#is_open_virtual_goods").prop('checked') ? 1 : 0 ;//是否开启虚拟商品
+                var order_designated_delivery_time = $("#order_designated_delivery_time").prop('checked') ? 1 : 0 ;//是否开启指定配送时间
+                var order_delivery_pay = $("#order_delivery_pay").prop('checked') ? 1 : 0 ;
+                var time_slot_arr = new Array();
+                $(".time-slot .time-slot-item").each(function(){
+                    var time_slot = {
+                        'start': $(this).attr('start'),
+                        'end': $(this).attr('end')
+                    };
+                    time_slot_arr.push(time_slot);
+                })
+
+                if(validation){
+                    $.ajax({
+                        type:"post",
+                        url : "http://www.ns.com/index.php?s=/admin/config/shopset",
+                        data : {
+                            "order_delivery_complete_time" : order_delivery_complete_time,
+                            "order_buy_close_time":order_buy_close_time,
+                            "order_balance_pay" : order_balance_pay,
+                            "order_delivery_pay" : order_delivery_pay,
+                            "order_auto_delinery" : order_auto_delinery,
+                            "order_show_buy_record" : order_show_buy_record,
+                            "buyer_self_lifting" : buyer_self_lifting,
+                            "seller_dispatching" : seller_dispatching,
+                            "is_open_o2o" : is_open_o2o,
+                            "is_logistics" : is_logistics,
+                            "order_invoice_tax" : order_invoice_tax,
+                            "order_invoice_content" : order_invoice_content,
+                            "shopping_back_points" : shopping_back_points,
+                            "is_open_virtual_goods" : is_open_virtual_goods,
+                            "order_designated_delivery_time" : order_designated_delivery_time,
+                            "time_slot" : JSON.stringify(time_slot_arr)
+                        },
+                        success : function(data){
+                            if(data['code'] > 0){
+                                showTip(data["message"],"success");
+                                location.href="http://www.ns.com/index.php?s=/admin/config/shopset";
+                            }else{
+                                showTip(data["message"],"error");
+                            }
+                        }
+                    });
+                }else{
+                    showTip("请输入大于0的数字，并且保留两位小数","warning");
+                }
+            }
+
+            $(".time-slot .time-slot-item").live('click', function(){
+                var start = $(this).attr("start"),
+                    end = $(this).attr("end");
+                initTimeSelect(start, end);
+                $(this).addClass('selected').siblings().removeClass('selected');
+            })
+
+            function addTimeSlot(obj){
+                var start = $(obj).parents("dd").find(".start").val(),
+                    end = $(obj).parents("dd").find(".end").val(),
+                    html = $(".time-slot").html();
+                if($(".time-slot .time-slot-item.selected").length > 0){
+                    $(".time-slot .time-slot-item.selected").attr({'start':start, 'end':end}).text(start + ':00-' + end + ':00').removeClass('selected');
+                    initTimeSelect('00', '00')
+                }else{
+                    html += '<span start="' + start + '" end="' + end + '" class="time-slot-item">' + start + ':00-' + end + ':00<i class="del" onclick="delTimeSlotItem(this)">×</i></span>';
+                    $(".time-slot").html(html);
+                    initTimeSelect('00', '00')
+                }
+            }
+
+            function delTimeSlotItem(obj){
+                $(obj).parent('span').remove();
+                initTimeSelect('00', '00')
+            }
+
+            function initTimeSelect(start, end){
+                $(".start option[value='" + start + "']").attr('selected', true);
+                $(".end option[value='" + end + "']").attr('selected', true);
+                $(".start,.end").selectric()
+            }
+        </script>
+
+        <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+        <script src="/static/js/page.js"></script>
+        <div class="page" id="turn-ul" style="display: none;">
+            <div class="pagination">
+                <ul>
+                    <li class="according-number">每页显示<input type="text" class="input-medium" id="showNumber" value="14" data-default="14" autocomplete="off">条</li>
+                    <li><a id="beginPage" class="page-disable" style="border: 1px solid #dddddd;">首页</a></li>
+                    <li><a id="prevPage" class="page-disable">上一页</a></li>
+                    <li id="pageNumber"></li>
+                    <li id="JslastPage">
+
+                    </li>
+                    <li><a id="nextPage">下一页</a></li>
+                    <li><a id="lastPage">末页</a></li>
+                    <li class="total-data">共0条</li>
+                    <!-- <li class="page-count">共0页</li> -->
+                    <li class="according-number">
+                        跳<input type="text" class="input-medium" id="skipPage" data-curr-page="1">页
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <input type="hidden" id="page_count">
+        <input type="hidden" id="page_size">
+        <script>
+            /**
+             * 保存当前的页面
+             * 创建时间：2017年8月30日 19:29:20
+             */
+            function savePage(index){
+                var json = { page_index : index, show_number : $("#showNumber").val(), url :  window.location.href };
+                $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                //console.log(json);
+            }
+
+            $(function() {
+                try{
+
+                    $("#turn-ul").show();//显示分页
+                    var history_url = "";
+                    var json = { page_index : 1, show_number : 14, url :  window.location.href };
+                    var history_json = "";//用于临时保存分页数据
+                    if($.cookie('page_cookie') != undefined && $.cookie('page_cookie') != "" && $.cookie('page_cookie') != '""'){
+
+                        var cookie = eval("(" + $.cookie('page_cookie') + ")");
+                        if(cookie !=undefined && cookie != ""){
+                            json.page_index = cookie.page_index;
+                            if(cookie.show_number != undefined && cookie.show_number != "") json.show_number = cookie.show_number;
+                            else json.show_number = 14;
+                            history_url = cookie.url;
+                            history_json = cookie;
+                        }
+
+                    }else{
+
+                        savePage(json.page_index);
+
+                    }
+                    if(history_url != undefined && history_url != "" && history_url != json.url && json.page_index != 1){
+
+                        //如果页面发生了跳转，还原操作
+                        json.page_index = 1;
+                        json.show_number = 14;
+                        json.url = history_url;
+                        //console.log("如果页面发生了跳转，还原操作");
+                        $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                    }
+
+                    //console.log($.cookie('page_cookie'));
+                    $("#showNumber").val(json.show_number);
+                    if(json.page_index != 1) jumpNumber = json.page_index;
+                    LoadingInfo(json.page_index);//通过此方法调用分页类
+
+                }catch(e){
+
+                    $("#turn-ul").hide();
+                    //当前页面没有分页，进行还原操作
+                    $.cookie('page_cookie',JSON.stringify(history_json),{ path: '/' });
+//		console.error(e);
+                    //console.log("当前页面没有分页，进行还原操作");
+                    //console.log($.cookie('page_cookie'));
+                }
+
+                //首页
+                $("#beginPage").click(function() {
+                    if(jumpNumber!=1){
+                        jumpNumber = 1;
+                        LoadingInfo(1);
+                        savePage(1);
+                        changeClass("begin");
+                    }
+                    return false;
+                });
+
+                //上一页
+                $("#prevPage").click(function() {
+                    var obj = $(".currentPage");
+                    var index = parseInt(obj.text()) - 1;
+                    if (index > 0) {
+                        obj.removeClass("currentPage");
+                        obj.prev().addClass("currentPage");
+                        jumpNumber = index;
+                        LoadingInfo(index);
+                        savePage(index);
+                        //判断是否是第一页
+                        if (index == 1) {
+                            changeClass("prev");
+                        } else {
+                            changeClass();
+                        }
+                    }
+                    return false;
+                });
+
+                //下一页
+                $("#nextPage").click(function() {
+                    var obj = $(".currentPage");
+                    //当前页加一（下一页）
+                    var index = parseInt(obj.text()) + 1;
+                    if (index <= $("#page_count").val()) {
+                        jumpNumber = index;
+                        LoadingInfo(index);
+                        savePage(index);
+                        obj.removeClass("currentPage");
+                        obj.next().addClass("currentPage");
+                        //判断是否是最后一页
+                        if (index == $("#page_count").val()) {
+                            changeClass("next");
+                        } else {
+                            changeClass();
+                        }
+                    }
+                    return false;
+                });
+
+                //末页
+                $("#lastPage").click(function() {
+                    jumpNumber = $("#page_count").val();
+                    if(jumpNumber>1){
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        $("#pageNumber a:eq("+ (parseInt($("#page_count").val()) - 1) + ")").text($("#page_count").val());
+                        changeClass("next");
+                    }
+                    return false;
+                });
+
+                //每页显示页数
+                $("#showNumber").blur(function(){
+                    if(isNaN($(this).val())){
+                        $("#showNumber").val(20);
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if($(this).val().indexOf(".") != -1){
+                        var index = $(this).val().indexOf(".");
+                        $("#showNumber").val($(this).val().substr(0,index));
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val())<=0){
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    //页数没有变化的话，就不要再执行查询
+                    if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 			jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                        $(this).attr("data-default",$(this).val());
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                    }
+                    return false;
+                }).keyup(function(event){
+                    if(event.keyCode == 13){
+                        if(isNaN($(this).val())){
+                            $("#showNumber").val(20);
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                        //页数没有变化的话，就不要再执行查询
+                        if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 				jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                            $(this).attr("data-default",$(this).val());
+                            //总数据数量
+                            var total_count = parseInt($(".total-data").attr("data-total-count"));
+                            //计算用户输入的页数是否超过当前页数
+                            var curr_count = Math.ceil(total_count/parseInt($(this).val()));
+                            if( curr_count !=0 && curr_count < jumpNumber){
+                                jumpNumber = curr_count;//输入的页数超过了，没有那么多
+                            }
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                    }
+                    return false;
+                });
+
+                // 跳转到某页
+                $("#skipPage").blur(function(){
+                    if(isNaN($(this).val()) || $(this).val().length == 0){
+                        $("#showNumber").val(20);
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val())<=0){
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val()) > $("#page_count").val()){
+                        jumpNumber = $("#page_count").val();
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        $(this).val(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                        return;
+                    }
+                    jumpNumber = $(this).val();
+                    LoadingInfo(jumpNumber);
+                    savePage(jumpNumber);
+                }).keyup(function(event){
+                    if(event.keyCode == 13){
+                        if(isNaN($(this).val())){
+                            $("#showNumber").val(20);
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                        if(parseInt($(this).val())<=0){
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                            return;
+                        }
+                        if(parseInt($(this).val()) > $("#page_count").val()){
+                            jumpNumber = $("#page_count").val();
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                            $(this).val(jumpNumber);
+                            return;
+                        }
+                        if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                            return;
+                        }
+                        jumpNumber = $(this).val();
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                    }
+                    return false;
+                });
+            });
+
+            //跳转页面
+            function JumpForPage(obj) {
+                jumpNumber = $(obj).text();
+                LoadingInfo($(obj).text());
+                savePage($(obj).text());
+                $(".currentPage").removeClass("currentPage");
+                $(obj).addClass("currentPage");
+                if (jumpNumber == 1) {
+                    changeClass("prev");
+                } else if (jumpNumber < parseInt($("#page_count").val())) {
+                    changeClass();
+                } else if (jumpNumber == parseInt($("#page_count").val())) {
+                    changeClass("next");
+                }
+            }
+        </script>
+    </div>
+
+</section>

@@ -1,0 +1,950 @@
+
+<section class="ns-base-section">
+
+
+    <div class="ns-notice">
+        <nav>
+            <ul>
+                <li>网站名称：<span>Niushop开源商城</span></li>
+                <li>当前版本：<span>免费版2.2</span></li>
+                <li>最后登录时间：<span>{:date("Y-m-d H:i:s",session('user_info')->last_login_time)}</span></li>
+                <li>最后登录IP：<span>{:session('user_info')->last_login_ip}</span></li>
+                <!-- 			<li class="nav" style="display:none;"> -->
+                <!-- 				<strong></strong> -->
+                <!-- 				<a href="http://niushop.com/index.php/admin">Niushop开源商城</a> -->
+                <!-- 				 -->
+                <!-- 				<i class="fa fa-angle-right"></i> -->
+                <!-- 				<a href="http://niushop.com/index.php/admin/index/index">首页</a> -->
+                <!-- 				 -->
+                <!-- 				 -->
+                <!-- 				<i class="fa fa-angle-right"></i> -->
+                <!-- 					需要加跳转链接用这个：http://niushop.com/index.php/admin/index/index -->
+                <!-- 					<a href="javascript:;">欢迎页</a> -->
+                <!-- 				 -->
+                <!-- 			</li> -->
+            </ul>
+        </nav>
+    </div>
+    <div style="height:40px;"></div>
+
+
+    <div style="position:relative;margin:0;">
+        <!-- 面包屑导航 -->
+        <!-- 三级导航菜单 -->
+
+        <div class="right-side-operation">
+            <ul>
+
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- 操作提示 -->
+
+
+    <div class="ns-main">
+
+        <div class="statistical">
+            <ul>
+                <li>
+                    <div class="left">
+                        <img src="/static/blue/img/order_amount.png" />
+                    </div>
+                    <div class="right">
+                        <strong class="js-order-amount">0.00</strong>
+                        <p>今日订单总金额(元)</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="left">
+                        <img src="/static/blue/img/focus_number.png" />
+                    </div>
+                    <div class="right">
+                        <strong class="js-weixin-fans-count">0</strong>
+                        <p>关注人数(个)</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="left">
+                        <img src="/static/blue/img/goods_release.png" />
+                    </div>
+                    <div class="right">
+                        <strong class="js-goods-release-count">0</strong>
+                        <p>商品发布(个)</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="left">
+                        <img src="/static/blue/img/order_total.png" />
+                    </div>
+                    <div class="right">
+                        <strong class="js-order-total">0</strong>
+                        <p>订单总数(笔)</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="left">
+                        <img src="/static/blue/img/month_sales.png" />
+                    </div>
+                    <div class="right">
+                        <strong class="js-month-sales">0</strong>
+                        <p>本月销量(笔)</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="left">
+                        <img src="/static/blue/img/finish_count.png" />
+                    </div>
+                    <div class="right">
+                        <strong class="js-order-finish-count">0</strong>
+                        <p>已完成交易(笔)</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="goods-prompt">
+            <h3>
+                <i class="i-circular"></i>店铺及商品提示<span>您需要关注的店铺信息以及待处理事项</span>
+            </h3>
+            <div class="goods-state a-line">
+                <ul>
+                    <li>
+                        <a href="http://niushop.com/index.php/admin/goods/goodslist?state=1">
+                            <strong class="goods_sale_count">0</strong>
+                            <span>出售中</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://niushop.com/index.php/admin/goods/goodslist?state=0">
+                            <strong class="goods_audit_count">0</strong>
+                            <span>仓库中</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://niushop.com/index.php/admin/saleservice/consultlist?type=to_reply">
+                            <strong class="goods_consult_count">0</strong>
+                            <span>待回复咨询</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://niushop.com/index.php/admin/member/usercommissionwithdrawlist">
+                            <strong class="member_balance_withdraw">0</strong>
+                            <span>会员提现审核</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://niushop.com/index.php/admin/goods/goodslist?stock_warning=1">
+                            <strong class="stock_early_warning">0</strong>
+                            <span>库存预警</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="merchants-help">
+            <h3>
+                <i class="i-circular"></i>商家帮助<span>您需要的商家帮助</span>
+            </h3>
+            <div class="merchants-use">
+                <ul>
+                    <li><a href="http://niushop.com/index.php/admin/goods/goodslist"><img src="/static/blue/img/goods_management.png" /><span>商品管理</span></a></li>
+                    <li><a href="http://niushop.com/index.php/admin/promotion/coupontypelist"><img src="/static/blue/img/promotions.png" /><span>促销方式</span></a></li>
+                    <li><a href="http://niushop.com/index.php/admin/order/orderlist"><img src="/static/blue/img/order_after.png" /><span>订单及售后</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="goods-prompt">
+            <h3>
+                <i class="i-circular"></i>交易提示<span>您需要立即处理的交易订单</span>
+            </h3>
+            <div class="goods-state a-line order">
+                <ul>
+                    <li>
+                        <a href="http://niushop.com/index.php/admin/order/orderlist?status=0">
+                            <strong class="daifukuan">0</strong>
+                            <span>待付款</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://niushop.com/index.php/admin/order/orderlist?status=1">
+                            <strong class="daifahuo">0</strong>
+                            <span>待发货</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://niushop.com/index.php/admin/order/orderlist?status=2">
+                            <strong class="yifahuo">0</strong>
+                            <span>已发货</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://niushop.com/index.php/admin/order/orderlist?status=3">
+                            <strong class="yishouhuo">0</strong>
+                            <span>已收货</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://niushop.com/index.php/admin/order/orderlist?status=4">
+                            <strong class="yiwancheng">0</strong>
+                            <span>已完成</span>
+                        </a>
+                    </li>
+                    <!-- <li>
+                        <a href="http://niushop.com/index.php/admin/order/orderlist?status=5">
+                            <strong class="yiguanbi">0</strong>
+                            <span>已关闭</span>
+                        </a>
+                    </li> -->
+                    <li>
+                        <a href="http://niushop.com/index.php/admin/order/orderlist?status=-1">
+                            <strong class="tuikuanzhong">0</strong>
+                            <span>退款中</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://niushop.com/index.php/admin/order/customerServiceList">
+                            <strong class="customer">0</strong>
+                            <span>售后待处理</span>
+                        </a>
+                    </li>
+                    <!-- 			<li style="display: none;"> -->
+                    <!-- 				<a href="http://niushop.com/index.php/admin/order/orderlist?status=-2"> -->
+                    <!-- 					<strong class="yituikuan">0</strong> -->
+                    <!-- 					<span>已退款</span> -->
+                    <!-- 				</a> -->
+                    <!-- 			</li> -->
+                </ul>
+            </div>
+        </div>
+
+        <div class="sales">
+            <h3>
+                <i class="i-circular"></i>销售情况统计<span>按周期统计商家店铺的订单量和订单金额</span>
+            </h3>
+
+            <table>
+                <tr>
+                    <td rowspan="3" align="left" style="background: #f6f6f6;text-align: center;">昨日销量</td>
+                </tr>
+                <tr>
+                    <td style=" border-top: 1px solid #f6f6f6;">
+                        <span>订单量(件)</span>
+                        <strong class="yesterday_goods">0</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>订单金额(元)</span>
+                        <strong class="yesterday_money">0</strong>
+                    </td>
+                </tr>
+
+                <tr style="height: 10px;"></tr>
+
+                <tr>
+                    <td rowspan="3" align="left" style="background: #f6f6f6;text-align: center;">本月销量</td>
+                </tr>
+                <tr>
+                    <td style=" border-top: 1px solid #f6f6f6;">
+                        <span>订单量(件)</span>
+                        <strong class="month_goods">0</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>订单金额(元)</span>
+                        <strong class="month_money">0</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="charts">
+            <h3>
+                <i class="i-circular"></i>订单总数统计<span><i></i>订单数量</span>
+            </h3>
+            <div id="orderCharts"></div>
+        </div>
+
+        <div class="sales-ranking">
+            <h3>
+                <i class="i-circular"></i>单品销售排名<span>按周期统计商家店铺的订单量和订单金额</span>
+            </h3>
+            <table>
+                <colgroup>
+                    <col width="15%">
+                    <col width="70%">
+                    <col width="15%">
+                </colgroup>
+                <tr>
+                    <td>排行</td>
+                    <td style="text-align: left;">商品信息</td>
+                    <td>销量</td>
+                </tr>
+                <tr>
+                    <td>
+								<span class="frist">
+				1</span>
+                    </td>
+                    <td title="iphoneXs Max" style="text-align: left;">
+                        <a href="http://niushop.com/index.php/goods/goodsinfo?goodsid=1" target="_blank">iphoneXs Max</a>
+                    </td>
+                    <td>
+								<span class="frist">
+				0</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="charts">
+            <h3>
+                <i class="i-circular"></i>关注人数统计<span><i></i>关注人数</span>
+            </h3>
+            <div id="focusCharts"></div>
+        </div>
+        <div class="system-config">
+            <h3>
+                <i class="fa fa-cog"></i>系统信息
+            </h3>
+            <table>
+                <colgroup>
+                    <col width="15%">
+                    <col width="40%">
+                    <col width="15%">
+                    <col width="30%">
+                </colgroup>
+                <tr>
+                    <td>服务器操作系统</td>
+                    <td>Windows NT ASPIRES7 10.0 build 16299 (Windows 10) i586</td>
+                    <td>服务器域名</td>
+                    <td>niushop.com:80</td>
+                </tr>
+                <tr>
+                    <td>服务器环境</td>
+                    <td>Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9</td>
+                    <td>PHP版本</td>
+                    <td>7.1.13</td>
+                </tr>
+                <tr>
+                    <td>文件上传限制</td>
+                    <td>2M</td>
+                    <td>GD版本</td>
+                    <td>bundled (2.1.0 compatible)</td>
+                </tr>
+                <tr>
+                    <td>sockets开启</td>
+                    <td><span style="color:red;">未开启，邮箱功能将无法正常使用</span></td>
+                    <td>curl支持</td>
+                    <td>支持</td>
+                </tr>
+                <tr>
+                    <td>openssl开启</td>
+                    <td><span style="color:red;">未开启，不支持https</span></td>
+                    <td>upload目录权限</td>
+                    <td>可读可写</td>
+                </tr>
+                <tr>
+                    <td>runtime目录权限</td>
+                    <td>可读可写</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <!-- 快捷菜单 -->
+        <div class="modal fade hide" id="set_shortcut_menu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:1200px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>常用功能设置</h3>
+            </div>
+            <div class="modal-body">
+                <ul class="menu-box">
+                    <li>
+                        <h4>首页</h4>
+                        <div>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="515"/></i>
+                                <span>欢迎页</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>商品</h4>
+                        <div>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="150"/></i>
+                                <span>商品列表</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="151"/></i>
+                                <span>商品发布</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="419"/></i>
+                                <span>商品分类</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="423"/></i>
+                                <span>商品品牌</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="171"/></i>
+                                <span>商品标签</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="479"/></i>
+                                <span>商品规格</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="10001"/></i>
+                                <span>供货商</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="482"/></i>
+                                <span>商品类型</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="334"/></i>
+                                <span>咨询管理</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="478"/></i>
+                                <span>商品评价</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="139"/></i>
+                                <span>相册管理</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>订单</h4>
+                        <div>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="185"/></i>
+                                <span>订单列表</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="10122"/></i>
+                                <span>发票管理</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="10127"/></i>
+                                <span>售后服务</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>营销</h4>
+                        <div>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="180"/></i>
+                                <span>优惠券</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="446"/></i>
+                                <span>积分管理</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="195"/></i>
+                                <span>赠品</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="198"/></i>
+                                <span>满减送</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="201"/></i>
+                                <span>限时折扣</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="469"/></i>
+                                <span>满额包邮</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="10103"/></i>
+                                <span>奖励规则</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>会员</h4>
+                        <div>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="145"/></i>
+                                <span>会员列表</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="488"/></i>
+                                <span>会员等级</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="504"/></i>
+                                <span>会员提现</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="509"/></i>
+                                <span>积分管理</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="510"/></i>
+                                <span>余额管理</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>数据</h4>
+                        <div>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="459"/></i>
+                                <span>销售概况</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="463"/></i>
+                                <span>商品分析</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="461"/></i>
+                                <span>同行热卖</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="462"/></i>
+                                <span>运营报告</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="403"/></i>
+                                <span>销售排行</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>微信</h4>
+                        <div>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="336"/></i>
+                                <span>公众号管理</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="339"/></i>
+                                <span>微信菜单管理</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="340"/></i>
+                                <span>推广二维码管理</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="341"/></i>
+                                <span>回复设置</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="342"/></i>
+                                <span>消息素材管理</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="343"/></i>
+                                <span>分享内容设置</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="447"/></i>
+                                <span>粉丝列表</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="10104"/></i>
+                                <span>一键关注设置</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="10124"/></i>
+                                <span>客服管理</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>网站</h4>
+                        <div>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="445"/></i>
+                                <span>首页公告</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="427"/></i>
+                                <span>导航管理</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="10023"/></i>
+                                <span>商品楼层</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="10004"/></i>
+                                <span>店铺装修</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="10005"/></i>
+                                <span>搜索</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="381"/></i>
+                                <span>广告管理</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="431"/></i>
+                                <span>文章管理</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="491"/></i>
+                                <span>专题列表</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="530"/></i>
+                                <span>站点帮助</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="430"/></i>
+                                <span>友情链接</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>设置</h4>
+                        <div>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="528"/></i>
+                                <span>基础设置</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="10096"/></i>
+                                <span>交易设置</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="529"/></i>
+                                <span>配送管理</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="10077"/></i>
+                                <span>数据库管理</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="126"/></i>
+                                <span>管理员列表</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>系统</h4>
+                        <div>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="524"/></i>
+                                <span>在线更新</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="10007"/></i>
+                                <span>授权信息</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="10009"/></i>
+                                <span>插件管理</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="10010"/></i>
+                                <span>钩子管理</span>
+                            </p>
+                            <p>
+                                <i class="checkbox-common"><input type="checkbox" value="121"/></i>
+                                <span>模块列表</span>
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-common btn-big" onclick="set_shortcut_menu()" >保存</button>
+                <button class="btn-common-cancle btn-big" data-dismiss="modal" aria-hidden="true">关闭</button>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+        <script src="/static/js/page.js"></script>
+        <div class="page" id="turn-ul" style="display: none;">
+            <div class="pagination">
+                <ul>
+                    <li class="according-number">每页显示<input type="text" class="input-medium" id="showNumber" value="14" data-default="14" autocomplete="off"/>条</li>
+                    <li><a id="beginPage" class="page-disable" style="border: 1px solid #dddddd;">首页</a></li>
+                    <li><a id="prevPage" class="page-disable">上一页</a></li>
+                    <li id="pageNumber"></li>
+                    <li id="JslastPage">
+
+                    </li>
+                    <li><a id="nextPage">下一页</a></li>
+                    <li><a id="lastPage">末页</a></li>
+                    <li class="total-data">共0条</li>
+                    <!-- <li class="page-count">共0页</li> -->
+                    <li class="according-number">
+                        跳<input type="text" class="input-medium"  id="skipPage" data-curr-page="1"/>页
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <input type="hidden" id="page_count" />
+        <input type="hidden" id="page_size" />
+        <script>
+            /**
+             * 保存当前的页面
+             * 创建时间：2017年8月30日 19:29:20
+             */
+            function savePage(index){
+                var json = { page_index : index, show_number : $("#showNumber").val(), url :  window.location.href };
+                $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                //console.log(json);
+            }
+
+            $(function() {
+                try{
+
+                    $("#turn-ul").show();//显示分页
+                    var history_url = "";
+                    var json = { page_index : 1, show_number : 14, url :  window.location.href };
+                    var history_json = "";//用于临时保存分页数据
+                    if($.cookie('page_cookie') != undefined && $.cookie('page_cookie') != "" && $.cookie('page_cookie') != '""'){
+
+                        var cookie = eval("(" + $.cookie('page_cookie') + ")");
+                        if(cookie !=undefined && cookie != ""){
+                            json.page_index = cookie.page_index;
+                            if(cookie.show_number != undefined && cookie.show_number != "") json.show_number = cookie.show_number;
+                            else json.show_number = 14;
+                            history_url = cookie.url;
+                            history_json = cookie;
+                        }
+
+                    }else{
+
+                        savePage(json.page_index);
+
+                    }
+                    if(history_url != undefined && history_url != "" && history_url != json.url && json.page_index != 1){
+
+                        //如果页面发生了跳转，还原操作
+                        json.page_index = 1;
+                        json.show_number = 14;
+                        json.url = history_url;
+                        //console.log("如果页面发生了跳转，还原操作");
+                        $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                    }
+
+                    //console.log($.cookie('page_cookie'));
+                    $("#showNumber").val(json.show_number);
+                    if(json.page_index != 1) jumpNumber = json.page_index;
+                    LoadingInfo(json.page_index);//通过此方法调用分页类
+
+                }catch(e){
+
+                    $("#turn-ul").hide();
+                    //当前页面没有分页，进行还原操作
+                    $.cookie('page_cookie',JSON.stringify(history_json),{ path: '/' });
+//		console.error(e);
+                    //console.log("当前页面没有分页，进行还原操作");
+                    //console.log($.cookie('page_cookie'));
+                }
+
+                //首页
+                $("#beginPage").click(function() {
+                    if(jumpNumber!=1){
+                        jumpNumber = 1;
+                        LoadingInfo(1);
+                        savePage(1);
+                        changeClass("begin");
+                    }
+                    return false;
+                });
+
+                //上一页
+                $("#prevPage").click(function() {
+                    var obj = $(".currentPage");
+                    var index = parseInt(obj.text()) - 1;
+                    if (index > 0) {
+                        obj.removeClass("currentPage");
+                        obj.prev().addClass("currentPage");
+                        jumpNumber = index;
+                        LoadingInfo(index);
+                        savePage(index);
+                        //判断是否是第一页
+                        if (index == 1) {
+                            changeClass("prev");
+                        } else {
+                            changeClass();
+                        }
+                    }
+                    return false;
+                });
+
+                //下一页
+                $("#nextPage").click(function() {
+                    var obj = $(".currentPage");
+                    //当前页加一（下一页）
+                    var index = parseInt(obj.text()) + 1;
+                    if (index <= $("#page_count").val()) {
+                        jumpNumber = index;
+                        LoadingInfo(index);
+                        savePage(index);
+                        obj.removeClass("currentPage");
+                        obj.next().addClass("currentPage");
+                        //判断是否是最后一页
+                        if (index == $("#page_count").val()) {
+                            changeClass("next");
+                        } else {
+                            changeClass();
+                        }
+                    }
+                    return false;
+                });
+
+                //末页
+                $("#lastPage").click(function() {
+                    jumpNumber = $("#page_count").val();
+                    if(jumpNumber>1){
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        $("#pageNumber a:eq("+ (parseInt($("#page_count").val()) - 1) + ")").text($("#page_count").val());
+                        changeClass("next");
+                    }
+                    return false;
+                });
+
+                //每页显示页数
+                $("#showNumber").blur(function(){
+                    if(isNaN($(this).val())){
+                        $("#showNumber").val(20);
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if($(this).val().indexOf(".") != -1){
+                        var index = $(this).val().indexOf(".");
+                        $("#showNumber").val($(this).val().substr(0,index));
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val())<=0){
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    //页数没有变化的话，就不要再执行查询
+                    if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 			jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                        $(this).attr("data-default",$(this).val());
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                    }
+                    return false;
+                }).keyup(function(event){
+                    if(event.keyCode == 13){
+                        if(isNaN($(this).val())){
+                            $("#showNumber").val(20);
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                        //页数没有变化的话，就不要再执行查询
+                        if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 				jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                            $(this).attr("data-default",$(this).val());
+                            //总数据数量
+                            var total_count = parseInt($(".total-data").attr("data-total-count"));
+                            //计算用户输入的页数是否超过当前页数
+                            var curr_count = Math.ceil(total_count/parseInt($(this).val()));
+                            if( curr_count !=0 && curr_count < jumpNumber){
+                                jumpNumber = curr_count;//输入的页数超过了，没有那么多
+                            }
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                    }
+                    return false;
+                });
+
+                // 跳转到某页
+                $("#skipPage").blur(function(){
+                    if(isNaN($(this).val()) || $(this).val().length == 0){
+                        $("#showNumber").val(20);
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val())<=0){
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val()) > $("#page_count").val()){
+                        jumpNumber = $("#page_count").val();
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        $(this).val(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                        return;
+                    }
+                    jumpNumber = $(this).val();
+                    LoadingInfo(jumpNumber);
+                    savePage(jumpNumber);
+                }).keyup(function(event){
+                    if(event.keyCode == 13){
+                        if(isNaN($(this).val())){
+                            $("#showNumber").val(20);
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                        if(parseInt($(this).val())<=0){
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                            return;
+                        }
+                        if(parseInt($(this).val()) > $("#page_count").val()){
+                            jumpNumber = $("#page_count").val();
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                            $(this).val(jumpNumber);
+                            return;
+                        }
+                        if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                            return;
+                        }
+                        jumpNumber = $(this).val();
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                    }
+                    return false;
+                });
+            });
+
+            //跳转页面
+            function JumpForPage(obj) {
+                jumpNumber = $(obj).text();
+                LoadingInfo($(obj).text());
+                savePage($(obj).text());
+                $(".currentPage").removeClass("currentPage");
+                $(obj).addClass("currentPage");
+                if (jumpNumber == 1) {
+                    changeClass("prev");
+                } else if (jumpNumber < parseInt($("#page_count").val())) {
+                    changeClass();
+                } else if (jumpNumber == parseInt($("#page_count").val())) {
+                    changeClass("next");
+                }
+            }
+        </script>
+    </div>
+
+</section>

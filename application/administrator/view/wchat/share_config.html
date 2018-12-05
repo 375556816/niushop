@@ -1,0 +1,547 @@
+
+<section class="ns-base-section">
+
+
+
+    <div style="position:relative;margin:0;">
+        <!-- 面包屑导航 -->
+        <div class="breadcrumb-nav">
+            <a href="http://www.ns.com/index.php?s=/admin">Niushop开源商城</a>
+            <i class="fa fa-angle-right"></i>
+            <a href="http://www.ns.com/index.php?s=/admin/wchat/config">微信</a>
+            <i class="fa fa-angle-right"></i>
+            <!-- 需要加跳转链接用这个：http://www.ns.com/index.php/admin/wchat/shareconfig -->
+            <a href="javascript:;" style="color:#999;">分享内容设置</a>
+        </div>
+        <!-- 三级导航菜单 -->
+
+
+        <div class="right-side-operation">
+            <ul>
+
+
+                <!-- 					style="display:none;" style="display:block;" -->
+                <li>
+                    <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
+                    <div class="popover">
+                        <div class="arrow"></div>
+                        <div class="popover-content">
+                            <div>
+                                <h4>操作提示</h4>
+                                <p>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2332&amp;extra=page%3D2" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2332&amp;extra=page%3D2</a></p>
+                                <hr>
+                                <h4>功能提示</h4>
+                                <p class="function-prompts">
+                                    <strong>提示：</strong>设置分享内容，设置方法如下：<br>
+                                    点击下方的“编辑”按钮，在出现的对话框中填写您想要的内容，如果想要取消，点击“取消”按钮，如果需要保存点击保存即可。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- 操作提示 -->
+
+    <!-- 		 -->
+    <div class="ns-warm-prompt" style="display:none;">
+        <div class="alert alert-info">
+            <button type="button" class="close">×</button>
+            <h4>
+                <!-- 					{1block name="alert_info"} -->
+                <!-- 					<i class="fa fa-info-circle"></i> -->
+                <!-- 					<span class="operating-hints">操作提示</span> -->
+                <!-- 						 -->
+                <!-- 						<span>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&tid=2332&extra=page%3D2" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&tid=2332&extra=page%3D2</a></span> -->
+                <!-- 						 -->
+                <!-- 					{1/block} -->
+            </h4>
+        </div>
+    </div>
+
+
+    <div class="ns-main">
+
+        <script>
+            $(document).ready(function () {
+                $("#codeCancel").hide();
+                $("#storeCancel").hide();
+                $("#proCancel").hide();
+                $("#storeCancel").hide();
+                $("#codeCancel").click(function () {
+                    $(".card .text").show();
+                    $(".card input").hide();
+                    $("#codeEdit").show();
+                    $("#codeCancel").hide();
+                    buthide();
+                });
+                $("#proCancel").click(function () {
+                    $(".product .text").show();
+                    $(".product input").hide();
+                    $("#proEdit").show();
+                    $("#proCancel").hide();
+                    buthide();
+                });
+                $("#storeCancel").click(function () {
+                    $(".store .text").show();
+                    $(".store input").hide();
+                    $("#storeEdit").show();
+                    $("#storeCancel").hide();
+                    buthide();
+                });
+
+                function buthide() {
+                    if ($("#proCancel").is(":hidden") && $("#storeCancel").is(":hidden")) {
+                        $(".button").hide();
+                    }
+                }
+
+                $("#codeEdit").click(function () {
+                    $(".card .text").hide();
+                    $(".card input").show();
+                    $("#codeEdit").hide();
+                    $("#codeCancel").show();
+                    $(".button").show();
+                });
+
+                $("#proEdit").click(function () {
+                    $(".product .text").hide();
+                    $(".product input").show();
+                    $("#proEdit").hide();
+                    $("#proCancel").show();
+                    $(".button").show();
+                });
+
+                $("#storeEdit").click(function () {
+                    $(".store .text").hide();
+                    $(".store input").show();
+                    $("#storeEdit").hide();
+                    $("#storeCancel").show();
+                    $(".button").show();
+                });
+            })
+        </script>
+        <!-- <div id="DialogLayer"></div> -->
+        <div class="space-10"></div>
+        <div class="main share">
+            <div class="card">
+                <h3 class="title">
+                    <span>推广二维码</span>
+                    <a href="javascript:void(0)" class="edit" id="codeEdit" style="display: block;">编辑</a>
+                    <a href="javascript:void(0)" class="edit" id="codeCancel" style="display: none;">取消</a>
+                </h3>
+                <h4 class="pro-title"><span>分享二维码</span></h4>
+                <dl>
+                    <dt><span class="img">个人头像</span></dt>
+                    <dd>
+                        <p class="price" style="margin:5px 0;">
+                            <span class="text" id="qrcode_one" style="display: inline;"></span>
+                            <input class="input-common w60 middle" type="text" value="" placeholder="请输入分享标题" style="display: none;" id="Qrcode_param_1">
+                        </p>
+                        <p class="advertisiment">
+                            <span class="text" id="qrcode_two" style="display: block;"></span>
+                            <input class="input-medium input-common middle" type="text" value="" style="display: none;" id="Qrcode_param_2">
+                        </p>
+                        <p class="hot"><span>收藏热度：</span><span class="star">★★★★★</span></p>
+                    </dd>
+                </dl>
+            </div>
+            <div class="product">
+                <h3 class="title">
+                    <span>商品设置</span>
+                    <a href="javascript:void(0)" class="edit" id="proEdit" style="display: block;">编辑</a>
+                    <a href="javascript:void(0)" class="edit" id="proCancel" style="display: none;">取消</a>
+                </h3>
+                <h4 class="pro-title"><span>商品分享</span></h4>
+                <dl>
+                    <dt><span class="img">商品图片</span></dt>
+                    <dd style="padding-left:10px;">
+                        <p class="price">
+                            <span class="text" id="pricespan" style="display: inline;"></span>
+                            <input class="w60 input-common middle" type="text" value="" placeholder="价格标题" style="display: none;" id="PriceDesc">
+                            <span class="number"><!-- ￥0.00 --></span>
+                        </p>
+                        <p class="advertisiment">
+                            <span class="text" id="descspan" style="display: block;"></span>
+                            <input class="input-medium input-common middle" type="text" value="" style="display: none;" id="ProductDesc">
+                        </p>
+                        <p class="hot"><span>收藏热度：</span><span class="star">★★★★★</span></p>
+                    </dd>
+                </dl>
+            </div>
+            <div class="store">
+                <h3 class="title">
+                    <span>店铺设置</span>
+                    <a href="javascript:void(0)" class="edit" id="storeEdit" style="display: block;">编辑</a>
+                    <a href="javascript:void(0)" class="edit" id="storeCancel" style="display: none;">取消</a>
+                </h3>
+                <h4 class="store-title">
+                    <span class="text pre" id="opendescspan" style="display: inline-block;"></span>
+                    <input type="text" class="input-medium input-common middle" value="" placeholder="请输入欢迎语" style="display: none;">
+                    <span class="storeName" id="shopName">**店</span>
+                </h4>
+                <dl>
+                    <dt><span class="img">店铺Logo</span></dt>
+                    <dd>
+                        <p class="price">
+                            <span class="text advertisiment" id="openremarkspan1" style="display: block;"></span>
+                            <input id="txtOpenRemark" class="input-medium input-common middle" type="text" value="" placeholder="请输入分享标题" style="display: none;">
+                        </p>
+                        <p class="more">
+                            <span class="text" id="openremarkspan2" style="display: block;"></span>
+                            <input class="input-medium input-common middle" type="text" value="" style="display: none;">
+                        </p>
+                        <p class="hot"><span>收藏热度：</span><span class="star">★★★★★</span></p>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+
+        <p class="button" style="display: none;" id="btnBut">
+            <button class="btn-common btn-big" id="btnSave" type="button">保存</button>
+        </p>
+        <script>
+            $(function () {
+                $("#btnSave").click(function () {
+                    $("#btnSave").attr("disabled", true);
+                    var PriceDesc = $("#PriceDesc").val();
+                    var ProductDesc = $("#ProductDesc").val();
+                    var OpenDesc = $(".store-title input").val();
+                    var OpenRemark1 = $("#txtOpenRemark").val();
+                    var OpenRemark2 = $(".more input").val();
+                    var Qrcode_param_1=$("#Qrcode_param_1").val();
+                    var Qrcode_param_2=$("#Qrcode_param_2").val();
+                    $.ajax({
+                        type: "post",
+                        url: "http://www.ns.com/index.php?s=/admin/wchat/shareconfig",
+                        data: { "goods_param_1":PriceDesc, "goods_param_2":ProductDesc,"shop_param_1":OpenDesc,"shop_param_2":OpenRemark1,"shop_param_3":OpenRemark2,"qrcode_param_1":Qrcode_param_1,"qrcode_param_2":Qrcode_param_2 },
+                        async: false,
+                        success: function (data) {
+                            $("#PriceDesc").val(PriceDesc);
+                            $("#ProductDesc").val(ProductDesc);
+                            $(".store-title input").val(OpenDesc);
+                            $("#txtOpenRemark").val(OpenRemark1);
+                            $(".more input").val(OpenRemark2);
+                            $("#Qrcode_param_1").val(Qrcode_param_1);
+                            $("#Qrcode_param_2").val(Qrcode_param_2);
+                            $("#pricespan").text(PriceDesc);
+                            $("#descspan").text(ProductDesc);
+                            $("#opendescspan").text(OpenDesc);
+                            $("#openremarkspan1").text(OpenRemark1);
+                            $("#openremarkspan2").text(OpenRemark2);
+                            $("#qrcode_one").text(Qrcode_param_1);
+                            $("#qrcode_two").text(Qrcode_param_2);
+                            $(".card .text").show();
+                            $(".card input").hide();
+                            $("#codeEdit").show();
+                            $("#codeCancel").hide();
+                            $(".product .text").show();
+                            $(".product input").hide();
+                            $("#proEdit").show();
+                            $("#proCancel").hide();
+                            $(".store .text").show();
+                            $(".store input").hide();
+                            $("#storeEdit").show();
+                            $("#storeCancel").hide();
+                            $("#btnSave").attr("disabled", false);
+                            if ($("#proCancel").is(":hidden") && $("#storeCancel").is(":hidden")) {
+                                $(".button").hide();
+                            }
+                            if(data['code']){
+                                showTip(data['message'],'success');
+                            }else{
+                                showTip(data['message'],'error');
+
+                            }
+                        }
+                    });
+                });
+            });
+        </script>
+
+        <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+        <script src="/static/js/page.js"></script>
+        <div class="page" id="turn-ul" style="display: none;">
+            <div class="pagination">
+                <ul>
+                    <li class="according-number">每页显示<input type="text" class="input-medium" id="showNumber" value="14" data-default="14" autocomplete="off">条</li>
+                    <li><a id="beginPage" class="page-disable" style="border: 1px solid #dddddd;">首页</a></li>
+                    <li><a id="prevPage" class="page-disable">上一页</a></li>
+                    <li id="pageNumber"></li>
+                    <li id="JslastPage">
+
+                    </li>
+                    <li><a id="nextPage">下一页</a></li>
+                    <li><a id="lastPage">末页</a></li>
+                    <li class="total-data">共0条</li>
+                    <!-- <li class="page-count">共0页</li> -->
+                    <li class="according-number">
+                        跳<input type="text" class="input-medium" id="skipPage" data-curr-page="1">页
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <input type="hidden" id="page_count">
+        <input type="hidden" id="page_size">
+        <script>
+            /**
+             * 保存当前的页面
+             * 创建时间：2017年8月30日 19:29:20
+             */
+            function savePage(index){
+                var json = { page_index : index, show_number : $("#showNumber").val(), url :  window.location.href };
+                $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                //console.log(json);
+            }
+
+            $(function() {
+                try{
+
+                    $("#turn-ul").show();//显示分页
+                    var history_url = "";
+                    var json = { page_index : 1, show_number : 14, url :  window.location.href };
+                    var history_json = "";//用于临时保存分页数据
+                    if($.cookie('page_cookie') != undefined && $.cookie('page_cookie') != "" && $.cookie('page_cookie') != '""'){
+
+                        var cookie = eval("(" + $.cookie('page_cookie') + ")");
+                        if(cookie !=undefined && cookie != ""){
+                            json.page_index = cookie.page_index;
+                            if(cookie.show_number != undefined && cookie.show_number != "") json.show_number = cookie.show_number;
+                            else json.show_number = 14;
+                            history_url = cookie.url;
+                            history_json = cookie;
+                        }
+
+                    }else{
+
+                        savePage(json.page_index);
+
+                    }
+                    if(history_url != undefined && history_url != "" && history_url != json.url && json.page_index != 1){
+
+                        //如果页面发生了跳转，还原操作
+                        json.page_index = 1;
+                        json.show_number = 14;
+                        json.url = history_url;
+                        //console.log("如果页面发生了跳转，还原操作");
+                        $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                    }
+
+                    //console.log($.cookie('page_cookie'));
+                    $("#showNumber").val(json.show_number);
+                    if(json.page_index != 1) jumpNumber = json.page_index;
+                    LoadingInfo(json.page_index);//通过此方法调用分页类
+
+                }catch(e){
+
+                    $("#turn-ul").hide();
+                    //当前页面没有分页，进行还原操作
+                    $.cookie('page_cookie',JSON.stringify(history_json),{ path: '/' });
+//		console.error(e);
+                    //console.log("当前页面没有分页，进行还原操作");
+                    //console.log($.cookie('page_cookie'));
+                }
+
+                //首页
+                $("#beginPage").click(function() {
+                    if(jumpNumber!=1){
+                        jumpNumber = 1;
+                        LoadingInfo(1);
+                        savePage(1);
+                        changeClass("begin");
+                    }
+                    return false;
+                });
+
+                //上一页
+                $("#prevPage").click(function() {
+                    var obj = $(".currentPage");
+                    var index = parseInt(obj.text()) - 1;
+                    if (index > 0) {
+                        obj.removeClass("currentPage");
+                        obj.prev().addClass("currentPage");
+                        jumpNumber = index;
+                        LoadingInfo(index);
+                        savePage(index);
+                        //判断是否是第一页
+                        if (index == 1) {
+                            changeClass("prev");
+                        } else {
+                            changeClass();
+                        }
+                    }
+                    return false;
+                });
+
+                //下一页
+                $("#nextPage").click(function() {
+                    var obj = $(".currentPage");
+                    //当前页加一（下一页）
+                    var index = parseInt(obj.text()) + 1;
+                    if (index <= $("#page_count").val()) {
+                        jumpNumber = index;
+                        LoadingInfo(index);
+                        savePage(index);
+                        obj.removeClass("currentPage");
+                        obj.next().addClass("currentPage");
+                        //判断是否是最后一页
+                        if (index == $("#page_count").val()) {
+                            changeClass("next");
+                        } else {
+                            changeClass();
+                        }
+                    }
+                    return false;
+                });
+
+                //末页
+                $("#lastPage").click(function() {
+                    jumpNumber = $("#page_count").val();
+                    if(jumpNumber>1){
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        $("#pageNumber a:eq("+ (parseInt($("#page_count").val()) - 1) + ")").text($("#page_count").val());
+                        changeClass("next");
+                    }
+                    return false;
+                });
+
+                //每页显示页数
+                $("#showNumber").blur(function(){
+                    if(isNaN($(this).val())){
+                        $("#showNumber").val(20);
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if($(this).val().indexOf(".") != -1){
+                        var index = $(this).val().indexOf(".");
+                        $("#showNumber").val($(this).val().substr(0,index));
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val())<=0){
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    //页数没有变化的话，就不要再执行查询
+                    if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 			jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                        $(this).attr("data-default",$(this).val());
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                    }
+                    return false;
+                }).keyup(function(event){
+                    if(event.keyCode == 13){
+                        if(isNaN($(this).val())){
+                            $("#showNumber").val(20);
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                        //页数没有变化的话，就不要再执行查询
+                        if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 				jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                            $(this).attr("data-default",$(this).val());
+                            //总数据数量
+                            var total_count = parseInt($(".total-data").attr("data-total-count"));
+                            //计算用户输入的页数是否超过当前页数
+                            var curr_count = Math.ceil(total_count/parseInt($(this).val()));
+                            if( curr_count !=0 && curr_count < jumpNumber){
+                                jumpNumber = curr_count;//输入的页数超过了，没有那么多
+                            }
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                    }
+                    return false;
+                });
+
+                // 跳转到某页
+                $("#skipPage").blur(function(){
+                    if(isNaN($(this).val()) || $(this).val().length == 0){
+                        $("#showNumber").val(20);
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val())<=0){
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val()) > $("#page_count").val()){
+                        jumpNumber = $("#page_count").val();
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        $(this).val(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                        return;
+                    }
+                    jumpNumber = $(this).val();
+                    LoadingInfo(jumpNumber);
+                    savePage(jumpNumber);
+                }).keyup(function(event){
+                    if(event.keyCode == 13){
+                        if(isNaN($(this).val())){
+                            $("#showNumber").val(20);
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                        if(parseInt($(this).val())<=0){
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                            return;
+                        }
+                        if(parseInt($(this).val()) > $("#page_count").val()){
+                            jumpNumber = $("#page_count").val();
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                            $(this).val(jumpNumber);
+                            return;
+                        }
+                        if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                            return;
+                        }
+                        jumpNumber = $(this).val();
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                    }
+                    return false;
+                });
+            });
+
+            //跳转页面
+            function JumpForPage(obj) {
+                jumpNumber = $(obj).text();
+                LoadingInfo($(obj).text());
+                savePage($(obj).text());
+                $(".currentPage").removeClass("currentPage");
+                $(obj).addClass("currentPage");
+                if (jumpNumber == 1) {
+                    changeClass("prev");
+                } else if (jumpNumber < parseInt($("#page_count").val())) {
+                    changeClass();
+                } else if (jumpNumber == parseInt($("#page_count").val())) {
+                    changeClass("next");
+                }
+            }
+        </script>
+    </div>
+
+</section>

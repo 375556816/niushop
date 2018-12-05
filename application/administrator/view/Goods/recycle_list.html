@@ -1,0 +1,419 @@
+<section class="ns-base-section">
+
+
+
+    <div style="position:relative;margin:0;">
+        <!-- 面包屑导航 -->
+        <div class="breadcrumb-nav">
+            <a href="/admin">Niushop开源商城</a>
+            <i class="fa fa-angle-right"></i>
+            <a href="/admin/goods/goodslist">商品</a>
+            <i class="fa fa-angle-right"></i>
+            <!-- 需要加跳转链接用这个：http://shop.com/index.php/admin/goods/recyclelist -->
+            <a href="javascript:;" style="color:#999;">回收站列表</a>
+        </div>
+        <!-- 三级导航菜单 -->
+
+        <nav class="ns-third-menu">
+            <ul>
+                <li onclick="location.href='/admin/goods/goodslist';">出售中</li>
+                <li onclick="location.href='/admin/goods/goodslist/state_type/2';">已下架</li>
+                <li onclick="location.href='/admin/goods/goodslist/stock_warning/1';">库存预警</li>
+                <li class="selected" onclick="location.href='/admin/goods/recyclelist';">回收站</li>
+            </ul>
+        </nav>
+
+        <div class="right-side-operation">
+            <ul>
+
+
+                <!-- 					style="display:none;" style="display:block;" -->
+                <li>
+                    <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=''><i class="fa fa-question-circle"></i>&nbsp;提示</a>
+                    <div class="popover">
+                        <div class="arrow"></div>
+                        <div class="popover-content">
+                            <div>
+                                <h4>功能提示</h4>
+                                <p class="function-prompts"></p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- 操作提示 -->
+
+    <!-- 		 -->
+    <div class="ns-warm-prompt" style="display:none;">
+        <div class="alert alert-info">
+            <button type="button" class="close">&times;</button>
+            <h4>
+                <!-- 					{1block name="alert_info"} -->
+                <!-- 					<i class="fa fa-info-circle"></i> -->
+                <!-- 					<span class="operating-hints">操作提示</span> -->
+                <!-- 						 -->
+                <!-- 					{1/block} -->
+            </h4>
+        </div>
+    </div>
+
+
+    <div class="ns-main">
+
+        <div class="js-mask-category" style="display:none;background: rgba(0,0,0,0);position:fixed;width:100%;height:100%;top:0;left:0;right:0;bottom:0;z-index:90;"></div>
+        <table class="mytable">
+            <tr>
+                <th align="left">
+                    <a class="btn-common-delete" href="javascript:batchDelete()">批量删除</a>
+                    <a class="btn-common" href="javascript:batchRegainDelete()">批量恢复</a>
+                    <input type='hidden' id='goods_type_ids'/>
+                </th>
+                <th style="position:relative;">
+                    商品分类：
+                    <div style="display: inline-block;position: relative;">
+                        <input type="text" placeholder="请选择商品分类" id="goodsCategoryOne" is_show="false" class="input-common">
+                        <div class="goodsCategory one">
+                            <ul>
+                                <li class="js-category-one" category_id="1">
+                                    <span>手机</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="goodsCategory two" style="border-left:0;">
+                            <ul id="goodsCategoryTwo"></ul>
+                        </div>
+                        <div class="goodsCategory three">
+                            <ul id="goodsCategoryThree"></ul>
+                        </div>
+                        <div class="selectGoodsCategory">
+                            <a href="javascript:;" id="confirmSelect" style="float:right;">确认选择</a>
+                        </div>
+                    </div>
+                    <input type="hidden" id="category_id_1">
+                    <input type="hidden" id="category_id_2">
+                    <input type="hidden" id="category_id_3">
+                    商品名称：<input id="goods_name" class="input-medium input-common" type="text" value="" placeholder="要搜索的商品名称" >
+                    <input type="button" onclick="searchData()" value="搜索" class="btn-common"/>
+                    <!-- <div style="width:216px;display:inline-block;"></div> -->
+                </th>
+            </tr>
+        </table>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active">
+                <table class="table-class" border="0">
+                    <colgroup>
+                        <col width="2%">
+                        <col width="25%">
+                        <col width="12%">
+                        <col width="9%">
+                        <col width="8%">
+                        <col width="7%">
+                        <col width="15%">
+                    </colgroup>
+                    <tbody>
+                    <tr class="table-title">
+                        <th>
+                            <i class="checkbox-common">
+                                <input onclick="CheckAll(this)" type="checkbox" id="chek_all">
+                            </i>
+                        </th>
+                        <th style="text-align: left;">商品名称</th>
+                        <th style="text-align: right;">价格（元）</td>
+                        <th style="text-align: right;">总库存</th>
+                        <th style="text-align: right;"> 销量</th>
+                        <th style="text-align: center;">排序</th>
+                        <th style="text-align: center;">操作</th>
+                    </tr>
+                    </tbody>
+                    <tbody id="productTbody" style="border: 0px;"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+        <script src="/static/js/page.js"></script>
+        <div class="page" id="turn-ul" style="display: none;">
+            <div class="pagination">
+                <ul>
+                    <li class="according-number">每页显示<input type="text" class="input-medium" id="showNumber" value="14" data-default="14" autocomplete="off"/>条</li>
+                    <li><a id="beginPage" class="page-disable" style="border: 1px solid #dddddd;">首页</a></li>
+                    <li><a id="prevPage" class="page-disable">上一页</a></li>
+                    <li id="pageNumber"></li>
+                    <li id="JslastPage">
+
+                    </li>
+                    <li><a id="nextPage">下一页</a></li>
+                    <li><a id="lastPage">末页</a></li>
+                    <li class="total-data">共0条</li>
+                    <!-- <li class="page-count">共0页</li> -->
+                    <li class="according-number">
+                        跳<input type="text" class="input-medium"  id="skipPage" data-curr-page="1"/>页
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <input type="hidden" id="page_count" />
+        <input type="hidden" id="page_size" />
+        <script>
+            /**
+             * 保存当前的页面
+             * 创建时间：2017年8月30日 19:29:20
+             */
+            function savePage(index){
+                var json = { page_index : index, show_number : $("#showNumber").val(), url :  window.location.href };
+                $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                //console.log(json);
+            }
+
+            $(function() {
+                try{
+
+                    $("#turn-ul").show();//显示分页
+                    var history_url = "";
+                    var json = { page_index : 1, show_number : 14, url :  window.location.href };
+                    var history_json = "";//用于临时保存分页数据
+                    if($.cookie('page_cookie') != undefined && $.cookie('page_cookie') != "" && $.cookie('page_cookie') != '""'){
+
+                        var cookie = eval("(" + $.cookie('page_cookie') + ")");
+                        if(cookie !=undefined && cookie != ""){
+                            json.page_index = cookie.page_index;
+                            if(cookie.show_number != undefined && cookie.show_number != "") json.show_number = cookie.show_number;
+                            else json.show_number = 14;
+                            history_url = cookie.url;
+                            history_json = cookie;
+                        }
+
+                    }else{
+
+                        savePage(json.page_index);
+
+                    }
+                    if(history_url != undefined && history_url != "" && history_url != json.url && json.page_index != 1){
+
+                        //如果页面发生了跳转，还原操作
+                        json.page_index = 1;
+                        json.show_number = 14;
+                        json.url = history_url;
+                        //console.log("如果页面发生了跳转，还原操作");
+                        $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                    }
+
+                    //console.log($.cookie('page_cookie'));
+                    $("#showNumber").val(json.show_number);
+                    if(json.page_index != 1) jumpNumber = json.page_index;
+                    LoadingInfo(json.page_index);//通过此方法调用分页类
+
+                }catch(e){
+
+                    $("#turn-ul").hide();
+                    //当前页面没有分页，进行还原操作
+                    $.cookie('page_cookie',JSON.stringify(history_json),{ path: '/' });
+//		console.error(e);
+                    //console.log("当前页面没有分页，进行还原操作");
+                    //console.log($.cookie('page_cookie'));
+                }
+
+                //首页
+                $("#beginPage").click(function() {
+                    if(jumpNumber!=1){
+                        jumpNumber = 1;
+                        LoadingInfo(1);
+                        savePage(1);
+                        changeClass("begin");
+                    }
+                    return false;
+                });
+
+                //上一页
+                $("#prevPage").click(function() {
+                    var obj = $(".currentPage");
+                    var index = parseInt(obj.text()) - 1;
+                    if (index > 0) {
+                        obj.removeClass("currentPage");
+                        obj.prev().addClass("currentPage");
+                        jumpNumber = index;
+                        LoadingInfo(index);
+                        savePage(index);
+                        //判断是否是第一页
+                        if (index == 1) {
+                            changeClass("prev");
+                        } else {
+                            changeClass();
+                        }
+                    }
+                    return false;
+                });
+
+                //下一页
+                $("#nextPage").click(function() {
+                    var obj = $(".currentPage");
+                    //当前页加一（下一页）
+                    var index = parseInt(obj.text()) + 1;
+                    if (index <= $("#page_count").val()) {
+                        jumpNumber = index;
+                        LoadingInfo(index);
+                        savePage(index);
+                        obj.removeClass("currentPage");
+                        obj.next().addClass("currentPage");
+                        //判断是否是最后一页
+                        if (index == $("#page_count").val()) {
+                            changeClass("next");
+                        } else {
+                            changeClass();
+                        }
+                    }
+                    return false;
+                });
+
+                //末页
+                $("#lastPage").click(function() {
+                    jumpNumber = $("#page_count").val();
+                    if(jumpNumber>1){
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        $("#pageNumber a:eq("+ (parseInt($("#page_count").val()) - 1) + ")").text($("#page_count").val());
+                        changeClass("next");
+                    }
+                    return false;
+                });
+
+                //每页显示页数
+                $("#showNumber").blur(function(){
+                    if(isNaN($(this).val())){
+                        $("#showNumber").val(20);
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if($(this).val().indexOf(".") != -1){
+                        var index = $(this).val().indexOf(".");
+                        $("#showNumber").val($(this).val().substr(0,index));
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val())<=0){
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    //页数没有变化的话，就不要再执行查询
+                    if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 			jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                        $(this).attr("data-default",$(this).val());
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                    }
+                    return false;
+                }).keyup(function(event){
+                    if(event.keyCode == 13){
+                        if(isNaN($(this).val())){
+                            $("#showNumber").val(20);
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                        //页数没有变化的话，就不要再执行查询
+                        if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 				jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                            $(this).attr("data-default",$(this).val());
+                            //总数据数量
+                            var total_count = parseInt($(".total-data").attr("data-total-count"));
+                            //计算用户输入的页数是否超过当前页数
+                            var curr_count = Math.ceil(total_count/parseInt($(this).val()));
+                            if( curr_count !=0 && curr_count < jumpNumber){
+                                jumpNumber = curr_count;//输入的页数超过了，没有那么多
+                            }
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                    }
+                    return false;
+                });
+
+                // 跳转到某页
+                $("#skipPage").blur(function(){
+                    if(isNaN($(this).val()) || $(this).val().length == 0){
+                        $("#showNumber").val(20);
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val())<=0){
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val()) > $("#page_count").val()){
+                        jumpNumber = $("#page_count").val();
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        $(this).val(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                        return;
+                    }
+                    jumpNumber = $(this).val();
+                    LoadingInfo(jumpNumber);
+                    savePage(jumpNumber);
+                }).keyup(function(event){
+                    if(event.keyCode == 13){
+                        if(isNaN($(this).val())){
+                            $("#showNumber").val(20);
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                        if(parseInt($(this).val())<=0){
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                            return;
+                        }
+                        if(parseInt($(this).val()) > $("#page_count").val()){
+                            jumpNumber = $("#page_count").val();
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                            $(this).val(jumpNumber);
+                            return;
+                        }
+                        if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                            return;
+                        }
+                        jumpNumber = $(this).val();
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                    }
+                    return false;
+                });
+            });
+
+            //跳转页面
+            function JumpForPage(obj) {
+                jumpNumber = $(obj).text();
+                LoadingInfo($(obj).text());
+                savePage($(obj).text());
+                $(".currentPage").removeClass("currentPage");
+                $(obj).addClass("currentPage");
+                if (jumpNumber == 1) {
+                    changeClass("prev");
+                } else if (jumpNumber < parseInt($("#page_count").val())) {
+                    changeClass();
+                } else if (jumpNumber == parseInt($("#page_count").val())) {
+                    changeClass("next");
+                }
+            }
+        </script>
+    </div>
+
+</section>

@@ -1,0 +1,686 @@
+
+<section class="ns-base-section">
+
+
+
+    <div style="position:relative;margin:0;">
+        <!-- 面包屑导航 -->
+        <div class="breadcrumb-nav">
+            <a href="http://www.ns.com/index.php?s=/admin">Niushop开源商城</a>
+            <i class="fa fa-angle-right"></i>
+            <a href="http://www.ns.com/index.php?s=/admin/member/memberlist">会员</a>
+            <i class="fa fa-angle-right"></i>
+            <!-- 需要加跳转链接用这个：http://www.ns.com/index.php/admin/member/memberlist -->
+            <a href="javascript:;" style="color:#999;">会员列表</a>
+        </div>
+        <!-- 三级导航菜单 -->
+
+
+        <div class="right-side-operation">
+            <ul>
+
+
+                <!-- 					style="display:none;" style="display:block;" -->
+                <li>
+                    <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
+                    <div class="popover">
+                        <div class="arrow"></div>
+                        <div class="popover-content">
+                            <div>
+                                <h4>操作提示</h4>
+                                <p>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2321&amp;extra=page%3D2" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2321&amp;extra=page%3D2</a></p>
+                                <hr>
+                                <h4>功能提示</h4>
+                                <p class="function-prompts"></p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- 操作提示 -->
+
+    <!-- 		 -->
+    <div class="ns-warm-prompt" style="display:none;">
+        <div class="alert alert-info">
+            <button type="button" class="close">×</button>
+            <h4>
+                <!-- 					{1block name="alert_info"} -->
+                <!-- 					<i class="fa fa-info-circle"></i> -->
+                <!-- 					<span class="operating-hints">操作提示</span> -->
+                <!-- 						 -->
+                <!-- 						<span>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&tid=2321&extra=page%3D2" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&tid=2321&extra=page%3D2</a></span> -->
+                <!-- 						 -->
+                <!-- 					{1/block} -->
+            </h4>
+        </div>
+    </div>
+
+
+    <div class="ns-main">
+
+        <table class="mytable">
+
+            <tbody><tr>
+                <th style="text-align: left;width: 20%;">
+                    <button class="btn-common-delete" onclick="batchDelete()">批量删除</button>
+                    <button class="btn-common" onclick="add_user()">添加会员</button>
+                    <button onclick="dataExcel()" value="导出数据" class="btn-common-white">导出数据</button>
+                </th>
+                <th style="width:50%;">
+                    <span>注册时间：</span>
+                    <input type="text" id="startDate" class="input-common middle" placeholder="请选择开始日期" onclick="WdatePicker()">
+                    &nbsp;-&nbsp;
+                    <input type="text" id="endDate" placeholder="请选择结束日期" class="input-common middle" onclick="WdatePicker()">
+                    <!-- 更多搜索按钮 -->
+                    <button class="btn-common-white more-search"><i class="fa fa-chevron-down"></i></button>
+                    <button onclick="searchData()" value="搜索" class="btn-common">搜索</button>
+                    <!-- 更多搜索下拉框 -->
+                    <div class="more-search-container">
+                        <dl>
+                            <dt>搜索内容：</dt>
+                            <dd>
+                                <input type="text" id="search_text" placeholder="手机号/邮箱/会员昵称" class="input-common middle">
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>会员等级：</dt>
+                            <dd>
+                                <div class="selectric-wrapper selectric-select-common selectric-middle" style="width: 150px;"><div class="selectric-hide-select"><select id="level_name" class="select-common middle" tabindex="-1">
+                                    <option value="-1">请选择会员等级</option>
+                                    <option value="47">普通会员</option>
+                                </select></div><div class="selectric"><span class="selectric-label">请选择会员等级</span><button class="selectric-button">▾</button></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="selected" title="请选择会员等级">请选择会员等级</li><li data-index="1" class="last" title="普通会员">普通会员</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt></dt>
+                            <dd><button onclick="searchData()" class="btn-common">搜索</button></dd>
+                        </dl>
+                    </div>
+                </th>
+            </tr>
+            </tbody></table>
+        <table class="table-class">
+            <colgroup>
+                <col style="width: 2%;">
+                <col style="width: 25%;">
+                <col style="width: 7%;">
+                <col style="width: 10%;">
+                <col style="width: 10%;">
+                <col style="width: 20%;">
+                <col style="width: 6%;">
+                <col style="width: 20%;">
+            </colgroup>
+            <thead>
+            <tr align="center">
+                <th><i class="checkbox-common"><input type="checkbox" onclick="CheckAll(this)"></i></th>
+                <th style="text-align:left;">会员</th>
+                <th style="text-align:left;">会员等级</th>
+                <th style="text-align:right;">积分</th>
+                <th style="text-align:right;">账户余额</th>
+                <th>注册&amp;登录</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="productTbody"><tr align="center"><td colspan="9">暂无符合条件的数据记录</td></tr></tbody>
+        </table>
+
+        <!-- 余额调整 -->
+        <div class="modal fade hide" id="recharge_balance" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3>调整余额</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-infp-style">
+                            <table>
+                                <tbody><tr>
+                                    <td>当前余额</td>
+                                    <td colspan="3" id="current_balance" class="input-common"></td>
+                                </tr>
+                                <tr>
+                                    <td>调整金额</td>
+                                    <td colspan="3" id="time">
+                                        <input type="number" id="balance" class="input-common harf"><em class="unit">元</em>
+                                        <p class="hint">输入负数表示为减少</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>备注</td>
+                                    <td colspan="3" id="time"><textarea id="remark_balance" class="textarea-common"></textarea></td>
+                                </tr>
+                                </tbody></table>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <input type="hidden" id="balance_id">
+                        <button class="btn-common btn-big" onclick="addAccount(2)">保存</button>
+                        <button class="btn-common-cancle btn-big" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 积分调整 -->
+        <div class="modal fade hide" id="recharge_point" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3>调整积分</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-infp-style">
+                            <table>
+                                <tbody><tr>
+                                    <td>当前积分</td>
+                                    <td colspan="3" id="current_point" class="input-common"></td>
+                                </tr>
+                                <tr>
+                                    <td>调整积分</td>
+                                    <td colspan="3" id="time">
+                                        <input type="number" id="point" class="input-common harf"><em class="unit">分</em>
+                                        <p class="hint">输入负数表示为减少</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>备注</td>
+                                    <td colspan="3" id="time"><textarea id="remark_point" class="textarea-common"></textarea></td>
+                                </tr>
+                                </tbody></table>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" id="point_id">
+                        <button class="btn-common btn-big" onclick="addAccount(1)">保存</button>
+                        <button class="btn-common-cancle btn-big" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 添加会员 -->
+        <div class="modal fade hide" id="add_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3>添加会员</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-infp-style">
+                            <table class="modal-tab">
+                                <tbody><tr>
+                                    <td style="width:20%;"><span class="required">*</span>用户名</td>
+                                    <td colspan="3">
+                                        <input type="text" id="username" class="input-common">
+                                        <span id="usernameyz"></span>
+                                        <input type="hidden" value="不存在" id="isset_username" class="input-common">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="required">*</span>登录密码</td>
+                                    <td colspan="3"><input type="password" id="password" class="input-common"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:22%;"><span class="required">*</span>昵称</td>
+                                    <td colspan="3">
+                                        <input type="text" id="nickname" class="input-common">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>会员等级</td>
+                                    <td colspan="3">
+                                        <div class="selectric-wrapper selectric-select-common" style="width: 250px;"><div class="selectric-hide-select"><select id="member_level" class="select-common" tabindex="-1">
+                                            <option value="47">普通会员</option>
+                                        </select></div><div class="selectric"><span class="selectric-label">普通会员</span><button class="selectric-button">▾</button></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="last selected" title="普通会员">普通会员</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>手机号码</td>
+                                    <td colspan="3"><input type="text" id="telephone" class="input-common"><span id="telephoneyz"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>邮箱地址</td>
+                                    <td colspan="3"><input type="text" id="member_email" class="input-common"><span id="member_emailyz"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>性别</td>
+
+                                    <td>
+                                        <label class="radio inline normal"><i class="radio-common selected"><input type="radio" checked="checked" name="sex" value="1"></i>
+                                            <span>男</span></label>
+                                        <label class="radio inline normal"><i class="radio-common"><input name="sex" type="radio" value="2"></i>
+                                            <span>女</span></label>
+                                        <label class="radio inline normal"><i class="radio-common"><input name="sex" type="radio" value="0"></i>
+                                            <span>保密</span></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>账户状态</td>
+                                    <td>
+                                        <label class="radio inline normal"><i class="radio-common selected"><input type="radio" checked="checked" name="status" value="1"></i>
+                                            <span>正常</span></label>
+                                        <label class="radio inline normal"><i class="radio-common"><input name="status" type="radio" value="0"></i>
+                                            <span>锁定</span></label>
+                                    </td>
+                                </tr>
+                                </tbody></table>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn-common btn-big" onclick="addUser()">保存</button>
+                        <button class="btn-common-cancle btn-big" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <input type="hidden" id="modify_uid" class="">
+        <!-- 修改会员 -->
+        <div class="modal fade hide" id="modify_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3 class="modal-title" id="myModalLabel">编辑会员</h3>
+                    </div>
+                    <div class="modal-body" style="min-height: 360px;">
+                        <div class="modal-infp-style">
+                            <table class="modal-tab">
+                                <tbody><tr style="height: 32px;">
+                                    <td style="width:20%"><span class="required">*</span>用户名</td>
+                                    <td colspan="3">
+                                        <!-- 								<span id="modify_username"></span> -->
+                                        <input type="text" id="modify_username" class="input-common">
+                                        <span id="modify_usernameyz"></span>
+                                        <input type="hidden" value="不存在" id="modify_isset_username">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:20%">昵称</td>
+                                    <td colspan="3"><input type="text" id="modify_nickname" class="input-common"></td>
+                                </tr>
+                                <tr>
+                                    <td>会员等级</td>
+                                    <td colspan="3" style="padding-bottom: 0;">
+                                        <p>
+                                        <div class="selectric-wrapper selectric-select-common" style="width: 250px;"><div class="selectric-hide-select"><select id="modify_member_level" class="select-common" tabindex="-1">
+                                            <option value="47">普通会员</option>
+                                        </select></div><div class="selectric"><span class="selectric-label">普通会员</span><button class="selectric-button">▾</button></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="last selected" title="普通会员">普通会员</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>手机号码</td>
+                                    <td colspan="3"><input type="text" id="modify_telephone" value="" class="input-common"><span id="modify_telephoneyz"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>邮箱地址</td>
+                                    <td colspan="3"><input type="text" id="modify_member_email" class="input-common"><span id="modify_member_emailyz"></span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>性别</td>
+
+                                    <td id="sex">
+                                        <label class="radio inline normal"><i class="radio-common"><input type="radio" checked="checked" name="sex" value="1"></i>
+                                            <span>男</span></label>
+                                        <label class="radio inline normal"><i class="radio-common"><input name="sex" type="radio" value="2"></i>
+                                            <span>女</span></label>
+                                        <label class="radio inline normal"><i class="radio-common"><input name="sex" type="radio" value="0"></i>
+                                            <span>保密</span></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>账户状态</td>
+                                    <td id="status">
+                                        <label class="radio inline normal"><i class="radio-common"><input type="radio" checked="checked" name="status" value="1"></i>
+                                            <span>正常</span></label>
+                                        <label class="radio inline normal"><i class="radio-common"><input name="status" type="radio" value="0"></i>
+                                            <span>锁定</span></label>
+                                    </td>
+                                </tr>
+                                </tbody></table>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <input type="hidden" id="modify_username_hidden">
+                        <button class="btn-common btn-big" onclick="modifyUser()" id="butSubmit">保存</button>
+                        <button class="btn-common-cancle btn-big" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 修改会员密码 -->
+        <div class="modal fade hide" id="modify_password" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3 id="myModalLabel">重置密码</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-infp-style">
+                            <table class="modal-tab">
+                                <tbody><tr>
+                                    <td style="width:20%">密码</td>
+                                    <td colspan="3"><input type="text" id="modify_passwords" class="input-common"></td>
+                                </tr>
+                                </tbody></table>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <input type="hidden" id="modify_userid">
+                        <button class="btn-common btn-big" onclick="modifypassword()">保存</button>
+                        <button class="btn-common-cancle btn-big" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script type="text/javascript" src="/static/js/jquery.cookie.js" class=""></script>
+        <script src="/static/js/page.js" class=""></script>
+        <div class="page" id="turn-ul" style="">
+            <div class="pagination">
+                <ul>
+                    <li class="according-number">每页显示<input type="text" class="input-medium" id="showNumber" value="14" data-default="14" autocomplete="off">条</li>
+                    <li><a id="beginPage" class="page-disable" style="border: 1px solid #dddddd;">首页</a></li>
+                    <li><a id="prevPage" class="page-disable">上一页</a></li>
+                    <li id="pageNumber"></li>
+                    <li id="JslastPage">
+
+                    </li>
+                    <li><a id="nextPage" class="page-disable">下一页</a></li>
+                    <li><a id="lastPage" class="page-disable">末页</a></li>
+                    <li class="total-data" data-total-count="0">共0条</li>
+                    <!-- <li class="page-count">共0页</li> -->
+                    <li class="according-number">
+                        跳<input type="text" class="input-medium" id="skipPage" data-curr-page="0">页
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <input type="hidden" id="page_count" class="" value="0">
+        <input type="hidden" id="page_size" class="" value="0">
+        <script class="">
+            /**
+             * 保存当前的页面
+             * 创建时间：2017年8月30日 19:29:20
+             */
+            function savePage(index){
+                var json = { page_index : index, show_number : $("#showNumber").val(), url :  window.location.href };
+                $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                //console.log(json);
+            }
+
+            $(function() {
+                try{
+
+                    $("#turn-ul").show();//显示分页
+                    var history_url = "";
+                    var json = { page_index : 1, show_number : 14, url :  window.location.href };
+                    var history_json = "";//用于临时保存分页数据
+                    if($.cookie('page_cookie') != undefined && $.cookie('page_cookie') != "" && $.cookie('page_cookie') != '""'){
+
+                        var cookie = eval("(" + $.cookie('page_cookie') + ")");
+                        if(cookie !=undefined && cookie != ""){
+                            json.page_index = cookie.page_index;
+                            if(cookie.show_number != undefined && cookie.show_number != "") json.show_number = cookie.show_number;
+                            else json.show_number = 14;
+                            history_url = cookie.url;
+                            history_json = cookie;
+                        }
+
+                    }else{
+
+                        savePage(json.page_index);
+
+                    }
+                    if(history_url != undefined && history_url != "" && history_url != json.url && json.page_index != 1){
+
+                        //如果页面发生了跳转，还原操作
+                        json.page_index = 1;
+                        json.show_number = 14;
+                        json.url = history_url;
+                        //console.log("如果页面发生了跳转，还原操作");
+                        $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                    }
+
+                    //console.log($.cookie('page_cookie'));
+                    $("#showNumber").val(json.show_number);
+                    if(json.page_index != 1) jumpNumber = json.page_index;
+                    LoadingInfo(json.page_index);//通过此方法调用分页类
+
+                }catch(e){
+
+                    $("#turn-ul").hide();
+                    //当前页面没有分页，进行还原操作
+                    $.cookie('page_cookie',JSON.stringify(history_json),{ path: '/' });
+//		console.error(e);
+                    //console.log("当前页面没有分页，进行还原操作");
+                    //console.log($.cookie('page_cookie'));
+                }
+
+                //首页
+                $("#beginPage").click(function() {
+                    if(jumpNumber!=1){
+                        jumpNumber = 1;
+                        LoadingInfo(1);
+                        savePage(1);
+                        changeClass("begin");
+                    }
+                    return false;
+                });
+
+                //上一页
+                $("#prevPage").click(function() {
+                    var obj = $(".currentPage");
+                    var index = parseInt(obj.text()) - 1;
+                    if (index > 0) {
+                        obj.removeClass("currentPage");
+                        obj.prev().addClass("currentPage");
+                        jumpNumber = index;
+                        LoadingInfo(index);
+                        savePage(index);
+                        //判断是否是第一页
+                        if (index == 1) {
+                            changeClass("prev");
+                        } else {
+                            changeClass();
+                        }
+                    }
+                    return false;
+                });
+
+                //下一页
+                $("#nextPage").click(function() {
+                    var obj = $(".currentPage");
+                    //当前页加一（下一页）
+                    var index = parseInt(obj.text()) + 1;
+                    if (index <= $("#page_count").val()) {
+                        jumpNumber = index;
+                        LoadingInfo(index);
+                        savePage(index);
+                        obj.removeClass("currentPage");
+                        obj.next().addClass("currentPage");
+                        //判断是否是最后一页
+                        if (index == $("#page_count").val()) {
+                            changeClass("next");
+                        } else {
+                            changeClass();
+                        }
+                    }
+                    return false;
+                });
+
+                //末页
+                $("#lastPage").click(function() {
+                    jumpNumber = $("#page_count").val();
+                    if(jumpNumber>1){
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        $("#pageNumber a:eq("+ (parseInt($("#page_count").val()) - 1) + ")").text($("#page_count").val());
+                        changeClass("next");
+                    }
+                    return false;
+                });
+
+                //每页显示页数
+                $("#showNumber").blur(function(){
+                    if(isNaN($(this).val())){
+                        $("#showNumber").val(20);
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if($(this).val().indexOf(".") != -1){
+                        var index = $(this).val().indexOf(".");
+                        $("#showNumber").val($(this).val().substr(0,index));
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val())<=0){
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    //页数没有变化的话，就不要再执行查询
+                    if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 			jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                        $(this).attr("data-default",$(this).val());
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                    }
+                    return false;
+                }).keyup(function(event){
+                    if(event.keyCode == 13){
+                        if(isNaN($(this).val())){
+                            $("#showNumber").val(20);
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                        //页数没有变化的话，就不要再执行查询
+                        if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 				jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                            $(this).attr("data-default",$(this).val());
+                            //总数据数量
+                            var total_count = parseInt($(".total-data").attr("data-total-count"));
+                            //计算用户输入的页数是否超过当前页数
+                            var curr_count = Math.ceil(total_count/parseInt($(this).val()));
+                            if( curr_count !=0 && curr_count < jumpNumber){
+                                jumpNumber = curr_count;//输入的页数超过了，没有那么多
+                            }
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                    }
+                    return false;
+                });
+
+                // 跳转到某页
+                $("#skipPage").blur(function(){
+                    if(isNaN($(this).val()) || $(this).val().length == 0){
+                        $("#showNumber").val(20);
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val())<=0){
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val()) > $("#page_count").val()){
+                        jumpNumber = $("#page_count").val();
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        $(this).val(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                        return;
+                    }
+                    jumpNumber = $(this).val();
+                    LoadingInfo(jumpNumber);
+                    savePage(jumpNumber);
+                }).keyup(function(event){
+                    if(event.keyCode == 13){
+                        if(isNaN($(this).val())){
+                            $("#showNumber").val(20);
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                        if(parseInt($(this).val())<=0){
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                            return;
+                        }
+                        if(parseInt($(this).val()) > $("#page_count").val()){
+                            jumpNumber = $("#page_count").val();
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                            $(this).val(jumpNumber);
+                            return;
+                        }
+                        if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                            return;
+                        }
+                        jumpNumber = $(this).val();
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                    }
+                    return false;
+                });
+            });
+
+            //跳转页面
+            function JumpForPage(obj) {
+                jumpNumber = $(obj).text();
+                LoadingInfo($(obj).text());
+                savePage($(obj).text());
+                $(".currentPage").removeClass("currentPage");
+                $(obj).addClass("currentPage");
+                if (jumpNumber == 1) {
+                    changeClass("prev");
+                } else if (jumpNumber < parseInt($("#page_count").val())) {
+                    changeClass();
+                } else if (jumpNumber == parseInt($("#page_count").val())) {
+                    changeClass("next");
+                }
+            }
+        </script>
+    </div>
+
+</section>

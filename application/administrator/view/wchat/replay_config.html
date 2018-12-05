@@ -1,0 +1,925 @@
+
+<section class="ns-base-section">
+
+
+
+    <div style="position:relative;margin:0;">
+        <!-- 面包屑导航 -->
+        <div class="breadcrumb-nav">
+            <a href="http://www.ns.com/index.php?s=/admin">Niushop开源商城</a>
+            <i class="fa fa-angle-right"></i>
+            <a href="http://www.ns.com/index.php?s=/admin/wchat/config">微信</a>
+            <i class="fa fa-angle-right"></i>
+            <!-- 需要加跳转链接用这个：http://www.ns.com/index.php/admin/wchat/replayconfig -->
+            <a href="javascript:;" style="color:#999;">回复设置</a>
+        </div>
+        <!-- 三级导航菜单 -->
+
+        <nav class="ns-third-menu">
+            <ul>
+                <li class="selected" onclick="location.href='http://www.ns.com/index.php?s=/admin/wchat/replayConfig&amp;type=1';">关注时回复</li>
+                <li onclick="location.href='http://www.ns.com/index.php?s=/admin/wchat/replayConfig&amp;type=2';">关键字回复</li>
+                <li onclick="location.href='http://www.ns.com/index.php?s=/admin/wchat/replayConfig&amp;type=3';">默认回复</li>
+            </ul>
+        </nav>
+
+        <div class="right-side-operation">
+            <ul>
+
+
+                <!-- 					style="display:none;" style="display:block;" -->
+                <li>
+                    <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
+                    <div class="popover">
+                        <div class="arrow"></div>
+                        <div class="popover-content">
+                            <div>
+                                <h4>操作提示</h4>
+                                <p>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2329&amp;extra=page%3D2" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2329&amp;extra=page%3D2</a></p>
+                                <hr>
+                                <h4>功能提示</h4>
+                                <p class="function-prompts"></p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- 操作提示 -->
+
+    <!-- 		 -->
+    <div class="ns-warm-prompt" style="display:none;">
+        <div class="alert alert-info">
+            <button type="button" class="close">×</button>
+            <h4>
+                <!-- 					{1block name="alert_info"} -->
+                <!-- 					<i class="fa fa-info-circle"></i> -->
+                <!-- 					<span class="operating-hints">操作提示</span> -->
+                <!-- 						 -->
+                <!-- 						<span>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&tid=2329&extra=page%3D2" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&tid=2329&extra=page%3D2</a></span> -->
+                <!-- 						 -->
+                <!-- 					{1/block} -->
+            </h4>
+        </div>
+    </div>
+
+
+    <div class="ns-main">
+
+        <!-- 关注时回复 -->
+        <div id="type1">
+            <p class="step_0" style="display:block;">您还未设置回复内容，
+                <a href="javascript:;" onclick="showMaterial()">我要马上设置。</a>
+            </p>
+
+            <div class="step_1" style="display:none;">
+                <!-- 样式模板 -->
+                <div class="media-button">
+                    <a class="" href="javascript:;" onclick="showMaterial()">修改</a>
+                    <a class="" href="javascript:;" onclick="delReply()">删除</a>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="id" value="">
+        <link rel="stylesheet" href="/admin/css/wxMenu/wx_base.css">
+        <link rel="stylesheet" href="/admin/css/wxMenu/wx_tooltip.css">
+        <link rel="stylesheet" href="/admin/css/wxMenu/wx_lib.css">
+        <style>
+            .table tr td{text-align:center;vertical-align:middle;}
+            .table tr td:first-child{width:50%;}
+            .table tr td:last-child{width:20%;}
+            ul.mater{border:1px solid #e7e7eb;border-radius:5px;}
+            ul.mater li{padding:5px;border-bottom:1px solid #e7e7eb;}
+            ul.mater li:first-child{padding:13px 5px;}
+            ul.mater li:last-child{border-bottom:0px solid #e7e7eb;}
+            ul.mater li .btn_primary{display:inline-block;padding:3px;border-radius:3px;margin-right:10px;}
+            .dialog_ft .page{background:#f4f5f9;margin-top:10px;}
+            .btn:hover, .btn:focus{background-position: 0 0;}
+            .btn:focus{color:#ffffff;}
+            .btn{text-shadow: 0 0 0;}
+            .icon14_common {height: 17px}
+            .btn_primary:hover{
+                background:#126AE4;
+            }
+            .dialog_hd h3{font-size:20px;line-height:52px;}
+        </style>
+        <div class="dialog_wrp media align_edge ui-draggable" style="display:none;width: 960px; margin-left: -480px; margin-top: -313.5px;" id="dialog_media">
+            <div class="dialog">
+                <div class="dialog_hd">
+                    <h3>选择素材</h3>
+                    <a href="javascript:;" onclick="closeMaterial()" class="icon16_opr closed pop_closed">关闭</a>
+                </div>
+                <div class="dialog_bd">
+                    <div class="dialog_media_container appmsg_media_dialog">
+                        <div class="sub_title_bar in_dialog">
+                            <div class="search_bar js-btn-media">
+                                <button class="btn-common-white btn-big btn_primary" value="1" href="javascript:;" onclick="checkBtn(this)"> 文本 </button>
+                                <button class="btn-common-white btn-big" value="2" href="javascript:;" onclick="checkBtn(this)"> 单图文 </button>
+                                <button class="btn-common-white btn-big" href="javascript:;" value="3" onclick="checkBtn(this)"> 多图文 </button>
+                            </div>
+                            <div class="appmsg_create tr" id="add_message_btn">
+                                <a target="_blank" href="http://www.ns.com/index.php?s=/admin/wchat/addmedia&amp;type=1"><button class="btn-common"><i class="icon14_common add_white"></i><span>新建文本消息</span></button></a>
+                            </div>
+                        </div>
+                        <div class="dialog_media_inner" style="overflow:auto;">
+                            <div class="table_wrp user_list">
+                                <table class="table" cellspacing="0">
+                                    <tbody class="tbody" id="materia_data"><tr><td colspan="3" class="table_cell" style="text-align:center;">暂无素材</td></tr></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dialog_ft">
+                    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+                    <script src="/static/js/page.js"></script>
+                    <div class="page" id="turn-ul" style="">
+                        <div class="pagination">
+                            <ul>
+                                <li class="according-number">每页显示<input type="text" class="input-medium" id="showNumber" value="14" data-default="14" autocomplete="off">条</li>
+                                <li><a id="beginPage" class="page-disable" style="border: 1px solid #dddddd;">首页</a></li>
+                                <li><a id="prevPage" class="page-disable">上一页</a></li>
+                                <li id="pageNumber"></li>
+                                <li id="JslastPage">
+
+                                </li>
+                                <li><a id="nextPage" class="page-disable">下一页</a></li>
+                                <li><a id="lastPage" class="page-disable">末页</a></li>
+                                <li class="total-data" data-total-count="0">共0条</li>
+                                <!-- <li class="page-count">共0页</li> -->
+                                <li class="according-number">
+                                    跳<input type="text" class="input-medium" id="skipPage" data-curr-page="0">页
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <input type="hidden" id="page_count" value="0">
+                    <input type="hidden" id="page_size" value="0">
+                    <script>
+                        /**
+                         * 保存当前的页面
+                         * 创建时间：2017年8月30日 19:29:20
+                         */
+                        function savePage(index){
+                            var json = { page_index : index, show_number : $("#showNumber").val(), url :  window.location.href };
+                            $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                            //console.log(json);
+                        }
+
+                        $(function() {
+                            try{
+
+                                $("#turn-ul").show();//显示分页
+                                var history_url = "";
+                                var json = { page_index : 1, show_number : 14, url :  window.location.href };
+                                var history_json = "";//用于临时保存分页数据
+                                if($.cookie('page_cookie') != undefined && $.cookie('page_cookie') != "" && $.cookie('page_cookie') != '""'){
+
+                                    var cookie = eval("(" + $.cookie('page_cookie') + ")");
+                                    if(cookie !=undefined && cookie != ""){
+                                        json.page_index = cookie.page_index;
+                                        if(cookie.show_number != undefined && cookie.show_number != "") json.show_number = cookie.show_number;
+                                        else json.show_number = 14;
+                                        history_url = cookie.url;
+                                        history_json = cookie;
+                                    }
+
+                                }else{
+
+                                    savePage(json.page_index);
+
+                                }
+                                if(history_url != undefined && history_url != "" && history_url != json.url && json.page_index != 1){
+
+                                    //如果页面发生了跳转，还原操作
+                                    json.page_index = 1;
+                                    json.show_number = 14;
+                                    json.url = history_url;
+                                    //console.log("如果页面发生了跳转，还原操作");
+                                    $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                                }
+
+                                //console.log($.cookie('page_cookie'));
+                                $("#showNumber").val(json.show_number);
+                                if(json.page_index != 1) jumpNumber = json.page_index;
+                                LoadingInfo(json.page_index);//通过此方法调用分页类
+
+                            }catch(e){
+
+                                $("#turn-ul").hide();
+                                //当前页面没有分页，进行还原操作
+                                $.cookie('page_cookie',JSON.stringify(history_json),{ path: '/' });
+//		console.error(e);
+                                //console.log("当前页面没有分页，进行还原操作");
+                                //console.log($.cookie('page_cookie'));
+                            }
+
+                            //首页
+                            $("#beginPage").click(function() {
+                                if(jumpNumber!=1){
+                                    jumpNumber = 1;
+                                    LoadingInfo(1);
+                                    savePage(1);
+                                    changeClass("begin");
+                                }
+                                return false;
+                            });
+
+                            //上一页
+                            $("#prevPage").click(function() {
+                                var obj = $(".currentPage");
+                                var index = parseInt(obj.text()) - 1;
+                                if (index > 0) {
+                                    obj.removeClass("currentPage");
+                                    obj.prev().addClass("currentPage");
+                                    jumpNumber = index;
+                                    LoadingInfo(index);
+                                    savePage(index);
+                                    //判断是否是第一页
+                                    if (index == 1) {
+                                        changeClass("prev");
+                                    } else {
+                                        changeClass();
+                                    }
+                                }
+                                return false;
+                            });
+
+                            //下一页
+                            $("#nextPage").click(function() {
+                                var obj = $(".currentPage");
+                                //当前页加一（下一页）
+                                var index = parseInt(obj.text()) + 1;
+                                if (index <= $("#page_count").val()) {
+                                    jumpNumber = index;
+                                    LoadingInfo(index);
+                                    savePage(index);
+                                    obj.removeClass("currentPage");
+                                    obj.next().addClass("currentPage");
+                                    //判断是否是最后一页
+                                    if (index == $("#page_count").val()) {
+                                        changeClass("next");
+                                    } else {
+                                        changeClass();
+                                    }
+                                }
+                                return false;
+                            });
+
+                            //末页
+                            $("#lastPage").click(function() {
+                                jumpNumber = $("#page_count").val();
+                                if(jumpNumber>1){
+                                    LoadingInfo(jumpNumber);
+                                    savePage(jumpNumber);
+                                    $("#pageNumber a:eq("+ (parseInt($("#page_count").val()) - 1) + ")").text($("#page_count").val());
+                                    changeClass("next");
+                                }
+                                return false;
+                            });
+
+                            //每页显示页数
+                            $("#showNumber").blur(function(){
+                                if(isNaN($(this).val())){
+                                    $("#showNumber").val(20);
+                                    jumpNumber = 1;
+                                    LoadingInfo(jumpNumber);
+                                    savePage(jumpNumber);
+                                    return;
+                                }
+                                if($(this).val().indexOf(".") != -1){
+                                    var index = $(this).val().indexOf(".");
+                                    $("#showNumber").val($(this).val().substr(0,index));
+                                    jumpNumber = 1;
+                                    LoadingInfo(jumpNumber);
+                                    savePage(jumpNumber);
+                                    return;
+                                }
+                                if(parseInt($(this).val())<=0){
+                                    jumpNumber = 1;
+                                    LoadingInfo(jumpNumber);
+                                    savePage(jumpNumber);
+                                    return;
+                                }
+                                //页数没有变化的话，就不要再执行查询
+                                if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 			jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                                    $(this).attr("data-default",$(this).val());
+                                    LoadingInfo(jumpNumber);
+                                    savePage(jumpNumber);
+                                }
+                                return false;
+                            }).keyup(function(event){
+                                if(event.keyCode == 13){
+                                    if(isNaN($(this).val())){
+                                        $("#showNumber").val(20);
+                                        jumpNumber = 1;
+                                        LoadingInfo(jumpNumber);
+                                        savePage(jumpNumber);
+                                    }
+                                    //页数没有变化的话，就不要再执行查询
+                                    if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 				jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                                        $(this).attr("data-default",$(this).val());
+                                        //总数据数量
+                                        var total_count = parseInt($(".total-data").attr("data-total-count"));
+                                        //计算用户输入的页数是否超过当前页数
+                                        var curr_count = Math.ceil(total_count/parseInt($(this).val()));
+                                        if( curr_count !=0 && curr_count < jumpNumber){
+                                            jumpNumber = curr_count;//输入的页数超过了，没有那么多
+                                        }
+                                        LoadingInfo(jumpNumber);
+                                        savePage(jumpNumber);
+                                    }
+                                }
+                                return false;
+                            });
+
+                            // 跳转到某页
+                            $("#skipPage").blur(function(){
+                                if(isNaN($(this).val()) || $(this).val().length == 0){
+                                    $("#showNumber").val(20);
+                                    jumpNumber = 1;
+                                    LoadingInfo(jumpNumber);
+                                    savePage(jumpNumber);
+                                    return;
+                                }
+                                if(parseInt($(this).val())<=0){
+                                    jumpNumber = 1;
+                                    LoadingInfo(jumpNumber);
+                                    savePage(jumpNumber);
+                                    return;
+                                }
+                                if(parseInt($(this).val()) > $("#page_count").val()){
+                                    jumpNumber = $("#page_count").val();
+                                    LoadingInfo(jumpNumber);
+                                    savePage(jumpNumber);
+                                    $(this).val(jumpNumber);
+                                    return;
+                                }
+                                if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                                    return;
+                                }
+                                jumpNumber = $(this).val();
+                                LoadingInfo(jumpNumber);
+                                savePage(jumpNumber);
+                            }).keyup(function(event){
+                                if(event.keyCode == 13){
+                                    if(isNaN($(this).val())){
+                                        $("#showNumber").val(20);
+                                        jumpNumber = 1;
+                                        LoadingInfo(jumpNumber);
+                                        savePage(jumpNumber);
+                                    }
+                                    if(parseInt($(this).val())<=0){
+                                        jumpNumber = 1;
+                                        LoadingInfo(jumpNumber);
+                                        savePage(jumpNumber);
+                                        return;
+                                    }
+                                    if(parseInt($(this).val()) > $("#page_count").val()){
+                                        jumpNumber = $("#page_count").val();
+                                        LoadingInfo(jumpNumber);
+                                        savePage(jumpNumber);
+                                        $(this).val(jumpNumber);
+                                        return;
+                                    }
+                                    if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                                        return;
+                                    }
+                                    jumpNumber = $(this).val();
+                                    LoadingInfo(jumpNumber);
+                                    savePage(jumpNumber);
+                                }
+                                return false;
+                            });
+                        });
+
+                        //跳转页面
+                        function JumpForPage(obj) {
+                            jumpNumber = $(obj).text();
+                            LoadingInfo($(obj).text());
+                            savePage($(obj).text());
+                            $(".currentPage").removeClass("currentPage");
+                            $(obj).addClass("currentPage");
+                            if (jumpNumber == 1) {
+                                changeClass("prev");
+                            } else if (jumpNumber < parseInt($("#page_count").val())) {
+                                changeClass();
+                            } else if (jumpNumber == parseInt($("#page_count").val())) {
+                                changeClass("next");
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="mask mask_metar" style="display: none;"></div>
+        <script>
+            function checkBtn(event){
+                $(".js-btn-media").find('.btn-common-white').removeClass('btn_primary');
+                $(event).addClass('btn_primary');
+                var type = $(event).attr('value');
+                var type_name = '';
+                if(type == 1){
+                    type_name = '文本';
+                }else if(type == 2){
+                    type_name = '单图文';
+                }else if(type == 3){
+                    type_name = '多图文';
+                }
+                $('#add_message_btn').find('a').attr('href',__URL('http://www.ns.com/index.php/admin/wchat/addmedia?type=' + type))
+                $('#add_message_btn').find('span').html('新建'+ type_name +'消息');
+                LoadingInfo(1);
+            }
+
+            //显示素材
+            function showMaterial(){
+                $("#dialog_media").fadeIn(500);
+                $(".mask_metar").fadeIn(300);
+            }
+
+            //加载 素材 数据
+            function LoadingInfo(page_index){
+                var type = $(".js-btn-media .btn_primary").attr('value');
+                var search_text = '';
+                $.ajax({
+                    type : "post",
+                    url : "http://www.ns.com/index.php?s=/admin/wchat/onloadmaterial",
+                    data : {
+                        "page_index" : page_index,
+                        "page_size" : $("#showNumber").val(),
+                        "search_text" : search_text,
+                        "type" : type
+                    },
+                    success : function(data) {
+                        if(data['data'].length > 0){
+                            $("#materia_data").empty();
+                            for(var i=0; i<data['data'].length; i++){
+                                var html = '';
+                                if(data['data'][i]['type'] == 1){
+                                    var type_name = '文本 ';
+                                }else if(data['data'][i]['type'] == 2){
+                                    var type_name = '单图文 ';
+                                }else if(data['data'][i]['type'] == 3){
+                                    var type_name = '多图文 ';
+                                }
+                                html += '<tr><td class="table_cell"><ul class="mater">';
+                                for(var l=0; l<data['data'][i]['item_list'].length; l++){
+                                    var k = l+1;
+                                    html += '<li><span class="btn_primary">'+ type_name + k+' </span><a href="#">'+data['data'][i]['item_list'][l]['title']+'</a></li>';
+                                }
+                                html += '</ul></td>';
+                                html += '<td>'+timeStampTurnTime(data['data'][i]['create_time'])+'</td>';
+                                html += '<td class="table_cell user_opr tr"><a class="btn remark js_msgSenderRemark" onclick="selectedMaterial('+data['data'][i]['media_id']+')">选取</a></td>';
+                                html += '</tr>';
+                                $("#materia_data").append(html);
+                            }
+                        }else{
+                            html += '<tr>';
+                            html += '<td colspan="3" class="table_cell" style="text-align:center;">暂无素材</td>';
+                            html += '</tr>';
+                            $("#materia_data").html(html);
+                        }
+                        initPageData(data["page_count"],data['data'].length,data['total_count']);
+                        $("#pageNumber").html(pagenumShow(jumpNumber,$("#page_count").val(),5));
+                    }
+                });
+            }
+
+            //选择 图文素材
+            function selectedMaterial(media_id){
+                getMaterial(media_id);
+                closeMaterial();
+            }
+
+            //取消  关闭
+            function closeMaterial(){
+                $("#dialog_media").fadeOut(300);
+                $(".mask_metar").fadeOut();
+            }
+        </script>
+        <!-- 关键字回复 -->
+        <input type="hidden" id="type" value="1">
+        <script>
+            function delKeyReply(id){
+                $( "#dialog" ).dialog({
+                    buttons: {
+                        "确定": function() {
+                            $(this).dialog('close');
+                            $.ajax({
+                                url : __URL(ADMINMAIN + "/wchat/delkeyreply"),
+                                type : "post",
+                                data : { "id" : id },
+                                success : function(data){
+                                    if(data['code'] > 0){
+                                        showTip(data["message"],'success');
+                                        location.href = __URL(ADMINMAIN + "/wchat/replayconfig?type=2");
+                                    }else{
+                                        showTip(data["message"],'error');
+                                    }
+                                }
+                            });
+                        },
+                        "取消,#f5f5f5,#666": function() {
+                            $(this).dialog('close');
+                        }
+                    },
+                    contentText:"确定删除？",
+                });
+            }
+
+            function getMaterial(media_id){
+                $.ajax({
+                    url : __URL(ADMINMAIN + "/wchat/getweixinmediadetail"),
+                    type : "post",
+                    data : { "media_id" : media_id },
+                    success : function(data){
+                        var html = '';
+                        if(data){
+                            html += '<div class="reply-div">';
+                            if(data['type'] == 1){
+                                html += '<div class="reply-text">';
+                                html += '<p>'+data['title']+'</p>';
+                                html += '</div>';
+                            }else if(data['type'] == 2){
+                                html += '<div class="reply-one">';
+                                html += '<h5>'+data['item_list'][0]['title']+'</h5>';
+                                html += '<p>xx月xx日</p>';
+                                html += '<div class="cover-div"><img class="cover-pic" src="'+__IMG(data['item_list'][0]['cover'])+'"></div>';
+                                html += '<p>'+data['item_list'][0]['summary']+'</p>';
+                                html += '</div>';
+                            }else if(data['type'] == 3){
+                                html += '<ul class="reply-more">';
+                                for(var i=0; i < data['item_list'].length; i++){
+                                    if(i < 1){
+                                        html += '<li><div class="cover-div">';
+                                        html += '<img class="cover-pic" src="'+__IMG(data['item_list'][i]['cover'])+'">';
+                                        html += '<p class="cover-title">'+data['item_list'][i]['title']+'<p>';
+                                        html += '</div></li>';
+                                    }else{
+                                        html += '<li>';
+                                        html += '<div class="media-div-l"><p class="media-title">'+data['item_list'][i]['title']+'</p></div>';
+                                        html += '<div class="media-div-r"><img class="media-img" src="'+__IMG(data['item_list'][i]['cover'])+'"></div>';
+                                        html += '</li>';
+                                    }
+                                }
+                                html += '</ul>';
+                            }
+                            html += '</div>';
+                        }
+                        var type = $("#type").val();
+                        $("#type"+type+" .step_0").hide();
+                        $("#type"+type+" .step_1").show();
+                        $("#type"+type+" .step_1 .reply-div").remove();
+                        $("#type"+type+" .step_1 .media-button").before(html);
+                        if(type == 1){
+                            addOrUpdateFollowReply(media_id);
+                        }else if(type == 3){
+                            addOrUpdateDefaultReply(media_id);
+                        }
+                    }
+                })
+            }
+
+            //添加 或 修改 关注时回复
+            function addOrUpdateFollowReply(media_id){
+                var id = $("#id").val();
+                var type = $("#type").val();
+                $.ajax({
+                    url : __URL(ADMINMAIN + "/wchat/addorupdatefollowreply"),
+                    type : "post",
+                    data : { "media_id" : media_id, "id" : id },
+                    success : function(data){
+                        if(data['code'] > 0){
+                            showTip(data["message"],'success');
+                        }else{
+                            showTip(data["message"],'error');
+                        }
+                    }
+                })
+            }
+
+            //添加 或 修改 默认回复
+            function addOrUpdateDefaultReply(media_id){
+                var id = $("#id").val();
+                var type = $("#type").val();
+                $.ajax({
+                    url : __URL(ADMINMAIN + "/wchat/addorupdatedefaultreply"),
+                    type : "post",
+                    data : { "media_id" : media_id, "id" : id },
+                    success : function(data){
+                        if(data['code'] > 0){
+                            showTip(data["message"],'success');
+                        }else{
+                            showTip(data["message"],'error');
+                        }
+                    }
+                })
+            }
+
+            //删除 回复
+            function delReply(){
+                var type = $("#type").val();
+                $.ajax({
+                    url : __URL(ADMINMAIN + "/wchat/delreply"),
+                    type : "post",
+                    data : { "type" : type},
+                    success : function(data){
+                        if(data['code'] > 0){
+                            showTip(data["message"],'success');
+                            location.href = __URL(ADMINMAIN + "/wchat/replayconfig?type="+type);
+                        }else{
+                            showTip(data["message"],'error');
+                        }
+                    }
+                })
+            }
+        </script>
+
+        <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+        <script src="/static/js/page.js"></script>
+        <div class="page" id="turn-ul" style="display: none;">
+            <div class="pagination">
+                <ul>
+                    <li class="according-number">每页显示<input type="text" class="input-medium" id="showNumber" value="14" data-default="14" autocomplete="off">条</li>
+                    <li><a id="beginPage" class="page-disable" style="border: 1px solid #dddddd;">首页</a></li>
+                    <li><a id="prevPage" class="page-disable">上一页</a></li>
+                    <li id="pageNumber"></li>
+                    <li id="JslastPage">
+
+                    </li>
+                    <li><a id="nextPage">下一页</a></li>
+                    <li><a id="lastPage">末页</a></li>
+                    <li class="total-data" data-total-count="0">共0条</li>
+                    <!-- <li class="page-count">共0页</li> -->
+                    <li class="according-number">
+                        跳<input type="text" class="input-medium" id="skipPage" data-curr-page="1">页
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <input type="hidden" id="page_count">
+        <input type="hidden" id="page_size">
+        <script>
+            /**
+             * 保存当前的页面
+             * 创建时间：2017年8月30日 19:29:20
+             */
+            function savePage(index){
+                var json = { page_index : index, show_number : $("#showNumber").val(), url :  window.location.href };
+                $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                //console.log(json);
+            }
+
+            $(function() {
+                try{
+
+                    $("#turn-ul").show();//显示分页
+                    var history_url = "";
+                    var json = { page_index : 1, show_number : 14, url :  window.location.href };
+                    var history_json = "";//用于临时保存分页数据
+                    if($.cookie('page_cookie') != undefined && $.cookie('page_cookie') != "" && $.cookie('page_cookie') != '""'){
+
+                        var cookie = eval("(" + $.cookie('page_cookie') + ")");
+                        if(cookie !=undefined && cookie != ""){
+                            json.page_index = cookie.page_index;
+                            if(cookie.show_number != undefined && cookie.show_number != "") json.show_number = cookie.show_number;
+                            else json.show_number = 14;
+                            history_url = cookie.url;
+                            history_json = cookie;
+                        }
+
+                    }else{
+
+                        savePage(json.page_index);
+
+                    }
+                    if(history_url != undefined && history_url != "" && history_url != json.url && json.page_index != 1){
+
+                        //如果页面发生了跳转，还原操作
+                        json.page_index = 1;
+                        json.show_number = 14;
+                        json.url = history_url;
+                        //console.log("如果页面发生了跳转，还原操作");
+                        $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                    }
+
+                    //console.log($.cookie('page_cookie'));
+                    $("#showNumber").val(json.show_number);
+                    if(json.page_index != 1) jumpNumber = json.page_index;
+                    LoadingInfo(json.page_index);//通过此方法调用分页类
+
+                }catch(e){
+
+                    $("#turn-ul").hide();
+                    //当前页面没有分页，进行还原操作
+                    $.cookie('page_cookie',JSON.stringify(history_json),{ path: '/' });
+//		console.error(e);
+                    //console.log("当前页面没有分页，进行还原操作");
+                    //console.log($.cookie('page_cookie'));
+                }
+
+                //首页
+                $("#beginPage").click(function() {
+                    if(jumpNumber!=1){
+                        jumpNumber = 1;
+                        LoadingInfo(1);
+                        savePage(1);
+                        changeClass("begin");
+                    }
+                    return false;
+                });
+
+                //上一页
+                $("#prevPage").click(function() {
+                    var obj = $(".currentPage");
+                    var index = parseInt(obj.text()) - 1;
+                    if (index > 0) {
+                        obj.removeClass("currentPage");
+                        obj.prev().addClass("currentPage");
+                        jumpNumber = index;
+                        LoadingInfo(index);
+                        savePage(index);
+                        //判断是否是第一页
+                        if (index == 1) {
+                            changeClass("prev");
+                        } else {
+                            changeClass();
+                        }
+                    }
+                    return false;
+                });
+
+                //下一页
+                $("#nextPage").click(function() {
+                    var obj = $(".currentPage");
+                    //当前页加一（下一页）
+                    var index = parseInt(obj.text()) + 1;
+                    if (index <= $("#page_count").val()) {
+                        jumpNumber = index;
+                        LoadingInfo(index);
+                        savePage(index);
+                        obj.removeClass("currentPage");
+                        obj.next().addClass("currentPage");
+                        //判断是否是最后一页
+                        if (index == $("#page_count").val()) {
+                            changeClass("next");
+                        } else {
+                            changeClass();
+                        }
+                    }
+                    return false;
+                });
+
+                //末页
+                $("#lastPage").click(function() {
+                    jumpNumber = $("#page_count").val();
+                    if(jumpNumber>1){
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        $("#pageNumber a:eq("+ (parseInt($("#page_count").val()) - 1) + ")").text($("#page_count").val());
+                        changeClass("next");
+                    }
+                    return false;
+                });
+
+                //每页显示页数
+                $("#showNumber").blur(function(){
+                    if(isNaN($(this).val())){
+                        $("#showNumber").val(20);
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if($(this).val().indexOf(".") != -1){
+                        var index = $(this).val().indexOf(".");
+                        $("#showNumber").val($(this).val().substr(0,index));
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val())<=0){
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    //页数没有变化的话，就不要再执行查询
+                    if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 			jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                        $(this).attr("data-default",$(this).val());
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                    }
+                    return false;
+                }).keyup(function(event){
+                    if(event.keyCode == 13){
+                        if(isNaN($(this).val())){
+                            $("#showNumber").val(20);
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                        //页数没有变化的话，就不要再执行查询
+                        if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 				jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                            $(this).attr("data-default",$(this).val());
+                            //总数据数量
+                            var total_count = parseInt($(".total-data").attr("data-total-count"));
+                            //计算用户输入的页数是否超过当前页数
+                            var curr_count = Math.ceil(total_count/parseInt($(this).val()));
+                            if( curr_count !=0 && curr_count < jumpNumber){
+                                jumpNumber = curr_count;//输入的页数超过了，没有那么多
+                            }
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                    }
+                    return false;
+                });
+
+                // 跳转到某页
+                $("#skipPage").blur(function(){
+                    if(isNaN($(this).val()) || $(this).val().length == 0){
+                        $("#showNumber").val(20);
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val())<=0){
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val()) > $("#page_count").val()){
+                        jumpNumber = $("#page_count").val();
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        $(this).val(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                        return;
+                    }
+                    jumpNumber = $(this).val();
+                    LoadingInfo(jumpNumber);
+                    savePage(jumpNumber);
+                }).keyup(function(event){
+                    if(event.keyCode == 13){
+                        if(isNaN($(this).val())){
+                            $("#showNumber").val(20);
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                        if(parseInt($(this).val())<=0){
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                            return;
+                        }
+                        if(parseInt($(this).val()) > $("#page_count").val()){
+                            jumpNumber = $("#page_count").val();
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                            $(this).val(jumpNumber);
+                            return;
+                        }
+                        if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                            return;
+                        }
+                        jumpNumber = $(this).val();
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                    }
+                    return false;
+                });
+            });
+
+            //跳转页面
+            function JumpForPage(obj) {
+                jumpNumber = $(obj).text();
+                LoadingInfo($(obj).text());
+                savePage($(obj).text());
+                $(".currentPage").removeClass("currentPage");
+                $(obj).addClass("currentPage");
+                if (jumpNumber == 1) {
+                    changeClass("prev");
+                } else if (jumpNumber < parseInt($("#page_count").val())) {
+                    changeClass();
+                } else if (jumpNumber == parseInt($("#page_count").val())) {
+                    changeClass("next");
+                }
+            }
+        </script>
+    </div>
+
+</section>

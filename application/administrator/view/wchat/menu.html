@@ -1,0 +1,1117 @@
+
+<section class="ns-base-section">
+
+
+
+    <div style="position:relative;margin:0;">
+        <!-- 面包屑导航 -->
+        <div class="breadcrumb-nav">
+            <a href="http://www.ns.com/index.php?s=/admin">Niushop开源商城</a>
+            <i class="fa fa-angle-right"></i>
+            <a href="http://www.ns.com/index.php?s=/admin/wchat/config">微信</a>
+            <i class="fa fa-angle-right"></i>
+            <!-- 需要加跳转链接用这个：http://www.ns.com/index.php/admin/wchat/menu -->
+            <a href="javascript:;" style="color:#999;">微信菜单管理</a>
+        </div>
+        <!-- 三级导航菜单 -->
+
+
+        <div class="right-side-operation">
+            <ul>
+
+
+                <!-- 					style="display:none;" style="display:block;" -->
+                <li>
+                    <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
+                    <div class="popover">
+                        <div class="arrow"></div>
+                        <div class="popover-content">
+                            <div>
+                                <h4>操作提示</h4>
+                                <p>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2327&amp;extra=page%3D2" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2327&amp;extra=page%3D2</a></p>
+                                <hr>
+                                <h4>功能提示</h4>
+                                <p class="function-prompts"></p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- 操作提示 -->
+
+    <!-- 		 -->
+    <div class="ns-warm-prompt" style="display:none;">
+        <div class="alert alert-info">
+            <button type="button" class="close">×</button>
+            <h4>
+                <!-- 					{1block name="alert_info"} -->
+                <!-- 					<i class="fa fa-info-circle"></i> -->
+                <!-- 					<span class="operating-hints">操作提示</span> -->
+                <!-- 						 -->
+                <!-- 						<span>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&tid=2327&extra=page%3D2" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&tid=2327&extra=page%3D2</a></span> -->
+                <!-- 						 -->
+                <!-- 					{1/block} -->
+            </h4>
+        </div>
+    </div>
+
+
+    <div class="ns-main">
+
+
+        <!-- 你尚未添加任何菜单 -->
+        <div class="menu_initial_box js_startMenuBox">
+            <p class="tips_global">你尚未添加任何菜单</p>
+            <a class="btn btn_primary btn_add js_openMenu" href="javascript:void(0);">
+                <i class="icon14_common add_white"></i>添加菜单</a>
+        </div>
+        <!-- 菜单编辑 -->
+        <div class="menu_setting_area js_editBox" style="display:none;">
+            <div class="menu_preview_area">
+                <div class="mobile_menu_preview">
+                    <div class="mobile_hd tc">Niushop开源商城</div>
+                    <div class="mobile_bd">
+                        <!-- 菜单 -->
+                        <ul class="pre_menu_list grid_line" id="menuList">
+
+                            <!-- 限制一级菜单数量的添加 -->
+                            <li class="js-addMenuBtn pre_menu_item size1of1" data-class-index="1">
+                                <a href="javascript:void(0);" class="pre_menu_link " title="最多添加3个一级菜单">
+                                    <i class="icon14_menu_add"></i>
+                                    <span>添加菜单</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                        <!-- 菜单 -->
+                    </div>
+                </div>
+
+                <!-- 菜单排序，后期实现拖拽 -->
+                <div class="sort_btn_wrp" style="display:none;">
+                    <a id="orderBt" class=" dn btn-common-white" href="javascript:void(0);">菜单排序</a>
+                    <span id="orderDis" class="btn-common-white btn_disabled">菜单排序</span>
+                    <a id="finishBt" href="javascript:void(0);" class="dn btn-common-white btn-big">完成</a>
+                </div>
+
+            </div>
+
+            <div class="menu_form_area">
+                <!-- 点击左侧菜单进行编辑操作 -->
+                <div id="js_none" class="menu_initial_tips tips_global" style="display: none;">请通过拖拽左边的菜单进行排序</div>
+                <div id="js_rightBox" class="portable_editor to_left">
+                    <div class="editor_inner">
+                        <div class="global_mod float_layout menu_form_hd js_second_title_bar">
+                            <h4 class="global_info"></h4>
+                            <div class="global_extra">
+                                <a href="javascript:void(0);" id="jsDelBt" data-menuid="0" data-menuname="">删除菜单</a>
+                            </div>
+                        </div>
+                        <div class="menu_form_bd" id="view">
+                            <div id="js_innerNone" class="msg_sender_tips tips_global" style="display: none;">已添加子菜单，仅可设置菜单名称。</div>
+                            <div class="frm_control_group js_setNameBox">
+                                <label for="menuname" class="frm_label"><strong class="title js_menuTitle">菜单名称</strong></label>
+                                <div class="frm_controls">
+							<span class="frm_input_box with_counter counter_in append">
+								<input type="text" id="menuname" data-switch="menuname" class="input-common" style="box-shadow: none; padding: 0;" value="">
+							</span>
+                                    <p class="frm_msg fail js_titleEorTips dn" style="display: none;">字节超过上限</p>
+                                    <p class="frm_msg fail js_titlenoTips dn" style="display: none;">请输入菜单名称</p>
+                                    <p class="frm_tips js_titleNolTips">字数不超过4个汉字或8个字母</p>
+                                </div>
+                            </div>
+                            <div class="frm_control_group js_setGraphic">
+                                <label for="" class="frm_label"> <strong class="title js_menuContent">菜单内容</strong></label>
+                                <div class="frm_controls frm_vertical_pt">
+                                    <label class="frm_radio_label js_radio_sendMsg ">
+                                        <i class="icon_radio"></i> <span class="lbl_content">发送消息</span>
+                                    </label>
+                                    <label class="frm_radio_label js_radio_url  selected">
+                                        <i class="icon_radio"></i> <span class="lbl_content">跳转网页</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="menu_content_container js_setGraphic">
+                                <!-- 发送消息 -->
+
+                                <div class="menu_content send jsMain" id="edit" style="display:none;">
+                                    <div class="msg_sender" id="editDiv">
+                                        <div class="msg_tab">
+                                            <div class="tab_navs_panel">
+                                                <div class="tab_navs_wrp">
+                                                    <ul class="tab_navs js_tab_navs">
+
+                                                        <li class="tab_nav tab_appmsg width4 selected" data-type="10" data-tab=".js_appmsgArea" data-tooltip="图文消息">
+                                                            <a href="javascript:void(0);">&nbsp;<i class="icon_msg_sender"></i><span class="msg_tab_title">图文消息</span></a>
+                                                        </li>
+                                                        <!-- 
+                                                        <li class="tab_nav tab_img width4" data-type="2" data-tab=".js_imgArea" data-tooltip="图片">
+                                                            <a href="javascript:void(0);">&nbsp;<i class="icon_msg_sender"></i><span class="msg_tab_title">图片</span></a>
+                                                        </li>
+        
+                                                        <li class="tab_nav tab_audio width4" data-type="3" data-tab=".js_audioArea" data-tooltip="语音">
+                                                            <a href="javascript:void(0);">&nbsp;<i class="icon_msg_sender"></i><span class="msg_tab_title">语音</span></a>
+                                                        </li>
+                                                        <li class="tab_nav tab_video width4 no_extra" data-type="15" data-tab=".js_videoArea" data-tooltip="视频">
+                                                            <a href="javascript:void(0);">&nbsp;<i class="icon_msg_sender"></i><span class="msg_tab_title">视频</span></a>
+                                                        </li> -->
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="tab_panel">
+
+                                                <div class="tab_content">
+                                                    <div class="js_appmsgArea inner">
+
+                                                        <div class="tab_cont_cover jsMsgSendTab">
+                                                            <div class="media_cover">
+														<span class="create_access">
+															<a class="add_gray_wrp jsMsgSenderPopBt" href="javascript:;">
+															<i class="icon36_common add_gray"></i> <strong>从素材库中选择</strong>
+														</a>
+														</span>
+                                                            </div>
+                                                            <div class="media_cover">
+														<span class="create_access">
+															<a target="_blank" class="add_gray_wrp" href="http://www.ns.com/index.php?s=/admin/Wchat/addMedia">
+																<i class="icon36_common add_gray"></i> <strong>新建图文消息</strong>
+															</a>
+														</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div id="show_media" style="display:none;">
+                                                            <div class="appmsg multi has_first_cover">
+                                                                <div class="appmsg_content">
+                                                                    <div class="appmsg_info">
+                                                                        <em class="appmsg_date">
+                                                                        </em>
+                                                                    </div>
+                                                                    <div class="cover_appmsg_item">
+                                                                        <h4 class="appmsg_title js-media-title">
+                                                                            <a href="" target="_blank">
+                                                                            </a>
+                                                                        </h4>
+
+                                                                        <!-- 封面 -->
+                                                                        <div class="appmsg_thumb_wrp">
+                                                                        </div>
+                                                                        <a href="javascript:;" class="edit_mask preview_mask js-preview" data-media-item-id="">
+                                                                            <div class="edit_mask_content">
+                                                                                <p style="color:#fff;">预览文章</p>
+                                                                            </div>
+                                                                            <span class="vm_box"></span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <a href="javascript:;" class="jsmsgSenderDelBt link_dele" data-mediaid="0">删除</a>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <!-- 
+                                                <div class="tab_content" style="display: none;">
+                                                    <div class="js_imgArea inner ">
+        
+                                                        <div class="tab_cont_cover jsMsgSendTab" data-index="1" data-type="2">
+                                                            <div class="media_cover">
+                                                                <span class="create_access">
+                                                                    <a class="add_gray_wrp jsMsgSenderPopBt" href="javascript:;" data-type="2" data-index="1">
+                                                                        <i class="icon36_common add_gray"></i> <strong>从素材库中选择</strong>
+                                                                    </a>
+                                                                </span>
+                                                            </div>
+                                                            <div class="media_cover">
+                                                                <span class="create_access">
+                                                                    <a class="add_gray_wrp" id="msgSendImgUploadBt" data-type="2" href="javascript:;">
+                                                                        <i class="icon36_common add_gray"></i> <strong>上传图片</strong>
+                                                                    </a>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+        
+                                                    </div>
+                                                </div>
+        
+                                                <div class="tab_content" style="display: none;">
+                                                    <div class="js_audioArea inner ">
+        
+                                                        <div class="tab_cont_cover jsMsgSendTab" data-index="2" data-type="3">
+                                                            <div class="media_cover">
+                                                                <span class="create_access">
+                                                                    <a class="add_gray_wrp jsMsgSenderPopBt" href="javascript:;" data-type="3" data-index="2">
+                                                                        <i class="icon36_common add_gray"></i> <strong>从素材库中选择</strong>
+                                                                    </a>
+                                                                </span>
+                                                            </div>
+                                                            <div class="media_cover">
+                                                                <span class="create_access">
+                                                                    <a class="add_gray_wrp " id="msgSendAudioUploadBt" href="javascript:;">
+                                                                        <i class="icon36_common add_gray"></i> <strong>新建语音</strong>
+                                                                    </a>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+        
+                                                    </div>
+                                                </div>
+        
+                                                <div class="tab_content" style="display: none;">
+                                                    <div class="js_videoArea inner ">
+        
+                                                        <div class="tab_cont_cover jsMsgSendTab" data-index="3">
+                                                            <div class="media_cover">
+                                                                <span class="create_access">
+                                                                    <a class="add_gray_wrp jsMsgSenderPopBt" href="javascript:;" data-type="15" data-index="3">
+                                                                        <i class="icon36_common add_gray"></i> <strong>从素材库中选择</strong>
+                                                                    </a>
+                                                                </span>
+                                                            </div>
+                                                            <div class="media_cover">
+                                                                <span class="create_access">
+                                                                    <a target="_blank" class="add_gray_wrp" href="/cgi-bin/appmsg?t=media/videomsg_edit&amp;action=video_edit&amp;type=15&amp;lang=zh_CN&amp;token=65573610">
+                                                                        <i class="icon36_common add_gray"></i> <strong>新建视频</strong>
+                                                                    </a>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+        
+                                                    </div>
+                                                </div> -->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="profile_link_msg_global menu_send mini_tips warn dn js_warn">请勿添加其他公众号的主页链接</p>
+                                </div>
+
+                                <!-- 发送消息 -->
+
+                                <!-- 跳转网页 -->
+
+                                <div class="menu_content url jsMain" id="url" style="display: block;">
+                                    <!-- <form action="" id="urlForm" onsubmit="return false;"> -->
+                                    <p class="menu_content_tips tips_global">订阅者点击该子菜单会跳到以下链接</p>
+                                    <div class="frm_control_group">
+                                        <label for="urltext" class="frm_label"><strong class="title">页面地址</strong></label>
+                                        <div class="frm_controls">
+										<span class="frm_input_box">
+											<input type="text" class="frm_input" id="urltext" data-switch="url" value="" name="urlText" style="border: 0; box-shadow: none; padding: 0;">
+										</span>
+                                            <p class="profile_link_msg_global menu_url mini_tips warn dn js_warn">请勿添加其他公众号的主页链接</p>
+                                            <!-- <p class="frm_tips" id="js_urlTitle" style="display: none;">
+                                                来自<span class="js_name"></span><span style="display: none;">
+                                                    -《<span class="js_title"></span>》
+                                                </span>
+                                            </p> -->
+                                        </div>
+                                    </div>
+                                    <!--
+                                    <div class="frm_control_group btn_appmsg_wrap">
+                                        <div class="frm_controls">
+                                            <p class="frm_msg fail dn" id="urlUnSelect" style="display: none;">
+                                                <span for="urlText" class="frm_msg_content" style="display: inline;">请选择一篇文章</span>
+                                            </p>
+                                             <a href="javascript:;" id="js_appmsgPop">从公众号图文消息中选择</a> 
+                                            <a href="javascript:void(0);" class="dn btn btn_default" id="js_reChangeAppmsg">重新选择</a>
+                                        </div>
+                                    </div>
+                                    -->
+                                    <!-- </form> -->
+                                </div>
+
+                                <!-- 跳转网页 -->
+
+                                <!-- 	<div class="menu_content sended" style="display: none;">
+                                        <p class="menu_content_tips tips_global">订阅者点击该子菜单会跳到以下链接</p>
+                                        <div class="msg_wrp" id="viewDiv"></div>
+                                        <p class="frm_tips">
+                                            来自<span class="js_name">素材库</span><span style="display: none;">
+                                                -《<span class="js_title"></span>》
+                                            </span>
+                                        </p>
+                                    </div> -->
+
+                                <div id="js_errTips" style="display: none;" class="msg_sender_msg mini_tips warn"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 左箭头 -->
+
+                    <span class="editor_arrow_wrp">
+				<i class="editor_arrow editor_arrow_out"></i>
+				<i class="editor_arrow editor_arrow_in"></i>
+			</span>
+
+                    <!-- 左箭头 -->
+
+                </div>
+                <!-- 点击左侧菜单进行编辑操作 -->
+
+            </div>
+        </div>
+        <!-- 菜单编辑 -->
+
+        <div class="tool_bar tc js_editBtn" style="visibility: hidden;">
+            <span id="pubBt" class="btn-common btn-big" style="display: inline-block;">保存并发布</span>
+            <a href="javascript:void(0);" class="btn-common-white btn-big" id="viewBt" style="display: inline-block;">预览</a>
+        </div>
+
+        <!-- 删除菜单弹出框 -->
+        <div class="dialog_wrp ui-draggable" style="width: 720px; margin-left: -360px; margin-top: -186px; display: none;" id="wxDelDialog">
+            <div class="dialog">
+                <div class="dialog_hd">
+                    <h3>温馨提示</h3>
+                    <a href="javascript:;" class="pop_closed">关闭</a>
+                </div>
+                <div class="dialog_bd">
+                    <div class="page_msg large simple default">
+                        <div class="inner group">
+                            <span class="msg_icon_wrapper"><i class="icon_msg warn"></i></span>
+                            <div class="msg_content ">
+                                <h4>删除确认</h4>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dialog_ft">
+                    <a href="javascript:;" class="btn-common btn-big js_btn">确定</a>
+                    <a href="javascript:;" class="btn-common-white btn-big js_btn">取消</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 删除菜单弹出框 -->
+        <!-- 手机预览 -->
+        <div class="mobile_preview" id="mobileDiv" style="display: none;">
+            <div class="mobile_preview_hd">
+                <strong class="nickname">Niushop开源商城</strong>
+            </div>
+            <div class="mobile_preview_bd">
+                <ul id="viewShow" class="show_list"></ul>
+            </div>
+            <div class="mobile_preview_ft">
+                <ul class="pre_menu_list grid_line" id="viewList">
+                </ul>
+            </div>
+            <a href="javascript:void(0);" class="mobile_preview_closed btn-common-white btn-big" id="viewClose">退出预览</a>
+        </div>
+        <!-- 遮罩层 -->
+        <div class="mask" style="display: none;" id="maskLayer"></div>
+        <!-- 操作反馈弹出框 erro 失败-->
+        <div class="JS_TIPS page_tips success" id="wxTips" style="display:none;">
+            <div class="inner"></div>
+        </div>
+        <input type="hidden" id="hidden_default_sort">
+        <input type="hidden" id="hidden_default_sub_sort">
+        <!-- 选择图文素材 -->
+        <link rel="stylesheet" href="/admin/css/wxMenu/wx_base.css">
+        <link rel="stylesheet" href="/admin/css/wxMenu/wx_tooltip.css">
+        <link rel="stylesheet" href="/admin/css/wxMenu/wx_lib.css">
+        <style>
+            .table tr td{text-align:center;vertical-align:middle;}
+            .table tr td:first-child{width:50%;}
+            .table tr td:last-child{width:20%;}
+            ul.mater{border:1px solid #e7e7eb;border-radius:5px;}
+            ul.mater li{padding:5px;border-bottom:1px solid #e7e7eb;}
+            ul.mater li:first-child{padding:13px 5px;}
+            ul.mater li:last-child{border-bottom:0px solid #e7e7eb;}
+            ul.mater li .btn_primary{display:inline-block;padding:3px;border-radius:3px;margin-right:10px;}
+            .dialog_ft .page{background:#f4f5f9;margin-top:10px;}
+            .btn:hover, .btn:focus{background-position: 0 0;}
+            .btn:focus{color:#ffffff;}
+            .btn{text-shadow: 0 0 0;}
+            .icon14_common {height: 17px}
+            .btn_primary:hover{
+                background:#126AE4;
+            }
+            .dialog_hd h3{font-size:20px;line-height:52px;}
+        </style>
+        <div class="dialog_wrp media align_edge ui-draggable" style="display:none;width: 960px; margin-left: -480px; margin-top: -313.5px;" id="dialog_media">
+            <div class="dialog">
+                <div class="dialog_hd">
+                    <h3>选择素材</h3>
+                    <a href="javascript:;" onclick="closeMaterial()" class="icon16_opr closed pop_closed">关闭</a>
+                </div>
+                <div class="dialog_bd">
+                    <div class="dialog_media_container appmsg_media_dialog">
+                        <div class="sub_title_bar in_dialog">
+                            <div class="search_bar js-btn-media">
+                                <button class="btn-common-white btn-big btn_primary" value="1" href="javascript:;" onclick="checkBtn(this)"> 文本 </button>
+                                <button class="btn-common-white btn-big" value="2" href="javascript:;" onclick="checkBtn(this)"> 单图文 </button>
+                                <button class="btn-common-white btn-big" href="javascript:;" value="3" onclick="checkBtn(this)"> 多图文 </button>
+                            </div>
+                            <div class="appmsg_create tr" id="add_message_btn">
+                                <a target="_blank" href="http://www.ns.com/index.php?s=/admin/wchat/addmedia&amp;type=1"><button class="btn-common"><i class="icon14_common add_white"></i><span>新建文本消息</span></button></a>
+                            </div>
+                        </div>
+                        <div class="dialog_media_inner" style="overflow:auto;">
+                            <div class="table_wrp user_list">
+                                <table class="table" cellspacing="0">
+                                    <tbody class="tbody" id="materia_data"><tr><td colspan="3" class="table_cell" style="text-align:center;">暂无素材</td></tr></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dialog_ft">
+                    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+                    <script src="/static/js/page.js"></script>
+                    <div class="page" id="turn-ul" style="">
+                        <div class="pagination">
+                            <ul>
+                                <li class="according-number">每页显示<input type="text" class="input-medium" id="showNumber" value="14" data-default="14" autocomplete="off">条</li>
+                                <li><a id="beginPage" class="page-disable" style="border: 1px solid #dddddd;">首页</a></li>
+                                <li><a id="prevPage" class="page-disable">上一页</a></li>
+                                <li id="pageNumber"></li>
+                                <li id="JslastPage">
+
+                                </li>
+                                <li><a id="nextPage" class="page-disable">下一页</a></li>
+                                <li><a id="lastPage" class="page-disable">末页</a></li>
+                                <li class="total-data" data-total-count="0">共0条</li>
+                                <!-- <li class="page-count">共0页</li> -->
+                                <li class="according-number">
+                                    跳<input type="text" class="input-medium" id="skipPage" data-curr-page="0">页
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <input type="hidden" id="page_count" value="0">
+                    <input type="hidden" id="page_size" value="0">
+                    <script>
+                        /**
+                         * 保存当前的页面
+                         * 创建时间：2017年8月30日 19:29:20
+                         */
+                        function savePage(index){
+                            var json = { page_index : index, show_number : $("#showNumber").val(), url :  window.location.href };
+                            $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                            //console.log(json);
+                        }
+
+                        $(function() {
+                            try{
+
+                                $("#turn-ul").show();//显示分页
+                                var history_url = "";
+                                var json = { page_index : 1, show_number : 14, url :  window.location.href };
+                                var history_json = "";//用于临时保存分页数据
+                                if($.cookie('page_cookie') != undefined && $.cookie('page_cookie') != "" && $.cookie('page_cookie') != '""'){
+
+                                    var cookie = eval("(" + $.cookie('page_cookie') + ")");
+                                    if(cookie !=undefined && cookie != ""){
+                                        json.page_index = cookie.page_index;
+                                        if(cookie.show_number != undefined && cookie.show_number != "") json.show_number = cookie.show_number;
+                                        else json.show_number = 14;
+                                        history_url = cookie.url;
+                                        history_json = cookie;
+                                    }
+
+                                }else{
+
+                                    savePage(json.page_index);
+
+                                }
+                                if(history_url != undefined && history_url != "" && history_url != json.url && json.page_index != 1){
+
+                                    //如果页面发生了跳转，还原操作
+                                    json.page_index = 1;
+                                    json.show_number = 14;
+                                    json.url = history_url;
+                                    //console.log("如果页面发生了跳转，还原操作");
+                                    $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                                }
+
+                                //console.log($.cookie('page_cookie'));
+                                $("#showNumber").val(json.show_number);
+                                if(json.page_index != 1) jumpNumber = json.page_index;
+                                LoadingInfo(json.page_index);//通过此方法调用分页类
+
+                            }catch(e){
+
+                                $("#turn-ul").hide();
+                                //当前页面没有分页，进行还原操作
+                                $.cookie('page_cookie',JSON.stringify(history_json),{ path: '/' });
+//		console.error(e);
+                                //console.log("当前页面没有分页，进行还原操作");
+                                //console.log($.cookie('page_cookie'));
+                            }
+
+                            //首页
+                            $("#beginPage").click(function() {
+                                if(jumpNumber!=1){
+                                    jumpNumber = 1;
+                                    LoadingInfo(1);
+                                    savePage(1);
+                                    changeClass("begin");
+                                }
+                                return false;
+                            });
+
+                            //上一页
+                            $("#prevPage").click(function() {
+                                var obj = $(".currentPage");
+                                var index = parseInt(obj.text()) - 1;
+                                if (index > 0) {
+                                    obj.removeClass("currentPage");
+                                    obj.prev().addClass("currentPage");
+                                    jumpNumber = index;
+                                    LoadingInfo(index);
+                                    savePage(index);
+                                    //判断是否是第一页
+                                    if (index == 1) {
+                                        changeClass("prev");
+                                    } else {
+                                        changeClass();
+                                    }
+                                }
+                                return false;
+                            });
+
+                            //下一页
+                            $("#nextPage").click(function() {
+                                var obj = $(".currentPage");
+                                //当前页加一（下一页）
+                                var index = parseInt(obj.text()) + 1;
+                                if (index <= $("#page_count").val()) {
+                                    jumpNumber = index;
+                                    LoadingInfo(index);
+                                    savePage(index);
+                                    obj.removeClass("currentPage");
+                                    obj.next().addClass("currentPage");
+                                    //判断是否是最后一页
+                                    if (index == $("#page_count").val()) {
+                                        changeClass("next");
+                                    } else {
+                                        changeClass();
+                                    }
+                                }
+                                return false;
+                            });
+
+                            //末页
+                            $("#lastPage").click(function() {
+                                jumpNumber = $("#page_count").val();
+                                if(jumpNumber>1){
+                                    LoadingInfo(jumpNumber);
+                                    savePage(jumpNumber);
+                                    $("#pageNumber a:eq("+ (parseInt($("#page_count").val()) - 1) + ")").text($("#page_count").val());
+                                    changeClass("next");
+                                }
+                                return false;
+                            });
+
+                            //每页显示页数
+                            $("#showNumber").blur(function(){
+                                if(isNaN($(this).val())){
+                                    $("#showNumber").val(20);
+                                    jumpNumber = 1;
+                                    LoadingInfo(jumpNumber);
+                                    savePage(jumpNumber);
+                                    return;
+                                }
+                                if($(this).val().indexOf(".") != -1){
+                                    var index = $(this).val().indexOf(".");
+                                    $("#showNumber").val($(this).val().substr(0,index));
+                                    jumpNumber = 1;
+                                    LoadingInfo(jumpNumber);
+                                    savePage(jumpNumber);
+                                    return;
+                                }
+                                if(parseInt($(this).val())<=0){
+                                    jumpNumber = 1;
+                                    LoadingInfo(jumpNumber);
+                                    savePage(jumpNumber);
+                                    return;
+                                }
+                                //页数没有变化的话，就不要再执行查询
+                                if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 			jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                                    $(this).attr("data-default",$(this).val());
+                                    LoadingInfo(jumpNumber);
+                                    savePage(jumpNumber);
+                                }
+                                return false;
+                            }).keyup(function(event){
+                                if(event.keyCode == 13){
+                                    if(isNaN($(this).val())){
+                                        $("#showNumber").val(20);
+                                        jumpNumber = 1;
+                                        LoadingInfo(jumpNumber);
+                                        savePage(jumpNumber);
+                                    }
+                                    //页数没有变化的话，就不要再执行查询
+                                    if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 				jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                                        $(this).attr("data-default",$(this).val());
+                                        //总数据数量
+                                        var total_count = parseInt($(".total-data").attr("data-total-count"));
+                                        //计算用户输入的页数是否超过当前页数
+                                        var curr_count = Math.ceil(total_count/parseInt($(this).val()));
+                                        if( curr_count !=0 && curr_count < jumpNumber){
+                                            jumpNumber = curr_count;//输入的页数超过了，没有那么多
+                                        }
+                                        LoadingInfo(jumpNumber);
+                                        savePage(jumpNumber);
+                                    }
+                                }
+                                return false;
+                            });
+
+                            // 跳转到某页
+                            $("#skipPage").blur(function(){
+                                if(isNaN($(this).val()) || $(this).val().length == 0){
+                                    $("#showNumber").val(20);
+                                    jumpNumber = 1;
+                                    LoadingInfo(jumpNumber);
+                                    savePage(jumpNumber);
+                                    return;
+                                }
+                                if(parseInt($(this).val())<=0){
+                                    jumpNumber = 1;
+                                    LoadingInfo(jumpNumber);
+                                    savePage(jumpNumber);
+                                    return;
+                                }
+                                if(parseInt($(this).val()) > $("#page_count").val()){
+                                    jumpNumber = $("#page_count").val();
+                                    LoadingInfo(jumpNumber);
+                                    savePage(jumpNumber);
+                                    $(this).val(jumpNumber);
+                                    return;
+                                }
+                                if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                                    return;
+                                }
+                                jumpNumber = $(this).val();
+                                LoadingInfo(jumpNumber);
+                                savePage(jumpNumber);
+                            }).keyup(function(event){
+                                if(event.keyCode == 13){
+                                    if(isNaN($(this).val())){
+                                        $("#showNumber").val(20);
+                                        jumpNumber = 1;
+                                        LoadingInfo(jumpNumber);
+                                        savePage(jumpNumber);
+                                    }
+                                    if(parseInt($(this).val())<=0){
+                                        jumpNumber = 1;
+                                        LoadingInfo(jumpNumber);
+                                        savePage(jumpNumber);
+                                        return;
+                                    }
+                                    if(parseInt($(this).val()) > $("#page_count").val()){
+                                        jumpNumber = $("#page_count").val();
+                                        LoadingInfo(jumpNumber);
+                                        savePage(jumpNumber);
+                                        $(this).val(jumpNumber);
+                                        return;
+                                    }
+                                    if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                                        return;
+                                    }
+                                    jumpNumber = $(this).val();
+                                    LoadingInfo(jumpNumber);
+                                    savePage(jumpNumber);
+                                }
+                                return false;
+                            });
+                        });
+
+                        //跳转页面
+                        function JumpForPage(obj) {
+                            jumpNumber = $(obj).text();
+                            LoadingInfo($(obj).text());
+                            savePage($(obj).text());
+                            $(".currentPage").removeClass("currentPage");
+                            $(obj).addClass("currentPage");
+                            if (jumpNumber == 1) {
+                                changeClass("prev");
+                            } else if (jumpNumber < parseInt($("#page_count").val())) {
+                                changeClass();
+                            } else if (jumpNumber == parseInt($("#page_count").val())) {
+                                changeClass("next");
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="mask mask_metar" style="display: none;"></div>
+        <script>
+            function checkBtn(event){
+                $(".js-btn-media").find('.btn-common-white').removeClass('btn_primary');
+                $(event).addClass('btn_primary');
+                var type = $(event).attr('value');
+                var type_name = '';
+                if(type == 1){
+                    type_name = '文本';
+                }else if(type == 2){
+                    type_name = '单图文';
+                }else if(type == 3){
+                    type_name = '多图文';
+                }
+                $('#add_message_btn').find('a').attr('href',__URL('http://www.ns.com/index.php/admin/wchat/addmedia?type=' + type))
+                $('#add_message_btn').find('span').html('新建'+ type_name +'消息');
+                LoadingInfo(1);
+            }
+
+            //显示素材
+            function showMaterial(){
+                $("#dialog_media").fadeIn(500);
+                $(".mask_metar").fadeIn(300);
+            }
+
+            //加载 素材 数据
+            function LoadingInfo(page_index){
+                var type = $(".js-btn-media .btn_primary").attr('value');
+                var search_text = '';
+                $.ajax({
+                    type : "post",
+                    url : "http://www.ns.com/index.php?s=/admin/wchat/onloadmaterial",
+                    data : {
+                        "page_index" : page_index,
+                        "page_size" : $("#showNumber").val(),
+                        "search_text" : search_text,
+                        "type" : type
+                    },
+                    success : function(data) {
+                        if(data['data'].length > 0){
+                            $("#materia_data").empty();
+                            for(var i=0; i<data['data'].length; i++){
+                                var html = '';
+                                if(data['data'][i]['type'] == 1){
+                                    var type_name = '文本 ';
+                                }else if(data['data'][i]['type'] == 2){
+                                    var type_name = '单图文 ';
+                                }else if(data['data'][i]['type'] == 3){
+                                    var type_name = '多图文 ';
+                                }
+                                html += '<tr><td class="table_cell"><ul class="mater">';
+                                for(var l=0; l<data['data'][i]['item_list'].length; l++){
+                                    var k = l+1;
+                                    html += '<li><span class="btn_primary">'+ type_name + k+' </span><a href="#">'+data['data'][i]['item_list'][l]['title']+'</a></li>';
+                                }
+                                html += '</ul></td>';
+                                html += '<td>'+timeStampTurnTime(data['data'][i]['create_time'])+'</td>';
+                                html += '<td class="table_cell user_opr tr"><a class="btn remark js_msgSenderRemark" onclick="selectedMaterial('+data['data'][i]['media_id']+')">选取</a></td>';
+                                html += '</tr>';
+                                $("#materia_data").append(html);
+                            }
+                        }else{
+                            html += '<tr>';
+                            html += '<td colspan="3" class="table_cell" style="text-align:center;">暂无素材</td>';
+                            html += '</tr>';
+                            $("#materia_data").html(html);
+                        }
+                        initPageData(data["page_count"],data['data'].length,data['total_count']);
+                        $("#pageNumber").html(pagenumShow(jumpNumber,$("#page_count").val(),5));
+                    }
+                });
+            }
+
+            //选择 图文素材
+            function selectedMaterial(media_id){
+                getMaterial(media_id);
+                closeMaterial();
+            }
+
+            //取消  关闭
+            function closeMaterial(){
+                $("#dialog_media").fadeOut(300);
+                $(".mask_metar").fadeOut();
+            }
+        </script>
+
+        <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+        <script src="/static/js/page.js"></script>
+        <div class="page" id="turn-ul" style="display: none;">
+            <div class="pagination">
+                <ul>
+                    <li class="according-number">每页显示<input type="text" class="input-medium" id="showNumber" value="14" data-default="14" autocomplete="off">条</li>
+                    <li><a id="beginPage" class="page-disable" style="border: 1px solid #dddddd;">首页</a></li>
+                    <li><a id="prevPage" class="page-disable">上一页</a></li>
+                    <li id="pageNumber"></li>
+                    <li id="JslastPage">
+
+                    </li>
+                    <li><a id="nextPage">下一页</a></li>
+                    <li><a id="lastPage">末页</a></li>
+                    <li class="total-data" data-total-count="0">共0条</li>
+                    <!-- <li class="page-count">共0页</li> -->
+                    <li class="according-number">
+                        跳<input type="text" class="input-medium" id="skipPage" data-curr-page="1">页
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <input type="hidden" id="page_count">
+        <input type="hidden" id="page_size">
+        <script>
+            /**
+             * 保存当前的页面
+             * 创建时间：2017年8月30日 19:29:20
+             */
+            function savePage(index){
+                var json = { page_index : index, show_number : $("#showNumber").val(), url :  window.location.href };
+                $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                //console.log(json);
+            }
+
+            $(function() {
+                try{
+
+                    $("#turn-ul").show();//显示分页
+                    var history_url = "";
+                    var json = { page_index : 1, show_number : 14, url :  window.location.href };
+                    var history_json = "";//用于临时保存分页数据
+                    if($.cookie('page_cookie') != undefined && $.cookie('page_cookie') != "" && $.cookie('page_cookie') != '""'){
+
+                        var cookie = eval("(" + $.cookie('page_cookie') + ")");
+                        if(cookie !=undefined && cookie != ""){
+                            json.page_index = cookie.page_index;
+                            if(cookie.show_number != undefined && cookie.show_number != "") json.show_number = cookie.show_number;
+                            else json.show_number = 14;
+                            history_url = cookie.url;
+                            history_json = cookie;
+                        }
+
+                    }else{
+
+                        savePage(json.page_index);
+
+                    }
+                    if(history_url != undefined && history_url != "" && history_url != json.url && json.page_index != 1){
+
+                        //如果页面发生了跳转，还原操作
+                        json.page_index = 1;
+                        json.show_number = 14;
+                        json.url = history_url;
+                        //console.log("如果页面发生了跳转，还原操作");
+                        $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                    }
+
+                    //console.log($.cookie('page_cookie'));
+                    $("#showNumber").val(json.show_number);
+                    if(json.page_index != 1) jumpNumber = json.page_index;
+                    LoadingInfo(json.page_index);//通过此方法调用分页类
+
+                }catch(e){
+
+                    $("#turn-ul").hide();
+                    //当前页面没有分页，进行还原操作
+                    $.cookie('page_cookie',JSON.stringify(history_json),{ path: '/' });
+//		console.error(e);
+                    //console.log("当前页面没有分页，进行还原操作");
+                    //console.log($.cookie('page_cookie'));
+                }
+
+                //首页
+                $("#beginPage").click(function() {
+                    if(jumpNumber!=1){
+                        jumpNumber = 1;
+                        LoadingInfo(1);
+                        savePage(1);
+                        changeClass("begin");
+                    }
+                    return false;
+                });
+
+                //上一页
+                $("#prevPage").click(function() {
+                    var obj = $(".currentPage");
+                    var index = parseInt(obj.text()) - 1;
+                    if (index > 0) {
+                        obj.removeClass("currentPage");
+                        obj.prev().addClass("currentPage");
+                        jumpNumber = index;
+                        LoadingInfo(index);
+                        savePage(index);
+                        //判断是否是第一页
+                        if (index == 1) {
+                            changeClass("prev");
+                        } else {
+                            changeClass();
+                        }
+                    }
+                    return false;
+                });
+
+                //下一页
+                $("#nextPage").click(function() {
+                    var obj = $(".currentPage");
+                    //当前页加一（下一页）
+                    var index = parseInt(obj.text()) + 1;
+                    if (index <= $("#page_count").val()) {
+                        jumpNumber = index;
+                        LoadingInfo(index);
+                        savePage(index);
+                        obj.removeClass("currentPage");
+                        obj.next().addClass("currentPage");
+                        //判断是否是最后一页
+                        if (index == $("#page_count").val()) {
+                            changeClass("next");
+                        } else {
+                            changeClass();
+                        }
+                    }
+                    return false;
+                });
+
+                //末页
+                $("#lastPage").click(function() {
+                    jumpNumber = $("#page_count").val();
+                    if(jumpNumber>1){
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        $("#pageNumber a:eq("+ (parseInt($("#page_count").val()) - 1) + ")").text($("#page_count").val());
+                        changeClass("next");
+                    }
+                    return false;
+                });
+
+                //每页显示页数
+                $("#showNumber").blur(function(){
+                    if(isNaN($(this).val())){
+                        $("#showNumber").val(20);
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if($(this).val().indexOf(".") != -1){
+                        var index = $(this).val().indexOf(".");
+                        $("#showNumber").val($(this).val().substr(0,index));
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val())<=0){
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    //页数没有变化的话，就不要再执行查询
+                    if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 			jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                        $(this).attr("data-default",$(this).val());
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                    }
+                    return false;
+                }).keyup(function(event){
+                    if(event.keyCode == 13){
+                        if(isNaN($(this).val())){
+                            $("#showNumber").val(20);
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                        //页数没有变化的话，就不要再执行查询
+                        if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 				jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                            $(this).attr("data-default",$(this).val());
+                            //总数据数量
+                            var total_count = parseInt($(".total-data").attr("data-total-count"));
+                            //计算用户输入的页数是否超过当前页数
+                            var curr_count = Math.ceil(total_count/parseInt($(this).val()));
+                            if( curr_count !=0 && curr_count < jumpNumber){
+                                jumpNumber = curr_count;//输入的页数超过了，没有那么多
+                            }
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                    }
+                    return false;
+                });
+
+                // 跳转到某页
+                $("#skipPage").blur(function(){
+                    if(isNaN($(this).val()) || $(this).val().length == 0){
+                        $("#showNumber").val(20);
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val())<=0){
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val()) > $("#page_count").val()){
+                        jumpNumber = $("#page_count").val();
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        $(this).val(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                        return;
+                    }
+                    jumpNumber = $(this).val();
+                    LoadingInfo(jumpNumber);
+                    savePage(jumpNumber);
+                }).keyup(function(event){
+                    if(event.keyCode == 13){
+                        if(isNaN($(this).val())){
+                            $("#showNumber").val(20);
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                        if(parseInt($(this).val())<=0){
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                            return;
+                        }
+                        if(parseInt($(this).val()) > $("#page_count").val()){
+                            jumpNumber = $("#page_count").val();
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                            $(this).val(jumpNumber);
+                            return;
+                        }
+                        if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                            return;
+                        }
+                        jumpNumber = $(this).val();
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                    }
+                    return false;
+                });
+            });
+
+            //跳转页面
+            function JumpForPage(obj) {
+                jumpNumber = $(obj).text();
+                LoadingInfo($(obj).text());
+                savePage($(obj).text());
+                $(".currentPage").removeClass("currentPage");
+                $(obj).addClass("currentPage");
+                if (jumpNumber == 1) {
+                    changeClass("prev");
+                } else if (jumpNumber < parseInt($("#page_count").val())) {
+                    changeClass();
+                } else if (jumpNumber == parseInt($("#page_count").val())) {
+                    changeClass("next");
+                }
+            }
+        </script>
+    </div>
+
+</section>

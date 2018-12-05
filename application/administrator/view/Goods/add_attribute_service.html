@@ -1,0 +1,789 @@
+<section class="ns-base-section">
+
+
+
+    <div style="position:relative;margin:0;">
+        <!-- 面包屑导航 -->
+        <div class="breadcrumb-nav">
+            <a href="/admin">Niushop开源商城</a>
+            <i class="fa fa-angle-right"></i>
+            <a href="/admin/goods/goodslist">商品</a>
+            <i class="fa fa-angle-right"></i>
+            <!-- 需要加跳转链接用这个：http://shop.com/index.php/admin/goods/addattributeservice -->
+            <a href="javascript:;" style="color:#999;">添加商品类型</a>
+        </div>
+        <!-- 三级导航菜单 -->
+
+
+        <div class="right-side-operation">
+            <ul>
+
+
+                <!-- 					style="display:none;" style="display:block;" -->
+                <li>
+                    <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=''><i class="fa fa-question-circle"></i>&nbsp;提示</a>
+                    <div class="popover">
+                        <div class="arrow"></div>
+                        <div class="popover-content">
+                            <div>
+                                <h4>功能提示</h4>
+                                <p class="function-prompts"></p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- 操作提示 -->
+
+    <!-- 		 -->
+    <div class="ns-warm-prompt" style="display:none;">
+        <div class="alert alert-info">
+            <button type="button" class="close">&times;</button>
+            <h4>
+                <!-- 					{1block name="alert_info"} -->
+                <!-- 					<i class="fa fa-info-circle"></i> -->
+                <!-- 					<span class="operating-hints">操作提示</span> -->
+                <!-- 						 -->
+                <!-- 					{1/block} -->
+            </h4>
+        </div>
+    </div>
+
+
+    <div class="ns-main">
+
+        <div class="space-10"></div>
+        <div class="set-style">
+            <dl>
+                <dt><span class="color-red">*</span>类型名称：</dt>
+                <dd>
+                    <input id="attr_name" type="text" placeholder="请输入类型名称" class="input-common"/>
+                    <span class="error">请输入类型名称</span>
+                </dd>
+            </dl>
+            <dl>
+                <dt><span class="color-red">&nbsp;</span>属性排序：</dt>
+                <dd>
+                    <input id="sort" type="number" class="input-common harf" placeholder="0" onkeyup='this.value=this.value.replace(/\D/gi,"")'/>
+                </dd>
+            </dl>
+            <dl>
+                <dt><span class="color-red">&nbsp;</span>是否启用：</dt>
+                <dd>
+                    <input id="is_visible" type="checkbox" class="checkbox" checked="checked" />
+                </dd>
+            </dl>
+
+            <dl>
+                <dt><span class="color-red">&nbsp;</span>关联规格：</dt>
+                <dd>
+                    <div class="guige_list">
+                    </div>
+                    <a href="javascript:;" class="add_relation" data-toggle="modal" data-target="#setGoodsAttribute"><img src="/admin/images/add_ico.png" alt="" /></a>
+                </dd>
+            </dl>
+
+            <dl>
+                <dt><span class="color-red">&nbsp;</span>关联品牌：</dt>
+                <dd>
+                    <div class="brand_list">
+                    </div>
+                    <a href="javascript:;" class="add_relation" data-toggle="modal" data-target="#setGoodsBrand"><img src="/admin/images/add_ico.png" alt="" /></a>
+                </dd>
+            </dl>
+
+
+            <div>
+                <table class="table-class" id='attrList'>
+                    <colgroup>
+                        <col style="width: 2%;">
+                        <col style="width: 6%;">
+                        <col style="width: 15%;">
+                        <col style="width: 15%;">
+                        <col style="width: 13%;">
+                        <col style="width: 34%;">
+                        <col style="width: 15%;">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>排序</th>
+                        <th align="left">属性名称</th>
+                        <th align="left">所属类型</th>
+                        <th>是否筛选</th>
+                        <th align="left">属性值</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="value_data">
+                        <td></td>
+                        <td>
+                            <input type="number" name="value_sort_0" class="input-common short" placeholder="0" onkeyup='this.value=this.value.replace(/\D/gi,"")' />
+                        </td>
+                        <td>
+                            <input type="text" name="value_name_0" class="input-common middle"/>
+                        </td>
+                        <td>
+                            <select class="selectbox_0 select-common middle" id="type_0" onchange="updateAttrselectvalue(0,this);" style="width:110px;">
+                                <option value="1">输入框</option>
+                                <option value="2">单选框</option>
+                                <option value="3">复选框</option>
+                            </select>
+                        </td>
+                        <td style="text-align: center;">
+                            <a href="javascript:;" class="is_search is_search_0" is_search="1" onclick="tab_is_search(this)">
+                                <img src="/admin/images/checked.png" alt="" width="15"/>
+                            </a>
+                        </td>
+                        <td id="value_0" style="word-break:break-all;">
+
+                        </td>
+                        <input type="hidden" id="value_hidden_0">
+                        <td style="text-align: center;">
+                            <span class="spec_box_0"></span>
+                            <a href="javascript:;" onclick="delSpecValue(this)">删除</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div style="padding:6px 0;">
+                    <a href="javascript:;" onclick="addSpecValue(this)" style="font-size: 12px;"><i class="fa fa-plus"></i>&nbsp;&nbsp;添加一个属性</a>
+                </div>
+            </div>
+
+            <!-- 点击编辑弹出框开始 -->
+            <div class="attr_table" id="Attrbox" style="display:none;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="myModalLabel">编辑属性值</h3>
+                </div>
+                <dl>
+                    <dt><span class="color-red">*</span>属性值：</dt>
+                    <dd>
+                        <textarea rows="" cols="" id="attr_value" class="textarea-common"></textarea>
+                        <p class="hint">一行为一个属性值，多个属性值用换行输入</p>
+                    </dd>
+                </dl>
+                <div class="modal-footer">
+                    <input type="hidden" id="click_order"/>
+                    <button class="btn-common btn-big" onclick="submitAttrValue();hide_modal();" style="display:inline-block;">保存</button>
+                    <button class="btn-common-cancle btn-big" data-dismiss="modal" aria-hidden="true" onclick="hide_modal();">关闭</button>
+                </div>
+            </div>
+
+            <!-- 点击编辑弹出框结束 -->
+            <dl>
+                <dt></dt>
+                <dd>
+                    <button class="btn-common btn-big" onclick="addGoodsAttribute();">保存</button>
+                    <button class="btn-common-cancle btn-big" onclick="javascript:history.back(-1);">返回</button>
+                </dd>
+            </dl>
+        </div>
+
+        <!--设置规格 -->
+        <div class="modal fade hide" id="setGoodsAttribute" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h3>规格关联设置</h3>
+                    </div>
+                    <div class="modal-body">
+                        <table class="attribute_table">
+                            <thead>
+                            <tr>
+                                <th width="30%">规格</th>
+                                <th width="70%">描述</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <label for="attribute_check1">
+                                        <i class="checkbox-common">
+                                            <input type="checkbox" id="attribute_check1" value="1" spec_name="asd"  name="spec"/>
+                                        </i>
+                                        asd									</label>
+                                </td>
+                                <td>asd</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-common btn-big" onclick="setSku();">确定</button>
+                        <button type="button" class="btn btn-big" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--设置品牌 -->
+        <div class="modal fade hide" id="setGoodsBrand" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h3>关联品牌设置</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="brand_content">
+                            <div class="brand_item " brand_id = "2">
+                                <div class="img_content"><img src="" alt="" /></div>
+                                <p>425</p>
+                            </div>
+                            <div class="brand_item " brand_id = "1">
+                                <div class="img_content"><img src="" alt="" /></div>
+                                <p>二</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <label class="radio inline normal all-select" style="float: left;">
+                            <i class="checkbox-common">
+                                <input type="checkbox" name="">
+                            </i>
+                            <span style="user-select: none">全选</span>
+                        </label>
+                        <button type="button" class="btn-common btn-big" onclick="setBrand();">确定</button>
+                        <button type="button" class="btn-common-cancle btn-big" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/admin/js/plugin/drag-arrange.js"></script>
+        <script>
+            //点击改变是否可以编辑属性值
+            function updateAttrselectvalue(order,e){
+                $("#Attrbox").hide();
+                if($(e).val()==1){
+                    $(e).parents(".value_data").find(".spec_box_"+order).html('<a href="javascript:;" style="color: #777;"></a>');
+                }else{
+                    $(e).parents(".value_data").find(".spec_box_"+order).html('<a href="javascript:;" id="showAttrbox_'+order+'" onclick="showAttrbox('+order+',this);"> 编辑属性值</a>');
+                }
+                $(e).parents(".value_data").find("#value_"+order).html('');
+                $("#Attrbox .Spec_data:gt(0)").remove();
+                $("#Attrbox .Spec_data").eq(0).find("input[name='attr_value']").val('');
+            }
+
+            //点击编辑属性值弹出框事件
+            function showAttrbox(order,e){
+                var click_order = $("#click_order").attr('click_order',order);
+                var value_str = $(e).parents(".value_data").find("#value_"+order).text();
+                var attr_value = "";
+                if(value_str != undefined){
+                    var value_arr = value_str.split(',');
+                    for(var i=0; i<value_arr.length; i++){
+                        if(value_arr[i] != ""){
+                            if((i+1) == value_arr.length) attr_value += value_arr[i];
+                            else attr_value += value_arr[i]+"\n";
+                        }
+                    }
+                }
+                $("#attr_value").val($.trim(attr_value));
+                $("#Attrbox").show();
+            }
+
+            $(".close").click(function(){
+                $("#Attrbox").hide();
+            });
+
+            $(".btn").click(function(){
+                $("#Attrbox").hide();
+            });
+
+            $('.brand_content>.brand_item').click(function(){
+
+                if($(this).hasClass('select')){
+                    $(this).removeClass('select');
+                }else{
+                    $(this).addClass('select');
+                }
+            });
+
+            function tab_is_search(e){
+                var type = $(e).attr("is_search");
+                if(type == 0){
+                    $(e).html('<img src="/admin/images/checked.png" alt="" width="15"/>');
+                    $(e).attr("is_search", 1);
+                }else{
+                    $(e).html('<img src="/admin/images/un_checked.png" alt="" width="15"/>');
+                    $(e).attr("is_search", 0);
+                }
+            }
+
+            function submitAttrValue(){
+                var v = $("#attr_value").val().split("\n").toString();
+                var click_order = $("#click_order").attr('click_order');
+                $("#value_"+click_order).text(v);
+                $("#value_hidden_"+click_order).val(v);
+            }
+
+            function addSpecValue(e){
+                var data_obj_num = $(".value_data").length;
+                var html = '<tr class="value_data new_data">';
+                html += '<td></td>';
+                html += '<td><input type="text" name="value_sort_'+data_obj_num+'" value="'+data_obj_num+'" class="input-common short"></td>';
+                html += '<td><input type="text" name="value_name_'+data_obj_num+'" style="margin-right:5px;" class="input-common middle"></td>';
+                html += '<td>';
+                html += '<select class="selectbox selectbox_'+data_obj_num+' select-common middle" id="type_'+data_obj_num+'" onchange="updateAttrselectvalue('+data_obj_num+',this);">';
+                html += '<option value="1">输入框</option>';
+                html += '<option value="2">单选框</option>';
+                html += '<option value="3">复选框</option>';
+                html += '</select>';
+                html += '</td>';
+                html += '<td style="text-align:center;"><a href="javascript:;" class="is_search is_search_'+data_obj_num+'" is_search="1" onclick="tab_is_search(this)"><img src="/admin/images/checked.png" alt="" width="15"/></a></td>';
+                html += '<td id="value_'+data_obj_num+'" style="word-break:break-all;"></td>';
+                html += '<input type="hidden" id="value_hidden_'+data_obj_num+'" value="">';
+                html += '<td style="text-align:center;"><span class="spec_box_'+data_obj_num+'"></span><a href="javascript:;" onclick="delSpecValue(this)">删除</a></td>'
+                html += '</tr>';
+
+                $("#attrList tbody tr:last-child").after(html);
+                $('.select-common').selectric();
+            }
+
+            function delSpecValue(e){
+                $( "#dialog" ).dialog({
+                    buttons: {
+                        "确定": function() {
+                            $(this).dialog('close');
+                            if($("#attrList tbody tr").length == 1){
+                                showMessage('error', '当前属性已经是最后一个，不能删除！');
+                                return;
+                            }
+                            $(e).parents('tr').remove();
+                        },"取消,#f5f5f5,#666" : function(){
+                            $(this).dialog('close');
+                        }
+                    },
+                    contentText:"你确定删除吗？",
+                    title:"消息提醒"
+                });
+            }
+
+            var flag = false;//防止重复提交
+            function addGoodsAttribute() {
+                var attr_name = trim($("#attr_name").val());
+                if(attr_name == ''){
+                    $("#attr_name").focus();
+                    showTip("类型名称不能为空",'warning');
+                    return false;
+                }
+                var sort = $("#sort").val();
+                if ($("#is_visible").prop("checked")) {
+                    var is_visible = 1;
+                } else {
+                    var is_visible = 0;
+                }
+
+                var select_box = '';
+                $("input[name='spec']:checked").each(function(){
+                    select_box = select_box+','+$(this).val();
+                });
+                select_box = select_box.substring(1);
+
+                var select_brank = new Array();
+                $(".brand_list a").each(function(){
+                    select_brank.push($(this).attr('value'));
+                });
+                var data_obj = $(".value_data");
+                var data_obj_str = '';
+                data_obj.each(function(i){
+                    if(data_obj.eq(i) != ''){
+                        var value_sort = $("input[name='value_sort_"+i+"']").val();
+                        var value_name = trim($("input[name='value_name_"+i+"']").val());
+                        var type = $("#type_"+i).val();
+                        var value = $("#value_hidden_"+i).val();
+                        if(type > 1){
+                            if(value == ''){
+                                $("#type_"+i).focus();
+                                showTip("类型为单选框或复选框时，属性值不能为空",'warning');
+                                flag = true;
+                                return false;
+                            }else{
+                                flag = false;
+                            }
+                        }
+                        var is_search = $(".is_search_"+i).attr("is_search");
+                        var new_str = '';
+                        new_str = value_name+ '|' +type+ '|' +value_sort+ '|' +is_search+ '|' +value;
+                        data_obj_str += ';' + new_str;
+                    }
+                });
+                data_obj_str = data_obj_str.substr(1);
+
+                var data_obj_arr = data_obj_str.split('|');
+                if(data_obj_arr[0] == ''){
+                    showTip("商品类型属性名称不能为空！",'warning');
+                    return false;
+                }
+
+                if(flag) return;
+                flag = true;
+                $.ajax({
+                    type : "post",
+                    url : "/admin/goods/addattributeservice",
+                    data : {
+                        'attr_name' : attr_name,
+                        'sort' : sort,
+                        'is_visible' : is_visible,
+                        'select_box' :select_box,
+                        'data_obj_str' : data_obj_str,
+                        'select_brank' : select_brank.toString()
+                    },
+                    success : function(data) {
+                        if (data["code"] > 0) {
+                            showTip("添加成功","success");
+                            location.href = "/admin/goods/attributelist";
+                        } else {
+                            showTip("添加失败","error");
+                            flag = false;
+                        }
+                    }
+                });
+            }
+
+            //修改sku
+            function setSku(){
+
+                var guige_list_html = '';
+                $('#setGoodsAttribute input[name="spec"]').each(function(){
+                    if($(this).is(":checked")){
+
+                        guige_list_html += '<a href="javascript:;" value="'+ $(this).val() +'">'+ $(this).attr('spec_name') +'<img src="/admin/images/delete_ico.png" alt="" /></a>';
+                    }
+                })
+                $('.guige_list').html(guige_list_html);
+                $("#setGoodsAttribute").modal('hide');
+                load();
+            }
+
+            //修改关联品牌
+            function setBrand(){
+                var brand_list_html = '';
+                $('.brand_content>div.select').each(function(){
+                    brand_list_html += '<a href="javascript:;" value="'+ $(this).attr('brand_id') +'">'+ $(this).find('p').text() +'<img src="/admin/images/delete_ico.png" alt="" /></a>';
+                })
+                $('.brand_list').html(brand_list_html);
+                $("#setGoodsBrand").modal('hide');
+                load();
+            }
+
+            function load(){
+                /* 删除自我选择， 规格、品牌 */
+                $('.guige_list a, .brand_list a').click(function(){
+
+                    var value = $(this).attr('value');
+
+                    if($(this).parents().hasClass('guige_list')){
+                        $('#setGoodsAttribute input[value="'+value+'"]').prop("checked", false);
+                    }else{
+                        $('#setGoodsBrand .brand_item[brand_id="'+value+'"]').removeClass("select");
+                    }
+                    $(this).remove();
+                })
+
+            }
+
+            //隐藏修改属性弹框
+            function hide_modal(){
+                $("#Attrbox").hide();
+            }
+
+            $("#setGoodsBrand label.all-select").click(function(){
+                var checked = $(this).find("input").is(":checked");
+                if(checked) $(".brand_content .brand_item").addClass("select");
+                else $(".brand_content .brand_item").removeClass("select");
+            })
+        </script>
+
+        <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+        <script src="/static/js/page.js"></script>
+        <div class="page" id="turn-ul" style="display: none;">
+            <div class="pagination">
+                <ul>
+                    <li class="according-number">每页显示<input type="text" class="input-medium" id="showNumber" value="14" data-default="14" autocomplete="off"/>条</li>
+                    <li><a id="beginPage" class="page-disable" style="border: 1px solid #dddddd;">首页</a></li>
+                    <li><a id="prevPage" class="page-disable">上一页</a></li>
+                    <li id="pageNumber"></li>
+                    <li id="JslastPage">
+
+                    </li>
+                    <li><a id="nextPage">下一页</a></li>
+                    <li><a id="lastPage">末页</a></li>
+                    <li class="total-data">共0条</li>
+                    <!-- <li class="page-count">共0页</li> -->
+                    <li class="according-number">
+                        跳<input type="text" class="input-medium"  id="skipPage" data-curr-page="1"/>页
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <input type="hidden" id="page_count" />
+        <input type="hidden" id="page_size" />
+        <script>
+            /**
+             * 保存当前的页面
+             * 创建时间：2017年8月30日 19:29:20
+             */
+            function savePage(index){
+                var json = { page_index : index, show_number : $("#showNumber").val(), url :  window.location.href };
+                $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                //console.log(json);
+            }
+
+            $(function() {
+                try{
+
+                    $("#turn-ul").show();//显示分页
+                    var history_url = "";
+                    var json = { page_index : 1, show_number : 14, url :  window.location.href };
+                    var history_json = "";//用于临时保存分页数据
+                    if($.cookie('page_cookie') != undefined && $.cookie('page_cookie') != "" && $.cookie('page_cookie') != '""'){
+
+                        var cookie = eval("(" + $.cookie('page_cookie') + ")");
+                        if(cookie !=undefined && cookie != ""){
+                            json.page_index = cookie.page_index;
+                            if(cookie.show_number != undefined && cookie.show_number != "") json.show_number = cookie.show_number;
+                            else json.show_number = 14;
+                            history_url = cookie.url;
+                            history_json = cookie;
+                        }
+
+                    }else{
+
+                        savePage(json.page_index);
+
+                    }
+                    if(history_url != undefined && history_url != "" && history_url != json.url && json.page_index != 1){
+
+                        //如果页面发生了跳转，还原操作
+                        json.page_index = 1;
+                        json.show_number = 14;
+                        json.url = history_url;
+                        //console.log("如果页面发生了跳转，还原操作");
+                        $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                    }
+
+                    //console.log($.cookie('page_cookie'));
+                    $("#showNumber").val(json.show_number);
+                    if(json.page_index != 1) jumpNumber = json.page_index;
+                    LoadingInfo(json.page_index);//通过此方法调用分页类
+
+                }catch(e){
+
+                    $("#turn-ul").hide();
+                    //当前页面没有分页，进行还原操作
+                    $.cookie('page_cookie',JSON.stringify(history_json),{ path: '/' });
+//		console.error(e);
+                    //console.log("当前页面没有分页，进行还原操作");
+                    //console.log($.cookie('page_cookie'));
+                }
+
+                //首页
+                $("#beginPage").click(function() {
+                    if(jumpNumber!=1){
+                        jumpNumber = 1;
+                        LoadingInfo(1);
+                        savePage(1);
+                        changeClass("begin");
+                    }
+                    return false;
+                });
+
+                //上一页
+                $("#prevPage").click(function() {
+                    var obj = $(".currentPage");
+                    var index = parseInt(obj.text()) - 1;
+                    if (index > 0) {
+                        obj.removeClass("currentPage");
+                        obj.prev().addClass("currentPage");
+                        jumpNumber = index;
+                        LoadingInfo(index);
+                        savePage(index);
+                        //判断是否是第一页
+                        if (index == 1) {
+                            changeClass("prev");
+                        } else {
+                            changeClass();
+                        }
+                    }
+                    return false;
+                });
+
+                //下一页
+                $("#nextPage").click(function() {
+                    var obj = $(".currentPage");
+                    //当前页加一（下一页）
+                    var index = parseInt(obj.text()) + 1;
+                    if (index <= $("#page_count").val()) {
+                        jumpNumber = index;
+                        LoadingInfo(index);
+                        savePage(index);
+                        obj.removeClass("currentPage");
+                        obj.next().addClass("currentPage");
+                        //判断是否是最后一页
+                        if (index == $("#page_count").val()) {
+                            changeClass("next");
+                        } else {
+                            changeClass();
+                        }
+                    }
+                    return false;
+                });
+
+                //末页
+                $("#lastPage").click(function() {
+                    jumpNumber = $("#page_count").val();
+                    if(jumpNumber>1){
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        $("#pageNumber a:eq("+ (parseInt($("#page_count").val()) - 1) + ")").text($("#page_count").val());
+                        changeClass("next");
+                    }
+                    return false;
+                });
+
+                //每页显示页数
+                $("#showNumber").blur(function(){
+                    if(isNaN($(this).val())){
+                        $("#showNumber").val(20);
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if($(this).val().indexOf(".") != -1){
+                        var index = $(this).val().indexOf(".");
+                        $("#showNumber").val($(this).val().substr(0,index));
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val())<=0){
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    //页数没有变化的话，就不要再执行查询
+                    if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 			jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                        $(this).attr("data-default",$(this).val());
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                    }
+                    return false;
+                }).keyup(function(event){
+                    if(event.keyCode == 13){
+                        if(isNaN($(this).val())){
+                            $("#showNumber").val(20);
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                        //页数没有变化的话，就不要再执行查询
+                        if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 				jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                            $(this).attr("data-default",$(this).val());
+                            //总数据数量
+                            var total_count = parseInt($(".total-data").attr("data-total-count"));
+                            //计算用户输入的页数是否超过当前页数
+                            var curr_count = Math.ceil(total_count/parseInt($(this).val()));
+                            if( curr_count !=0 && curr_count < jumpNumber){
+                                jumpNumber = curr_count;//输入的页数超过了，没有那么多
+                            }
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                    }
+                    return false;
+                });
+
+                // 跳转到某页
+                $("#skipPage").blur(function(){
+                    if(isNaN($(this).val()) || $(this).val().length == 0){
+                        $("#showNumber").val(20);
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val())<=0){
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val()) > $("#page_count").val()){
+                        jumpNumber = $("#page_count").val();
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        $(this).val(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                        return;
+                    }
+                    jumpNumber = $(this).val();
+                    LoadingInfo(jumpNumber);
+                    savePage(jumpNumber);
+                }).keyup(function(event){
+                    if(event.keyCode == 13){
+                        if(isNaN($(this).val())){
+                            $("#showNumber").val(20);
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                        if(parseInt($(this).val())<=0){
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                            return;
+                        }
+                        if(parseInt($(this).val()) > $("#page_count").val()){
+                            jumpNumber = $("#page_count").val();
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                            $(this).val(jumpNumber);
+                            return;
+                        }
+                        if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                            return;
+                        }
+                        jumpNumber = $(this).val();
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                    }
+                    return false;
+                });
+            });
+
+            //跳转页面
+            function JumpForPage(obj) {
+                jumpNumber = $(obj).text();
+                LoadingInfo($(obj).text());
+                savePage($(obj).text());
+                $(".currentPage").removeClass("currentPage");
+                $(obj).addClass("currentPage");
+                if (jumpNumber == 1) {
+                    changeClass("prev");
+                } else if (jumpNumber < parseInt($("#page_count").val())) {
+                    changeClass();
+                } else if (jumpNumber == parseInt($("#page_count").val())) {
+                    changeClass("next");
+                }
+            }
+        </script>
+    </div>
+
+</section>

@@ -1,0 +1,512 @@
+<section class="ns-base-section">
+
+
+
+    <div style="position:relative;margin:0;">
+        <!-- 面包屑导航 -->
+        <div class="breadcrumb-nav">
+            <a href="/admin">Niushop开源商城</a>
+            <i class="fa fa-angle-right"></i>
+            <a href="/admin/goods/goodslist">商品</a>
+            <i class="fa fa-angle-right"></i>
+            <!-- 需要加跳转链接用这个：http://shop.com/index.php/admin/goods/addgoodsspec -->
+            <a href="javascript:;" style="color:#999;">添加商品规格</a>
+        </div>
+        <!-- 三级导航菜单 -->
+
+
+        <div class="right-side-operation">
+            <ul>
+
+
+                <!-- 					style="display:none;" style="display:block;" -->
+                <li>
+                    <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=''><i class="fa fa-question-circle"></i>&nbsp;提示</a>
+                    <div class="popover">
+                        <div class="arrow"></div>
+                        <div class="popover-content">
+                            <div>
+                                <h4>功能提示</h4>
+                                <p class="function-prompts"></p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- 操作提示 -->
+
+    <!-- 		 -->
+    <div class="ns-warm-prompt" style="display:none;">
+        <div class="alert alert-info">
+            <button type="button" class="close">&times;</button>
+            <h4>
+                <!-- 					{1block name="alert_info"} -->
+                <!-- 					<i class="fa fa-info-circle"></i> -->
+                <!-- 					<span class="operating-hints">操作提示</span> -->
+                <!-- 						 -->
+                <!-- 					{1/block} -->
+            </h4>
+        </div>
+    </div>
+
+
+    <div class="ns-main">
+
+        <div class="space-10"></div>
+        <div class="set-style">
+            <dl>
+                <dt><span class="color-red">*</span>规格名称：</dt>
+                <dd>
+                    <input id="spec_name" type="text" placeholder="请输入规格名称" class="input-common"/>
+                    <span class="error">请输入规格名称</span>
+                </dd>
+            </dl>
+            <dl>
+                <dt><span class="color-red">&nbsp;</span>规格排序：</dt>
+                <dd>
+                    <input id="sort" type="number" value="0" onkeyup='this.value=this.value.replace(/\D/gi,"")' class="input-common harf"/>
+                </dd>
+            </dl>
+            <dl>
+                <dt><span class="color-red">&nbsp;</span>是否启用：</dt>
+                <dd>
+                    <input id="is_visible" type="checkbox" class="checkbox" checked="checked" />
+                </dd>
+            </dl>
+            <dl>
+                <dt><span class="color-red">&nbsp;</span>是否筛选：</dt>
+                <dd>
+                    <input id="is_screen" type="checkbox" class="checkbox" checked="checked" />
+                </dd>
+            </dl>
+
+            <dl>
+                <dt><span class="color-red">&nbsp;</span>展示方式：</dt>
+                <dd>
+                    <label class="radio inline">
+                        <i class="radio-common selected">
+                            <input type="radio" name="show_type" id="show_type1" value="1" checked="checked" onchange="change_show_type(1)">
+                        </i>
+                        文字
+                    </label>
+                    <label class="radio inline">
+                        <i class="radio-common">
+                            <input type="radio" name="show_type" id="show_type2" value="2" onchange="change_show_type(2)">
+                        </i>
+                        颜色
+                    </label>
+                    <label class="radio inline">
+                        <i class="radio-common">
+                            <input type="radio" name="show_type" id="show_type3" value="3" onchange="change_show_type(3)">
+                        </i>
+                        图片
+                    </label>
+                </dd>
+            </dl>
+
+            <dl>
+                <dt><span class="color-red">*</span>规格值：</dt>
+                <dd>
+                    <textarea rows="" cols="" id="spec_value" class="textarea-common big"></textarea>
+                    <p class="hint">一行为一个规格项，多个规格项用换行输入</p>
+                </dd>
+            </dl>
+
+            <dl>
+                <dt>规格说明：</dt>
+                <dd>
+                    <textarea class="textarea-common big" placeholder="请输入规格说明" id="spec_des"></textarea>
+                </dd>
+            </dl>
+
+            <dl>
+                <dt></dt>
+                <dd>
+                    <button class="btn-common btn-big" onclick="addGoodsSpec();">保存</button>
+                    <button class="btn-common-cancle btn-big" onclick="javascript:history.back(-1);">返回</button>
+                </dd>
+            </dl>
+
+        </div>
+        <script>
+
+            var flag = false;//防止重复提交
+
+            function addGoodsSpec() {
+                var spec_name = trim($("#spec_name").val());
+                var sort = $("#sort").val();
+                var show_type = $("input[name='show_type']:checked").val();
+                var spec_des = $('#spec_des').val();
+                if ($("#is_visible").prop("checked")) {
+                    var is_visible = 1;
+                } else {
+                    var is_visible = 0;
+                }
+                if ($("#is_screen").prop("checked")) {
+                    var is_screen = 1;
+                } else {
+                    var is_screen = 0;
+                }
+
+                var spec_value_str = $('#spec_value').val();
+                var reg = new RegExp("\n","g");//g,表示全部替换。
+                var space = new RegExp(" ","g");
+                spec_value_str = spec_value_str.replace(reg, ",");
+
+                if(spec_name == ''){
+                    $("#spec_name").focus();
+                    showTip("规格名称不能为空",'warning');
+                    return false;
+                }
+
+                spec_value_arr = spec_value_str.split(',');
+                for(i in spec_value_arr){
+                    if(spec_value_arr[i].length > 0){
+                        if(!vertifyStr(spec_value_arr[i])){
+                            showTip("规格值不能包含特殊字符",'warning');
+                            return false;
+                        }
+                    }
+                }
+
+                spec_value_str = spec_value_str.replace(space, "&nbsp;");
+
+                if(spec_value_str == ''){
+                    $('#spec_value').focus();
+                    showTip("规格值不能为空！",'warning');
+                    return false;
+                }
+
+                if(flag) return;
+                flag = true;
+                $.ajax({
+                    type : "post",
+                    url : "/admin/goods/addgoodsspec",
+                    data : {
+                        'spec_name' : spec_name,
+                        'sort' : sort,
+                        'is_visible' : is_visible,
+                        'show_type' : show_type,
+                        'spec_value_str' : spec_value_str,
+                        'is_screen':is_screen,
+                        'spec_des' : spec_des
+                    },
+                    success : function(data) {
+                        if (data["code"] > 0) {
+                            showTip("添加成功","success");
+                            location.href = "/admin/goods/goodsspeclist";
+                        } else {
+                            showTip("添加失败","error");
+                            flag = false;
+                        }
+                    }
+                });
+            }
+            //改变展示方式
+            function change_show_type(type){
+                if(type==2){
+                    $("input[name='spec_value']").after('&nbsp;<input type="color" style="width:60px;margin-top:5px;" name="spec_value_data" class="input-common-color" />');
+                }else{
+                    $("input[name='spec_value']").next("input[type='color']").remove();
+                }
+            }
+
+            // 验证字符串不能含有特殊字符
+            function vertifyStr(str){
+                var regEn = /[`"'[\]]/im;
+
+                if(regEn.test(str)) {
+                    return false;
+                }else{
+                    return true;
+                }
+            }
+        </script>
+
+        <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+        <script src="/static/js/page.js"></script>
+        <div class="page" id="turn-ul" style="display: none;">
+            <div class="pagination">
+                <ul>
+                    <li class="according-number">每页显示<input type="text" class="input-medium" id="showNumber" value="14" data-default="14" autocomplete="off"/>条</li>
+                    <li><a id="beginPage" class="page-disable" style="border: 1px solid #dddddd;">首页</a></li>
+                    <li><a id="prevPage" class="page-disable">上一页</a></li>
+                    <li id="pageNumber"></li>
+                    <li id="JslastPage">
+
+                    </li>
+                    <li><a id="nextPage">下一页</a></li>
+                    <li><a id="lastPage">末页</a></li>
+                    <li class="total-data">共0条</li>
+                    <!-- <li class="page-count">共0页</li> -->
+                    <li class="according-number">
+                        跳<input type="text" class="input-medium"  id="skipPage" data-curr-page="1"/>页
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <input type="hidden" id="page_count" />
+        <input type="hidden" id="page_size" />
+        <script>
+            /**
+             * 保存当前的页面
+             * 创建时间：2017年8月30日 19:29:20
+             */
+            function savePage(index){
+                var json = { page_index : index, show_number : $("#showNumber").val(), url :  window.location.href };
+                $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                //console.log(json);
+            }
+
+            $(function() {
+                try{
+
+                    $("#turn-ul").show();//显示分页
+                    var history_url = "";
+                    var json = { page_index : 1, show_number : 14, url :  window.location.href };
+                    var history_json = "";//用于临时保存分页数据
+                    if($.cookie('page_cookie') != undefined && $.cookie('page_cookie') != "" && $.cookie('page_cookie') != '""'){
+
+                        var cookie = eval("(" + $.cookie('page_cookie') + ")");
+                        if(cookie !=undefined && cookie != ""){
+                            json.page_index = cookie.page_index;
+                            if(cookie.show_number != undefined && cookie.show_number != "") json.show_number = cookie.show_number;
+                            else json.show_number = 14;
+                            history_url = cookie.url;
+                            history_json = cookie;
+                        }
+
+                    }else{
+
+                        savePage(json.page_index);
+
+                    }
+                    if(history_url != undefined && history_url != "" && history_url != json.url && json.page_index != 1){
+
+                        //如果页面发生了跳转，还原操作
+                        json.page_index = 1;
+                        json.show_number = 14;
+                        json.url = history_url;
+                        //console.log("如果页面发生了跳转，还原操作");
+                        $.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+                    }
+
+                    //console.log($.cookie('page_cookie'));
+                    $("#showNumber").val(json.show_number);
+                    if(json.page_index != 1) jumpNumber = json.page_index;
+                    LoadingInfo(json.page_index);//通过此方法调用分页类
+
+                }catch(e){
+
+                    $("#turn-ul").hide();
+                    //当前页面没有分页，进行还原操作
+                    $.cookie('page_cookie',JSON.stringify(history_json),{ path: '/' });
+//		console.error(e);
+                    //console.log("当前页面没有分页，进行还原操作");
+                    //console.log($.cookie('page_cookie'));
+                }
+
+                //首页
+                $("#beginPage").click(function() {
+                    if(jumpNumber!=1){
+                        jumpNumber = 1;
+                        LoadingInfo(1);
+                        savePage(1);
+                        changeClass("begin");
+                    }
+                    return false;
+                });
+
+                //上一页
+                $("#prevPage").click(function() {
+                    var obj = $(".currentPage");
+                    var index = parseInt(obj.text()) - 1;
+                    if (index > 0) {
+                        obj.removeClass("currentPage");
+                        obj.prev().addClass("currentPage");
+                        jumpNumber = index;
+                        LoadingInfo(index);
+                        savePage(index);
+                        //判断是否是第一页
+                        if (index == 1) {
+                            changeClass("prev");
+                        } else {
+                            changeClass();
+                        }
+                    }
+                    return false;
+                });
+
+                //下一页
+                $("#nextPage").click(function() {
+                    var obj = $(".currentPage");
+                    //当前页加一（下一页）
+                    var index = parseInt(obj.text()) + 1;
+                    if (index <= $("#page_count").val()) {
+                        jumpNumber = index;
+                        LoadingInfo(index);
+                        savePage(index);
+                        obj.removeClass("currentPage");
+                        obj.next().addClass("currentPage");
+                        //判断是否是最后一页
+                        if (index == $("#page_count").val()) {
+                            changeClass("next");
+                        } else {
+                            changeClass();
+                        }
+                    }
+                    return false;
+                });
+
+                //末页
+                $("#lastPage").click(function() {
+                    jumpNumber = $("#page_count").val();
+                    if(jumpNumber>1){
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        $("#pageNumber a:eq("+ (parseInt($("#page_count").val()) - 1) + ")").text($("#page_count").val());
+                        changeClass("next");
+                    }
+                    return false;
+                });
+
+                //每页显示页数
+                $("#showNumber").blur(function(){
+                    if(isNaN($(this).val())){
+                        $("#showNumber").val(20);
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if($(this).val().indexOf(".") != -1){
+                        var index = $(this).val().indexOf(".");
+                        $("#showNumber").val($(this).val().substr(0,index));
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val())<=0){
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    //页数没有变化的话，就不要再执行查询
+                    if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 			jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                        $(this).attr("data-default",$(this).val());
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                    }
+                    return false;
+                }).keyup(function(event){
+                    if(event.keyCode == 13){
+                        if(isNaN($(this).val())){
+                            $("#showNumber").val(20);
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                        //页数没有变化的话，就不要再执行查询
+                        if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 				jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+                            $(this).attr("data-default",$(this).val());
+                            //总数据数量
+                            var total_count = parseInt($(".total-data").attr("data-total-count"));
+                            //计算用户输入的页数是否超过当前页数
+                            var curr_count = Math.ceil(total_count/parseInt($(this).val()));
+                            if( curr_count !=0 && curr_count < jumpNumber){
+                                jumpNumber = curr_count;//输入的页数超过了，没有那么多
+                            }
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                    }
+                    return false;
+                });
+
+                // 跳转到某页
+                $("#skipPage").blur(function(){
+                    if(isNaN($(this).val()) || $(this).val().length == 0){
+                        $("#showNumber").val(20);
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val())<=0){
+                        jumpNumber = 1;
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val()) > $("#page_count").val()){
+                        jumpNumber = $("#page_count").val();
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                        $(this).val(jumpNumber);
+                        return;
+                    }
+                    if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                        return;
+                    }
+                    jumpNumber = $(this).val();
+                    LoadingInfo(jumpNumber);
+                    savePage(jumpNumber);
+                }).keyup(function(event){
+                    if(event.keyCode == 13){
+                        if(isNaN($(this).val())){
+                            $("#showNumber").val(20);
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                        }
+                        if(parseInt($(this).val())<=0){
+                            jumpNumber = 1;
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                            return;
+                        }
+                        if(parseInt($(this).val()) > $("#page_count").val()){
+                            jumpNumber = $("#page_count").val();
+                            LoadingInfo(jumpNumber);
+                            savePage(jumpNumber);
+                            $(this).val(jumpNumber);
+                            return;
+                        }
+                        if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+                            return;
+                        }
+                        jumpNumber = $(this).val();
+                        LoadingInfo(jumpNumber);
+                        savePage(jumpNumber);
+                    }
+                    return false;
+                });
+            });
+
+            //跳转页面
+            function JumpForPage(obj) {
+                jumpNumber = $(obj).text();
+                LoadingInfo($(obj).text());
+                savePage($(obj).text());
+                $(".currentPage").removeClass("currentPage");
+                $(obj).addClass("currentPage");
+                if (jumpNumber == 1) {
+                    changeClass("prev");
+                } else if (jumpNumber < parseInt($("#page_count").val())) {
+                    changeClass();
+                } else if (jumpNumber == parseInt($("#page_count").val())) {
+                    changeClass("next");
+                }
+            }
+        </script>
+    </div>
+
+</section>
